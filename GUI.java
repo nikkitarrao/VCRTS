@@ -10,12 +10,17 @@ public class GUI {
 		
 		 JFrame frame = new JFrame();
 	      
-	      JButton button = new JButton("Click me!");
-	      JLabel label = new JLabel("Hello, World!");
+		 JLabel label = new JLabel("Welcome to the Vehicular Cloud Real-Time System Console");
+	      JButton button1 = new JButton("Create an Account");
+	      JButton button2 = new JButton("Sign in");
 
 	      JPanel panel = new JPanel();
-	      panel.add(button);
 	      panel.add(label);
+	      panel.add(Box.createVerticalGlue());
+	      panel.add(Box.createVerticalGlue());
+	      panel.add(button1);
+	      panel.add(Box.createVerticalGlue());
+	      panel.add(button2);
 	      frame.add(panel);
 
 	      final int FRAME_WIDTH = 400;
@@ -41,3 +46,4 @@ public class GUI {
 	}
 
 }
+
