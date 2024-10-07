@@ -4,6 +4,17 @@ import java.io.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+/*
+private static void signIn() {
+	// Create a new JFrame for sign in
+}
+
+private static void CreateAccount() {
+	// Create a new JFrame for create account
+}
+*/
+
 public class GUI {
 
 	public static void main(String[] args) throws FileNotFoundException {
@@ -16,9 +27,10 @@ public class GUI {
 
 	      JPanel panel = new JPanel();
 	      panel.add(label);
-	      panel.add(Box.createVerticalGlue());
+	      panel.add(Box.createVerticalGlue()); //leaves a vertical space
 	      panel.add(Box.createVerticalGlue());
 	      panel.add(button1);
+	      panel.add(Box.createVerticalGlue());
 	      panel.add(Box.createVerticalGlue());
 	      panel.add(button2);
 	      frame.add(panel);
@@ -29,6 +41,10 @@ public class GUI {
 	      frame.setTitle("Vehicular Cloud Real Time System");
 	      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	      frame.setVisible(true);
+	      
+	      ActionListener listener = new ClickListener(frame);
+	      button1.addActionListener(listener);
+	      button2.addActionListener(listener);
 	      
 	      //printing out the information
 	      File file = new File("data.txt");
@@ -46,4 +62,5 @@ public class GUI {
 	}
 
 }
+
 
