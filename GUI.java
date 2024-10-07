@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 /*
 private static void signIn() {
-	// Create a new JFrame for sign in
+	
 }
 
 private static void CreateAccount() {
