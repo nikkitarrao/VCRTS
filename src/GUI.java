@@ -31,7 +31,7 @@ public class GUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
      
-        clickListener = new ClickListener(frame);
+        clickListenerPayal = new ClickListenerPayal(frame);
         button1.addActionListener(clickListener);
         button2.addActionListener(clickListener);
      
