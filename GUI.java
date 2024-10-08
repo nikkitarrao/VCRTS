@@ -76,9 +76,6 @@ public class GUI {
 	      
 		 JLabel label = new JLabel("Welcome to the Vehicular Cloud Real-Time System Console");
 	      JButton button1 = new JButton("Create an Account");
-	      JButton button1_1= new JButton("User 1 - Register Vehicle");
-	      JButton button1_2 = new JButton("User 2 - Use Vehicle");
-	      JButton button1_3 = new JButton("User 3 - Cloud Controller");
 	      JButton button2 = new JButton("Sign in");
 
 	      JPanel panel = new JPanel();
