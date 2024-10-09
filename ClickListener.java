@@ -10,6 +10,15 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import javax.swing.*;
+/*
+ * Project: Stage 2 GUI
+ * Class: CUS 1166
+ * Authors: Nikkita Tarrao,Shivanni Rambaran, Payal Moorti, Lorena Vazquez, Jenn Venus
+ * 10.8.2024
+ * This program is stage 2 of our VCRTS project. The ClickListener class has our arrayLists and initializations. Essentially, this class is where 
+ * we created methods for each of our users with the information they are collecting as well as the printwriter to store the information from
+ * the arraylists we created
+ */
 
 public class ClickListener implements ActionListener {
     private CardLayout cardLayout;
@@ -188,23 +197,35 @@ public class ClickListener implements ActionListener {
     	           	user1Info.add(duration);
 
     	           	//prints info gathered to printstream output folder
-    	           	output.print("Owner ID: " + ownerID + ", ");
-    	           	output.print("Password: " + password + ", ");
-    	           	output.print("Email: " + email + ", ");
-    	           	output.print("Make: " + make + ", ");
-    	           	output.print("Model: " + model + ", ");
-    	           	output.print("Year: " + year + ", ");
-    	           	output.print("VIN: " + vin + ", ");
-    	           	output.print("color: " + color + ", ");
-    	           	output.print("duration: " + duration + ", ");
-    	           	output.print("timestamp: " + timestamp + ", ");
+    	           	output.println("Owner ID: " + ownerID + ", ");
+    	           	output.println("Password: " + password + ", ");
+    	           	output.println("Email: " + email + ", ");
+    	           	output.println("Make: " + make + ", ");
+    	           	output.println("Model: " + model + ", ");
+    	           	output.println("Year: " + year + ", ");
+    	           	output.println("VIN: " + vin + ", ");
+    	           	output.println("color: " + color + ", ");
+    	           	output.println("duration: " + duration + ", ");
+    	           	output.println("timestamp: " + timestamp + ", ");
+    	           	output.println("");
     	           	
+    	           	//clear fields
+    	           	
+    	           	t1.setText("");
+    	           	t2.setText("");
+    	        	t3.setText("");
+    	           	t4.setText("");
+    	         	t5.setText("");
+    	           	t6.setText("");
+    	        	t7.setText("");
+    	           	t8.setText("");
+    	           	t9.setText("");
     	           	// returns to the welcome page
     	               cardLayout.show(mainPanel, "Welcome");
     	       }
            	
            });
-        
+    		
         return user1Panel;
     }
     
@@ -273,15 +294,24 @@ public class ClickListener implements ActionListener {
 
 
  	        	//prints info gathered to printstream output folder
- 	        	output.print("Client ID: " + clientID + ", ");
- 	        	output.print("Full Name: " + name + ", ");
- 	        	output.print("Password: " + password + ", ");
- 	        	output.print("Email: " + email + ", ");
- 	        	output.print("Company: " + company + ", ");
- 	        	output.print("Duration: " + duration + ", ");
- 	        	output.print("Deadline: " + deadline + ", ");
- 	        	output.print("timestamp: " + timestamp + ", ");
-
+ 	        	output.println("Client ID: " + clientID + ", ");
+ 	        	output.println("Full Name: " + name + ", ");
+ 	        	output.println("Password: " + password + ", ");
+ 	        	output.println("Email: " + email + ", ");
+ 	        	output.println("Company: " + company + ", ");
+ 	        	output.println("Duration: " + duration + ", ");
+ 	        	output.println("Deadline: " + deadline + ", ");
+ 	        	output.println("timestamp: " + timestamp + ", ");
+ 	        	output.println("");
+ 	        	
+ 	        	t1.setText("");
+ 	        	t2.setText("");
+ 	        	t3.setText("");
+           		t4.setText("");
+           		t5.setText("");
+           		t6.setText("");
+           		t7.setText("");
+           	
  	        	// returns to the welcome page
  	            cardLayout.show(mainPanel, "Welcome");
  	       }
@@ -337,6 +367,7 @@ public class ClickListener implements ActionListener {
         	String lname = t3.getText();
         	String email = t4.getText();
         	String password = t5.getText();
+        	String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         	
         	//doesnt allow you to create repeat accounts
         	for(int i = 0; i < cloudControllerInfo.size(); i++) {
@@ -357,12 +388,21 @@ public class ClickListener implements ActionListener {
   	        	cloudControllerInfo.add(password);
   	        	
   	        	//prints info gathered to printstream output folder
-  	        	output.print("Admin Code: " + adminCode + ", ");
-  	        	output.print("First Name: " + fname + ", ");
-  	        	output.print("Last Name: " + lname + ", ");
-  	        	output.print("Email: " + email + ", ");
-  	        	output.print("Password: " + password + ", ");
+  	        	output.println("Admin Code: " + adminCode + ", ");
+  	        	output.println("First Name: " + fname + ", ");
+  	        	output.println("Last Name: " + lname + ", ");
+  	        	output.println("Email: " + email + ", ");
+  	        	output.println("Password: " + password + ", ");
+  	        	output.println("timestamp: " + timestamp + ", ");
+  	        	output.println("");
   	        	
+  	        	
+  	        	t1.setText("");
+  	        	t2.setText("");
+  	        	t3.setText("");
+  	        	t4.setText("");
+  	        	t5.setText("");
+           
   	        	
   	        	// returns to the welcome page
   	            cardLayout.show(mainPanel, "Welcome");
