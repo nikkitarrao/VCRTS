@@ -1,6 +1,4 @@
-import java.awt.CardLayout;
-import java.awt.Component;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.util.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +10,7 @@ import java.util.Scanner;
 
 import javax.swing.*;
 /*
- * Project: Stage 2 GUI
+ * Project: Stage 2 
  * Class: CUS 1166
  * Authors: Nikkita Tarrao,Shivanni Rambaran, Payal Moorti, Lorena Vazquez, Jenn Venus
  * 10.8.2024
@@ -21,15 +19,7 @@ import javax.swing.*;
  * the arraylists we created
  */
 
-/*
- * Project: Stage 2 GUI
- * Class: CUS 1166
- * Authors: Nikkita Tarrao,Shivanni Rambaran, Payal Moorti, Lorena Vazquez, Jenn Venus
- * 10.8.2024
- * This program is stage 2 of our VCRTS project. The ClickListener class has our arrayLists and initializations. Essentially, this class is where 
- * we created methods for each of our users with the information they are collecting as well as the printwriter to store the information from
- * the arraylists we created
- */
+
 
 public class ClickListener implements ActionListener {
     private CardLayout cardLayout;
@@ -101,7 +91,12 @@ public class ClickListener implements ActionListener {
 
     public JPanel createAccount() {
         JPanel createAccountPanel = new JPanel(); 
+        createAccountPanel.setLayout(new BoxLayout(createAccountPanel, BoxLayout.Y_AXIS));
+        createAccountPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        
         JLabel label = new JLabel("What type of account would you like to create?");
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
         JButton button1 = new JButton("Register a vehicle");
         button1.setAlignmentX(Component.CENTER_ALIGNMENT);
         
@@ -111,10 +106,18 @@ public class ClickListener implements ActionListener {
         JButton button3 = new JButton("Cloud Controller");
         button3.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        //adding stuff to the panel
+        //adjust button size
+        Dimension buttonSize = new Dimension(200, 40); // Adjust width and height as needed
+        button1.setPreferredSize(buttonSize);
+        button2.setPreferredSize(buttonSize);
+        button3.setPreferredSize(buttonSize);
+        
         createAccountPanel.add(label);
+        createAccountPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add space between components
         createAccountPanel.add(button1);
+        createAccountPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add space between components
         createAccountPanel.add(button2);
+        createAccountPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add space between components
         createAccountPanel.add(button3);
         
       //event listener on user 1 button

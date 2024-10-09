@@ -13,18 +13,8 @@ import java.awt.*;
  * 10.8.2024
  * This program is stage 2 of our VCRTS project. The GUI class has our main method where we have the panels for when the program is first run
  * and what the user should initially see as well as the other cardlayouts we created.
- */
-
-/*
- * Project: Stage 2 GUI
- * Class: CUS 1166
- * Authors: Nikkita Tarrao,Shivanni Rambaran, Payal Moorti, Lorena Vazquez, Jenn Venus
- * 10.8.2024
- * 
- * 
- * This program is stage 2 of our VCRTS project. The GUI class has our main method where we have the panels for when the program is first run
- * and what the user should initially see as well as the other cardlayouts we created.
- */
+ *
+*/
 
 public class GUI {
 
@@ -58,19 +48,14 @@ public class GUI {
             JButton signInButton = new JButton("Sign In");
             signInButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-       welcomePanel.add(titleLabel);
-        welcomePanel.add(descriptionLabel);
-        System.out.println("");
-        welcomePanel.add(createAccountButton);
-        welcomePanel.add(signInButton);
-        
-        /*welcomePanel.add(titleLabel);
+       
+        welcomePanel.add(titleLabel);
         welcomePanel.add(Box.createRigidArea(new Dimension(0, 20)));  // Spacing
         welcomePanel.add(descriptionLabel);
         welcomePanel.add(Box.createRigidArea(new Dimension(0, 30)));  // Spacing
         welcomePanel.add(createAccountButton);
         welcomePanel.add(Box.createRigidArea(new Dimension(0, 10)));  // Spacing
-        welcomePanel.add(signInButton);*/
+        welcomePanel.add(signInButton);
 
         // Add welcome panel to main panel
         mainPanel.add(welcomePanel, "Welcome");
