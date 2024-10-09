@@ -11,6 +11,16 @@ import java.util.Scanner;
 
 import javax.swing.*;
 
+/*
+ * Project: Stage 2 GUI
+ * Class: CUS 1166
+ * Authors: Nikkita Tarrao,Shivanni Rambaran, Payal Moorti, Lorena Vazquez, Jenn Venus
+ * 10.8.2024
+ * This program is stage 2 of our VCRTS project. The ClickListener class has our arrayLists and initializations. Essentially, this class is where 
+ * we created methods for each of our users with the information they are collecting as well as the printwriter to store the information from
+ * the arraylists we created
+ */
+
 public class ClickListener implements ActionListener {
     private CardLayout cardLayout;
     private JPanel mainPanel;
