@@ -6,6 +6,14 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.awt.CardLayout;
+/*
+ * Project: Stage 2 GUI
+ * Class: CUS 1166
+ * Authors: Nikkita Tarrao,Shivanni Rambaran, Payal Moorti, Lorena Vazquez, Jenn Venus
+ * 10.8.2024
+ * This program is stage 2 of our VCRTS project. The GUI class has our main method where we have the panels for when the program is first run
+ * and what the user should initially see as well as the other cardlayouts we created.
+ */
 
 /*
  * Project: Stage 2 GUI
