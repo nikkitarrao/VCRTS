@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.awt.CardLayout;
+import java.awt.*;
 /*
  * Project: Stage 2 GUI
  * Class: CUS 1166
@@ -33,24 +33,45 @@ public class GUI {
         CardLayout cardLayout = new CardLayout();
         JPanel mainPanel = new JPanel(cardLayout);
        // welcomePanel.setLayout(new BoxLayout(welcomePanel, BoxLayout.Y_AXIS)); 
+       
 
         // Create the welcome panel
         JPanel welcomePanel = new JPanel();
-        JLabel label = new JLabel("Vehicular Cloud Real-Time System Console");
-        JLabel description = new JLabel("<html>The Vehicular Cloud Real-Time System (VCRTS) is a service that manages and organizes computation resources and jobs in a vehicular cloud.<br>"
-                + "\nThis system is intended for owners of smart modern vehicles equipped with computing capabilities and users looking to utilize cloud-based computation power to submit jobs and simulations.<br>"
-                + "\nThe VCRTS will be implemented in parking lots, where vehicles can connect to the cloud via Wi-Fi, facilitating cohesive real-time interactions.<br></html>");
-        System.out.println("<br>");
+        welcomePanel.setLayout(new BoxLayout(welcomePanel, BoxLayout.Y_AXIS));
+        welcomePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        
+        JLabel titleLabel = new JLabel("Vehicular Cloud Real-Time System Console", JLabel.CENTER);
+        titleLabel.setFont(new Font("Serif", Font.BOLD, 18));
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel descriptionLabel = new JLabel(
+                "<html><p style='text-align: center;'>"
+                + "The Vehicular Cloud Real-Time System (VCRTS) manages and organizes "
+                + "computation resources in a vehicular cloud.<br><br>"
+                + "It allows owners of smart vehicles equipped with computing capabilities to rent out their "
+                + "vehicle's computing power and users to submit jobs for cloud-based computation."
+                + "</p></html>", JLabel.CENTER);
+            descriptionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton createAccountButton = new JButton("Create an Account");
-        JButton signInButton = new JButton("Sign In");
+            JButton createAccountButton = new JButton("Create an Account");
+            createAccountButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        welcomePanel.add(label);
-        welcomePanel.add(description);
+            JButton signInButton = new JButton("Sign In");
+            signInButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+       welcomePanel.add(titleLabel);
+        welcomePanel.add(descriptionLabel);
         System.out.println("");
         welcomePanel.add(createAccountButton);
         welcomePanel.add(signInButton);
         
+        /*welcomePanel.add(titleLabel);
+        welcomePanel.add(Box.createRigidArea(new Dimension(0, 20)));  // Spacing
+        welcomePanel.add(descriptionLabel);
+        welcomePanel.add(Box.createRigidArea(new Dimension(0, 30)));  // Spacing
+        welcomePanel.add(createAccountButton);
+        welcomePanel.add(Box.createRigidArea(new Dimension(0, 10)));  // Spacing
+        welcomePanel.add(signInButton);*/
+
         // Add welcome panel to main panel
         mainPanel.add(welcomePanel, "Welcome");
         

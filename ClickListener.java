@@ -1,4 +1,5 @@
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.util.*;
 import java.awt.event.ActionEvent;
@@ -102,8 +103,13 @@ public class ClickListener implements ActionListener {
         JPanel createAccountPanel = new JPanel(); 
         JLabel label = new JLabel("What type of account would you like to create?");
         JButton button1 = new JButton("Register a vehicle");
+        button1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
         JButton button2 = new JButton("Submit jobs");
+        button2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
         JButton button3 = new JButton("Cloud Controller");
+        button3.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         //adding stuff to the panel
         createAccountPanel.add(label);
