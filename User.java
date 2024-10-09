@@ -2,16 +2,17 @@ public class User {
     private String name;
     private String email;
     private String phoneNumber;
-    private String userName;
+    private String ownerID;
     private String password;
+    private String vehicleResidencyTime;
     private Vehicle vehicle;
     
     // Constructor
-    public User(String name, String email, String phoneNumber, String userName, String password, Vehicle vehicle) {
+    public User(String name, String email, String phoneNumber, String userName, String password, String vehicleResidencyTime, Vehicle vehicle) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.userName = userName;
+        this.ownerID = ownerID;
         this.password = password;
         this.vehicle = vehicle;
     }
@@ -40,11 +41,18 @@ public class User {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    public void setUserName(String userName) {
-    	this.userName = userName;
+    public void setUserName(String ownerID) {
+    	this.ownerID = ownerID;
     }
     public void setPassword(String password) {
     	this.password=password;
+    }
+    public void setResidencyTime(String vehicleResidencyTime) {
+    	this.vehicleResidencyTime = vehicleResidencyTime;
+    }
+    public String vehicleResidencyTime() {
+		return vehicleResidencyTime;
+    	
     }
     public Vehicle getVehicle() {
         return vehicle;
@@ -57,6 +65,6 @@ public class User {
     // Optional: A toString method for easy printing of the user information
     @Override
     public String toString() {
-        return "User [Name=" + name + ", Email=" + email + ", Phone=" + phoneNumber + ", Vehicle=" + vehicle + "]";
+        return "Owner [Name=" + name + ", Email=" + email + ", Phone=" + phoneNumber + ", Vehicle=" + vehicle + "]";
     }
 }

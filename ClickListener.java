@@ -1,10 +1,12 @@
 import java.awt.CardLayout;
+import java.awt.GridLayout;
 import java.util.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import javax.swing.*;
@@ -12,6 +14,11 @@ import javax.swing.*;
 public class ClickListener implements ActionListener {
     private CardLayout cardLayout;
     private JPanel mainPanel;
+
+    // ArrayLists to hold account information
+    private ArrayList<String> user1Info = new ArrayList<>();
+    private ArrayList<String> user2Info = new ArrayList<>();
+    private ArrayList<String> cloudControllerInfo = new ArrayList<>();
 
     // Constructor to initialize the main panel and layout
     public ClickListener(JPanel mainPanel, CardLayout cardLayout) {
@@ -37,37 +44,39 @@ public class ClickListener implements ActionListener {
             		//cardlayout will display the user2 method display on the main panel
             		//cardLayout.show(mainPanel, "User2");
             }
-        } else if (command.equals("Sign in")) {
-            System.out.print("Sign in");
-        	//System.out.print("Create Account");
-        	parentFrame.getContentPane().removeAll();
-        	JPanel panel2 = new JPanel();
-        	JLabel labelUser = new JLabel("Which account would you like to create?");
-        	panel2.add(labelUser);
-        	
-   		 	JButton button1_1= new JButton("User 1 - Register Vehicle"); //1_1 suggests that it is related to button 1 which is create account so these buttons show up if you click button 1
-   		 	panel2.add(button1_1);
-   		 	button1_1.addActionListener(e -> GUI.createUser1(parentFrame));
-   		 	JButton button1_2=new  JButton ("User 2 - Use Vehicle");
-   		 	JButton button1_3 = new JButton ("User 3 - Cloud Controller");
-
-         // Add buttons to the panel
-   		 	panel2.add(button1_2);
-   		 	panel2.add(button1_3);
-
-         // Re-add the panel to the frame
-   		 	parentFrame.add(panel2);
-   		 	parentFrame.revalidate();  // Refresh the frame to show new content
-   		 	parentFrame.repaint();  // Repaint the frame
-        
-            
-        } 
-        else if (command.equals("Sign in")) {
-        	 System.out.print("Sign in");
-        	 parentFrame.getContentPane().removeAll();
- 
-        	 
+        } else if (command.equals("Sign In")) {
+        	cardLayout.show(mainPanel, "SignIn");
         }
+    }
+    
+    public JPanel signIn() {
+        JPanel signInPanel = new JPanel(); 
+        JLabel label = new JLabel("ID: ");
+        JLabel label2= new JLabel("Password: ");
+        JButton button = new JButton("Submit");
+        JTextField t1 = new JTextField(20);
+    	JTextField t2 = new JTextField(20);
+        
+        //adding stuff to the panel
+        signInPanel.add(label);
+        signInPanel.add(t1);
+        signInPanel.add(label2);
+        signInPanel.add(t2);
+        signInPanel.add(button);
+        
+      //line break to make more neat
+       signInPanel.setLayout(new BoxLayout(signInPanel, BoxLayout.Y_AXIS)); 
+        
+      //event listener on submit button to enter account
+       if(user1Info.isEmpty() && user2Info.isEmpty() && user2Info.isEmpty()) {
+    	   button.addActionListener(e -> {
+    		   JOptionPane.showMessageDialog(new JFrame("Error"), "User not Found, Please try again");
+                cardLayout.show(mainPanel, "Welcome");
+            });
+       } //else let them sign in
+
+        //returning the panel so that it can be displayed when 'SignIn' button option is chosen 
+        return signInPanel;
     }
 
     public JPanel createAccount() {
@@ -100,16 +109,196 @@ public class ClickListener implements ActionListener {
         return createAccountPanel;
     }
     
+    
+    public JPanel user1() throws FileNotFoundException {
+    	//full name, email, phone number, username password, car make model, vin, year
+    	JPanel user1Panel = new JPanel();
+        user1Panel.add(new JLabel("Create User 1 Account"));
+        user1Panel.add(new JLabel("Enter the following information below"));
+    	JTextField t1 = new JTextField(10);
+    	JTextField t2 = new JTextField(20);
+    	JTextField t3 = new JTextField(20);
+    	JTextField t4 = new JTextField(10);
+    	JTextField t5 = new JTextField(10);
+    	JTextField t6 = new JTextField(10);
+    	JTextField t7 = new JTextField(4);
+    	JTextField t8 = new JTextField(4);
+    	JTextField t9 = new JTextField(10);
+        //user info
+        user1Panel.add(new JLabel("User Information"));
+        user1Panel.add(new JLabel("Owner ID: "));
+        user1Panel.add(t1);
+        user1Panel.add(new JLabel("Password: "));
+        user1Panel.add(t2);
+        user1Panel.add(new JLabel("Email: "));
+        user1Panel.add(t3);
+        //car info
+        user1Panel.add(new JLabel("Vehicle Information"));
+        user1Panel.add(new JLabel("Make: "));
+        user1Panel.add(t4);
+        user1Panel.add(new JLabel("Model: "));
+        user1Panel.add(t5);
+        user1Panel.add(new JLabel("VIN: "));
+        user1Panel.add(t6);
+        user1Panel.add(new JLabel("Year: "));
+        user1Panel.add(t7);
+        user1Panel.add(new JLabel("Color: "));
+        user1Panel.add(t9);
+        user1Panel.add(new JLabel("Approximate Vehicle Residency Time: "));
+        user1Panel.add(t8);
+        
+     // File reading operations
+    	PrintStream output = new PrintStream(new File("User1Out.txt"));
+
+        JButton submitButton = new JButton("Submit");
+        submitButton.addActionListener(this);
+        user1Panel.add(submitButton);
+        
+      //line break to make more neat
+       user1Panel.setLayout(new BoxLayout(user1Panel, BoxLayout.Y_AXIS)); 
+       
+
+    	   submitButton.addActionListener(e -> {
+    		
+    		    //retrieves the info from the input fields 
+    	   		String ownerID = t1.getText();
+    	   		String password = t2.getText();
+    	   		String email = t3.getText();
+    	   		String make = t4.getText();
+    	   		String model = t5.getText();
+    	   		String year = t6.getText();
+    	   		String vin = t7.getText();
+    	   		String duration = t8.getText();
+    	   		String color = t9.getText();
+    	   		String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+    	   	
+    		 	//event listener on submit button 
+    	       if(ownerID.isEmpty() || password.isEmpty() || email.isEmpty() || make.isEmpty()|| make.isEmpty() || model.isEmpty() || year.isEmpty() || vin.isEmpty()|| color.isEmpty()|| duration.isEmpty()) {
+    	    		   JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Infomation");
+    	       } else {
+    	    	 	//save it into the arraylist
+    	           	user1Info.add(ownerID);
+    	           	user1Info.add(password);
+    	           	user1Info.add(email);
+    	           	user1Info.add(make);
+    	           	user1Info.add(model);
+    	           	user1Info.add(year);
+    	           	user1Info.add(vin);
+    	           	user1Info.add(color);
+    	           	user1Info.add(duration);
+
+    	           	//prints info gathered to printstream output folder
+    	           	output.print("Owner ID: " + ownerID + ", ");
+    	           	output.print("Password: " + password + ", ");
+    	           	output.print("Email: " + email + ", ");
+    	           	output.print("Make: " + make + ", ");
+    	           	output.print("Model: " + model + ", ");
+    	           	output.print("Year: " + year + ", ");
+    	           	output.print("VIN: " + vin + ", ");
+    	           	output.print("color: " + color + ", ");
+    	           	output.print("duration: " + duration + ", ");
+    	           	output.print("timestamp: " + timestamp + ", ");
+    	           	
+    	           	// returns to the welcome page
+    	               cardLayout.show(mainPanel, "Welcome");
+    	       }
+           	
+           });
+        
+        return user1Panel;
+    }
+    
+    
+    public JPanel user2() throws FileNotFoundException {
+        JPanel user2Panel = new JPanel(new GridLayout(0, 2));
+        user2Panel.add(new JLabel("Create User 2 Account"));
+        user2Panel.add(new JLabel("Enter the following information below"));
+        JTextField t1 = new JTextField(10);
+    	JTextField t2 = new JTextField(20);
+    	JTextField t3 = new JTextField(20);
+    	JTextField t4 = new JTextField(20);
+    	JTextField t5 = new JTextField(10);
+    	JTextField t6 = new JTextField(10);
+    	JTextField t7 = new JTextField(20);
+
+
+        user2Panel.add(new JLabel("Client ID: "));
+        user2Panel.add(t1);
+        user2Panel.add(new JLabel("Full Name: "));
+        user2Panel.add(t7);
+        user2Panel.add(new JLabel("Password: "));
+        user2Panel.add(t2);
+        user2Panel.add(new JLabel("Email: "));
+        user2Panel.add(t3);
+        user2Panel.add(new JLabel("Company/Organization: "));
+        user2Panel.add(t4);
+        user2Panel.add(new JLabel("Approximate Job Duration: "));
+        user2Panel.add(t5);
+        user2Panel.add(new JLabel("Job Deadline: "));
+        user2Panel.add(t6);
+        
+        // File reading operations
+    	PrintStream output = new PrintStream(new File("User2Out.txt"));
+
+        JButton submitButton = new JButton("Submit");
+        submitButton.addActionListener(this);
+        user2Panel.add(submitButton);
+        
+      //line break to make more neat
+       user2Panel.setLayout(new BoxLayout(user2Panel, BoxLayout.Y_AXIS)); 
+        
+      //event listener on submit button 
+        submitButton.addActionListener(e -> {
+        	//retrieves the info from the input fields 
+        	String clientID = t1.getText();
+        	String password = t2.getText();
+        	String email = t3.getText();
+        	String company = t4.getText();
+        	String duration = t5.getText();
+        	String deadline = t6.getText();
+        	String name = t7.getText();
+        	String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        	
+        	//check if fields are empty
+ 	       if(clientID.isEmpty() || password.isEmpty() || email.isEmpty() || company.isEmpty()|| duration.isEmpty() || deadline.isEmpty() ||name.isEmpty()) {
+ 	    		   JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Infomation");
+ 	       } else {
+ 	    	 	//save it into the arraylist
+ 	        	user2Info.add(clientID);
+ 	        	user2Info.add(password);
+ 	        	user2Info.add(email);
+ 	        	user2Info.add(company);
+ 	        	user2Info.add(duration);
+ 	        	user2Info.add(deadline);
+
+
+ 	        	//prints info gathered to printstream output folder
+ 	        	output.print("Client ID: " + clientID + ", ");
+ 	        	output.print("Full Name: " + name + ", ");
+ 	        	output.print("Password: " + password + ", ");
+ 	        	output.print("Email: " + email + ", ");
+ 	        	output.print("Company: " + company + ", ");
+ 	        	output.print("Duration: " + duration + ", ");
+ 	        	output.print("Deadline: " + deadline + ", ");
+ 	        	output.print("timestamp: " + timestamp + ", ");
+
+ 	        	// returns to the welcome page
+ 	            cardLayout.show(mainPanel, "Welcome");
+ 	       }
+  
+        });
+        
+        
+        return user2Panel;
+    }
+    
     public JPanel cloudController() throws FileNotFoundException{
-    	//ArrayList to save cloud controller account information
-    	ArrayList <String> cloudControllerList = new ArrayList<String>();
     	
     	JPanel cloudControllerPanel = new JPanel();
     	JLabel label = new JLabel("Create Cloud Controller Account- Authorized Users Only");
     	JLabel label2 = new JLabel("Enter the following information below");
-    	JLabel adminCodeLabel = new JLabel("Admin Code: ");
+    	JLabel adminCodeLabel = new JLabel("Admin ID: ");
     	JTextField t1 = new JTextField(7);
-    	
     	JTextField t2 = new JTextField(20);
     	JTextField t3 = new JTextField(20);
     	JTextField t4 = new JTextField(20);
@@ -121,8 +310,7 @@ public class ClickListener implements ActionListener {
     	JButton submit = new JButton("Submit");
     	
     	 // File reading operations
-    	PrintStream output = new PrintStream(new File("out.txt"));
-       // Scanner input = new Scanner(System.in);
+    	PrintStream output = new PrintStream(new File("CloudOut.txt"));
     	
     	cloudControllerPanel.add(label);
     	cloudControllerPanel.add(label2);
@@ -151,30 +339,35 @@ public class ClickListener implements ActionListener {
         	String password = t5.getText();
         	
         	//doesnt allow you to create repeat accounts
-        	for(int i = 0; i < cloudControllerList.size(); i++) {
-        		if(adminCode.equals(cloudControllerList.get(i))) {
+        	for(int i = 0; i < cloudControllerInfo.size(); i++) {
+        		if(adminCode.equals(cloudControllerInfo.get(i))) {
             		
             	}
         	}
+ 
+        	//check if fields are empty
+  	       if(adminCode.isEmpty() || password.isEmpty() || email.isEmpty() || fname.isEmpty()|| lname.isEmpty()) {
+  	    		   JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Infomation");
+  	       } else {
+  	    	//save it into the arraylist
+  	        	cloudControllerInfo.add(adminCode);
+  	        	cloudControllerInfo.add(fname);
+  	        	cloudControllerInfo.add(lname);
+  	        	cloudControllerInfo.add(email);
+  	        	cloudControllerInfo.add(password);
+  	        	
+  	        	//prints info gathered to printstream output folder
+  	        	output.print("Admin Code: " + adminCode + ", ");
+  	        	output.print("First Name: " + fname + ", ");
+  	        	output.print("Last Name: " + lname + ", ");
+  	        	output.print("Email: " + email + ", ");
+  	        	output.print("Password: " + password + ", ");
+  	        	
+  	        	
+  	        	// returns to the welcome page
+  	            cardLayout.show(mainPanel, "Welcome");
+  	       }
         	
-        	
-        	//save it into the arraylist
-        	cloudControllerList.add(adminCode);
-        	cloudControllerList.add(fname);
-        	cloudControllerList.add(lname);
-        	cloudControllerList.add(email);
-        	cloudControllerList.add(password);
-        	
-        	//prints info gathered to printstream output folder
-        	output.print("Admin Code: " + adminCode + ", ");
-        	output.print("First Name: " + fname + ", ");
-        	output.print("Last Name: " + lname + ", ");
-        	output.print("Email: " + email + ", ");
-        	output.print("Password: " + password + ", ");
-        	
-        	
-        	// returns to the welcome page
-            cardLayout.show(mainPanel, "Welcome");
         });
     	return cloudControllerPanel;
     		}
