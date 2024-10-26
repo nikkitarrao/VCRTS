@@ -1,5 +1,6 @@
-public class User {
+public class VehicleOwner {
     private String name;
+    private String username;
     private String email;
     private String phoneNumber;
     private String ownerID;
@@ -8,8 +9,9 @@ public class User {
     private Vehicle vehicle;
     
     // Constructor
-    public User(String name, String email, String phoneNumber, String userName, String password, String vehicleResidencyTime, Vehicle vehicle) {
+    public VehicleOwner(String name, String username, String email, String phoneNumber, String ownerID, String password, String vehicleResidencyTime, Vehicle vehicle) {
         this.name = name;
+        this.username = username;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.ownerID = ownerID;
@@ -22,8 +24,15 @@ public class User {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String username) {
+        this.username = username;
+    }
+    public String getUserName() {
+        return name;
+    }
+
+    public void setUserName(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -41,9 +50,7 @@ public class User {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    public void setUserName(String ownerID) {
-    	this.ownerID = ownerID;
-    }
+   
     public void setPassword(String password) {
     	this.password=password;
     }

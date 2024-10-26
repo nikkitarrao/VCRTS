@@ -26,8 +26,8 @@ public class ClickListener implements ActionListener {
     private JPanel mainPanel;
 
     // ArrayLists to hold account information
-    private ArrayList<String> user1Info = new ArrayList<>();
-    private ArrayList<String> user2Info = new ArrayList<>();
+    private ArrayList<String> vehicleOwnerInfo = new ArrayList<>();
+    private ArrayList<String> clientInfo = new ArrayList<>();
     private ArrayList<String> cloudControllerInfo = new ArrayList<>();
 
     // Constructor to initialize the main panel and layout
@@ -78,7 +78,7 @@ public class ClickListener implements ActionListener {
        signInPanel.setLayout(new BoxLayout(signInPanel, BoxLayout.Y_AXIS)); 
         
       //event listener on submit button to enter account
-       if(user1Info.isEmpty() && user2Info.isEmpty() && user2Info.isEmpty()) {
+       if(vehicleOwnerInfo.isEmpty() && vehicleOwnerInfo.isEmpty() && clientInfo.isEmpty()) {
     	   button.addActionListener(e -> {
     		   JOptionPane.showMessageDialog(new JFrame("Error"), "User not Found, Please try again");
                 cardLayout.show(mainPanel, "Welcome");
@@ -120,6 +120,7 @@ public class ClickListener implements ActionListener {
         createAccountPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add space between components
         createAccountPanel.add(button3);
         
+    
       //event listener on user 1 button
         button1.addActionListener(e -> {
             cardLayout.show(mainPanel, "User1");
@@ -143,37 +144,43 @@ public class ClickListener implements ActionListener {
     	JPanel user1Panel = new JPanel();
         user1Panel.add(new JLabel("Create User 1 Account"));
         user1Panel.add(new JLabel("Enter the following information below"));
-    	JTextField t1 = new JTextField(10);
-    	JTextField t2 = new JTextField(20);
-    	JTextField t3 = new JTextField(20);
-    	JTextField t4 = new JTextField(10);
-    	JTextField t5 = new JTextField(10);
-    	JTextField t6 = new JTextField(10);
-    	JTextField t7 = new JTextField(4);
-    	JTextField t8 = new JTextField(4);
-    	JTextField t9 = new JTextField(10);
+    	JTextField nameText = new JTextField(10);
+    	JTextField userNameText = new JTextField(20);
+    	JTextField passwordText = new JTextField(20);
+    	JTextField emailText = new JTextField(20);
+    	JTextField phoneText = new JTextField(20);
+    	JTextField makeText = new JTextField(10);
+    	JTextField modelText = new JTextField(10);
+    	JTextField vinText = new JTextField(10);
+    	JTextField yearText = new JTextField(4);
+    	JTextField colorText = new JTextField(4);
+    	JTextField residencyTimeText = new JTextField(10);
         //user info
         user1Panel.add(new JLabel("User Information"));
-        user1Panel.add(new JLabel("Owner ID: "));
-        user1Panel.add(t1);
+        user1Panel.add(new JLabel("Owner Name: "));
+        user1Panel.add(nameText);
+        user1Panel.add(new JLabel("Username: "));
+        user1Panel.add(userNameText);
         user1Panel.add(new JLabel("Password: "));
-        user1Panel.add(t2);
+        user1Panel.add(passwordText);
+        user1Panel.add(new JLabel("Phone Number: "));
+        user1Panel.add(phoneText);
         user1Panel.add(new JLabel("Email: "));
-        user1Panel.add(t3);
+        user1Panel.add(emailText);
         //car info
         user1Panel.add(new JLabel("Vehicle Information"));
         user1Panel.add(new JLabel("Make: "));
-        user1Panel.add(t4);
+        user1Panel.add(makeText);
         user1Panel.add(new JLabel("Model: "));
-        user1Panel.add(t5);
+        user1Panel.add(modelText);
         user1Panel.add(new JLabel("VIN: "));
-        user1Panel.add(t6);
+        user1Panel.add(vinText);
         user1Panel.add(new JLabel("Year: "));
-        user1Panel.add(t7);
+        user1Panel.add(yearText);
         user1Panel.add(new JLabel("Color: "));
-        user1Panel.add(t9);
-        user1Panel.add(new JLabel("Approximate Vehicle Residency Time: "));
-        user1Panel.add(t8);
+        user1Panel.add(colorText);
+        user1Panel.add(new JLabel("Approximate Vehicle Residency Time (in hrs): "));
+        user1Panel.add(residencyTimeText);
         
      // File reading operations
     	PrintStream output = new PrintStream(new File("User1Out.txt"));
@@ -189,36 +196,44 @@ public class ClickListener implements ActionListener {
     	   submitButton.addActionListener(e -> {
     		
     		    //retrieves the info from the input fields 
-    	   		String ownerID = t1.getText();
-    	   		String password = t2.getText();
-    	   		String email = t3.getText();
-    	   		String make = t4.getText();
-    	   		String model = t5.getText();
-    	   		String year = t6.getText();
-    	   		String vin = t7.getText();
-    	   		String duration = t8.getText();
-    	   		String color = t9.getText();
+    	   		String ownerName = nameText.getText();
+    	   		String username = userNameText.getText();
+    	   		String pw = passwordText.getText();
+    	   		String phone = phoneText.getText();
+    	   		String email = emailText.getText();
+    	   		String make = makeText.getText();
+    	   		String model = modelText.getText();
+    	   		String year = yearText.getText();
+    	   		String vin = vinText.getText();
+    	   		String duration = residencyTimeText.getText();
+    	   		String color = colorText.getText();
     	   		String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+    	   		
+    	   		Vehicle vehicle = new Vehicle(make, model, year, vin);
+    	        VehicleOwner owner = new VehicleOwner(ownerName,username, email, phone, pw, vin, timestamp, vehicle);
+
     	   	
     		 	//event listener on submit button 
-    	       if(ownerID.isEmpty() || password.isEmpty() || email.isEmpty() || make.isEmpty()|| make.isEmpty() || model.isEmpty() || year.isEmpty() || vin.isEmpty()|| color.isEmpty()|| duration.isEmpty()) {
+    	       if(ownerName.isEmpty() || pw.isEmpty() || email.isEmpty() || make.isEmpty()|| make.isEmpty() || model.isEmpty() || year.isEmpty() || vin.isEmpty()|| color.isEmpty()|| duration.isEmpty()) {
     	    		   JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Infomation");
     	       } else {
     	    	 	//save it into the arraylist
-    	           	user1Info.add(ownerID);
-    	           	user1Info.add(password);
-    	           	user1Info.add(email);
-    	           	user1Info.add(make);
-    	           	user1Info.add(model);
-    	           	user1Info.add(year);
-    	           	user1Info.add(vin);
-    	           	user1Info.add(color);
-    	           	user1Info.add(duration);
+    	           	vehicleOwnerInfo.add(ownerName);
+    	           	vehicleOwnerInfo.add(username);
+    	           	vehicleOwnerInfo.add(pw);
+    	           	vehicleOwnerInfo.add(phone);
+    	           	vehicleOwnerInfo.add(email);
+    	           	vehicleOwnerInfo.add(make);
+    	           	vehicleOwnerInfo.add(model);
+    	           	vehicleOwnerInfo.add(year);
+    	           	vehicleOwnerInfo.add(vin);
+    	           	vehicleOwnerInfo.add(color);
+    	           	vehicleOwnerInfo.add(duration);
 
     	           	//prints info gathered to printstream output folder
-    	           	output.println("Owner ID: " + ownerID + ", ");
-    	           	output.println("Password: " + password + ", ");
-    	           	output.println("Email: " + email + ", ");
+    	           	output.println("Owner ID: " + ownerName + ", ");
+    	           	output.println("Password: " + passwordText + ", ");
+    	           	output.println("Email: " + emailText + ", ");
     	           	output.println("Make: " + make + ", ");
     	           	output.println("Model: " + model + ", ");
     	           	output.println("Year: " + year + ", ");
@@ -230,15 +245,18 @@ public class ClickListener implements ActionListener {
     	           	
     	           	//clear fields
     	           	
-    	           	t1.setText("");
-    	           	t2.setText("");
-    	        	t3.setText("");
-    	           	t4.setText("");
-    	         	t5.setText("");
-    	           	t6.setText("");
-    	        	t7.setText("");
-    	           	t8.setText("");
-    	           	t9.setText("");
+    	           	nameText.setText("");
+    	           	userNameText.setText("");
+    	        	passwordText.setText("");
+    	           	emailText.setText("");
+    	         	phoneText.setText("");
+    	           	makeText.setText("");
+    	        	modelText.setText("");
+    	        	yearText.setText("");
+    	        	vinText.setText("");
+    	        	colorText.setText("");
+    	           	residencyTimeText.setText("");
+    	           	
     	           	// returns to the welcome page
     	               cardLayout.show(mainPanel, "Welcome");
     	       }
@@ -272,7 +290,7 @@ public class ClickListener implements ActionListener {
         user2Panel.add(t3);
         user2Panel.add(new JLabel("Company/Organization: "));
         user2Panel.add(t4);
-        user2Panel.add(new JLabel("Approximate Job Duration: "));
+        user2Panel.add(new JLabel("Approximate Job Duration(in mins): "));
         user2Panel.add(t5);
         user2Panel.add(new JLabel("Job Deadline: "));
         user2Panel.add(t6);
@@ -304,12 +322,12 @@ public class ClickListener implements ActionListener {
  	    		   JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Infomation");
  	       } else {
  	    	 	//save it into the arraylist
- 	        	user2Info.add(clientID);
- 	        	user2Info.add(password);
- 	        	user2Info.add(email);
- 	        	user2Info.add(company);
- 	        	user2Info.add(duration);
- 	        	user2Info.add(deadline);
+ 	        	clientInfo.add(clientID);
+ 	        	clientInfo.add(password);
+ 	        	clientInfo.add(email);
+ 	        	clientInfo.add(company);
+ 	        	clientInfo.add(duration);
+ 	        	clientInfo.add(deadline);
 
 
  	        	//prints info gathered to printstream output folder
@@ -398,7 +416,11 @@ public class ClickListener implements ActionListener {
         	//check if fields are empty
   	       if(adminCode.isEmpty() || password.isEmpty() || email.isEmpty() || fname.isEmpty()|| lname.isEmpty()) {
   	    		   JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Infomation");
-  	       } else {
+  	       } 
+  	       else if (!adminCode.equals("SR1") || !adminCode.equals("LV2") || !adminCode.equals("NT3") || !adminCode.equals("PM4") || !adminCode.equals("JV5")) {
+  	    	 JOptionPane.showMessageDialog(new JFrame("Error"), "INCORRECT ADMIN CODE!");
+  	       }
+  	       else {
   	    	//save it into the arraylist
   	        	cloudControllerInfo.add(adminCode);
   	        	cloudControllerInfo.add(fname);

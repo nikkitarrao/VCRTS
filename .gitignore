@@ -8,3 +8,9 @@
 /User.class
 /Vehicle.class
 >>>>>>> df665dc (I changed the gui class, i added a createUser1 method, I also added vehicle and user class)
+/VehicleOwner.class
+/VC_Controller.class
+/Client.class
+/Job.class
+/Server.class
+/CheckpointMechanism.class

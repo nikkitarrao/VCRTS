@@ -1,11 +1,11 @@
 public class Vehicle {
     private String make;
     private String model;
-    private int year;
+    private String year;
     private String vin;
 
     // Constructor
-    public Vehicle(String make, String model, int year, String vin) {
+    public Vehicle(String make, String model,String year, String vin) {
         this.make = make;
         this.model = model;
         this.year = year;
@@ -29,11 +29,11 @@ public class Vehicle {
         this.model = model;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
