@@ -210,7 +210,7 @@ public class ClickListener implements ActionListener {
     	   		String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     	   		
     	   		Vehicle vehicle = new Vehicle(make, model, year, vin);
-    	        VehicleOwner owner = new VehicleOwner(ownerName,username, email, phone, pw, vin, timestamp, vehicle);
+    	        //VehicleOwner owner = new VehicleOwner(ownerName,username, email, phone, pw, vin, timestamp, vehicle);
 
     	   	
     		 	//event listener on submit button 

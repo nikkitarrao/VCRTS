@@ -1,20 +1,17 @@
-public class VehicleOwner {
-    private String name;
+public class VehicleOwner extends User{
     private String username;
     private String email;
     private String phoneNumber;
-    private String ownerID;
     private String password;
     private String vehicleResidencyTime;
     private Vehicle vehicle;
     
     // Constructor
-    public VehicleOwner(String name, String username, String email, String phoneNumber, String ownerID, String password, String vehicleResidencyTime, Vehicle vehicle) {
-        this.name = name;
+    public VehicleOwner(String id, String name, String username, String email, String phoneNumber, String password, String vehicleResidencyTime, Vehicle vehicle) {
+    	super(name, id);
         this.username = username;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.ownerID = ownerID;
         this.password = password;
         this.vehicle = vehicle;
     }
@@ -67,6 +64,10 @@ public class VehicleOwner {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+    }
+    
+    public void rentVehicle(Vehicle vehicle) {
+    	
     }
 
     // Optional: A toString method for easy printing of the user information
