@@ -1,15 +1,12 @@
 public class VehicleOwner extends User{
-    private String username;
     private String email;
     private String phoneNumber;
-    private String password;
     private String vehicleResidencyTime;
     private Vehicle vehicle;
     
     // Constructor
-    public VehicleOwner(String id, String name, String username, String email, String phoneNumber, String password, String vehicleResidencyTime, Vehicle vehicle) {
-    	super(name, id);
-        this.username = username;
+    public VehicleOwner(String name, String id, String password,  String email, String phoneNumber, String vehicleResidencyTime, Vehicle vehicle) {
+    	super(name, id, password);
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
@@ -21,15 +18,8 @@ public class VehicleOwner extends User{
         return name;
     }
 
-    public void setName(String username) {
-        this.username = username;
-    }
     public String getUserName() {
         return name;
-    }
-
-    public void setUserName(String username) {
-        this.username = username;
     }
 
     public String getEmail() {
