@@ -1,6 +1,9 @@
 
 public class Job {
+	private String duration;
+	private String completionTime;
 	private String status;
+	private boolean isCompleted;
 	
 	//Constructor
 	public Job () {
@@ -16,5 +19,9 @@ public class Job {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	public void markCompleted() {
+        this.isCompleted = true;
+    }
 	
 }
