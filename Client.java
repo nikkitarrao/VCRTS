@@ -31,8 +31,8 @@ public class Client extends User{
 		//store to file
     	PrintStream output = new PrintStream(new File("Jobs.txt"));
     	//prints info gathered to printstream output folder
-      	//output.println("Job Information: " + jobs);
-      	//output.println("");
+      	output.println("Job Information: " + jobs);
+      	output.println("");
 	}
 	
 	public String checkJobStatus(Job job) {

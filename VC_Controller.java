@@ -18,8 +18,8 @@ public class VC_Controller extends User {
 		int totalDuration = 0;
 		while (!jobs.isEmpty()) {
             // Add the head of the queue to the cumulative sum
-            totalDuration += jobs.element();
-            System.out.println(totalDuration);
+            totalDuration += jobs.poll();
+            System.out.println("Completion time (in order of first to last job) " + totalDuration + " mins");
         }
 		return totalDuration;
 		

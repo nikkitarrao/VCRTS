@@ -1,0 +1,22 @@
+Job Information: [10]
+
+Client ID: erg, 
+Full Name: re, 
+Password: r, 
+Email: r, 
+Company: r, 
+Duration: 10, 
+Deadline: g, 
+timestamp: 2024-10-30 18:29:40, 
+
+Job Information: [10, 5]
+
+Client ID: v, 
+Full Name: v, 
+Password: vv, 
+Email: v, 
+Company: v, 
+Duration: 5, 
+Deadline: eg, 
+timestamp: 2024-10-30 18:29:49, 
+

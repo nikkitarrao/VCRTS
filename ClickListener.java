@@ -469,7 +469,8 @@ public class ClickListener implements ActionListener {
   	        	
   	        	VC_Controller vc = new VC_Controller(adminCode, fname, password);
   	        	int completionTime = vc.computeCompletionTime(jobs); // Call the method
-  	        	System.out.println(completionTime);
+  	        	//System.out.println(completionTime);
+  	        	
   	        	//prints info gathered to printstream output folder
   	        	output.println("Admin Code: " + adminCode + ", ");
   	        	output.println("First Name: " + fname + ", ");
