@@ -30,6 +30,8 @@ public class GUI {
         welcomePanel.setLayout(new BoxLayout(welcomePanel, BoxLayout.Y_AXIS));
         welcomePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         
+  
+        
         JLabel titleLabel = new JLabel("Vehicular Cloud Real-Time System Console", JLabel.CENTER);
         titleLabel.setFont(new Font("Serif", Font.BOLD, 18));
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);

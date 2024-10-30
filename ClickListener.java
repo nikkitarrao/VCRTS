@@ -60,19 +60,36 @@ public class ClickListener implements ActionListener {
     }
     
     public JPanel signIn() {
-        JPanel signInPanel = new JPanel(); 
+        JPanel signInPanel = new JPanel(new BorderLayout());
         JLabel label = new JLabel("ID: ");
         JLabel label2= new JLabel("Password: ");
         JButton button = new JButton("Submit");
         JTextField t1 = new JTextField(20);
     	JTextField t2 = new JTextField(20);
-        
+ 
+    	
+    	//my edits to adjust jpanel size
+    	t1.setMinimumSize(new Dimension(200,15));
+    	t1.setMaximumSize(new Dimension (300,35));
+    	
+    	t2.setMinimumSize(new Dimension(200,15));
+    	t2.setMaximumSize(new Dimension (300,35));
+    	
+    	label.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	t1.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	label2.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	t2.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	button.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	
+    	
         //adding stuff to the panel
-        signInPanel.add(label);
-        signInPanel.add(t1);
-        signInPanel.add(label2);
-        signInPanel.add(t2);
+        signInPanel.add(label, BorderLayout.CENTER);
+        signInPanel.add(t1, BorderLayout.CENTER);
+        signInPanel.add(label2, BorderLayout.CENTER);
+        signInPanel.add(t2, BorderLayout.CENTER);
         signInPanel.add(button);
+        
+        
         
       //line break to make more neat
        signInPanel.setLayout(new BoxLayout(signInPanel, BoxLayout.Y_AXIS)); 
