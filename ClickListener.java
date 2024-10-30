@@ -342,6 +342,7 @@ public class ClickListener implements ActionListener {
  	        	clientInfo.add(clientID);
  	        	clientInfo.add(password);
  	        	clientInfo.add(email);
+ 	        	//create a new job class saved here 
  	        	clientInfo.add(company);
  	        	clientInfo.add(duration);
  	        	clientInfo.add(deadline);
@@ -353,6 +354,9 @@ public class ClickListener implements ActionListener {
  	        	output.println("Password: " + password + ", ");
  	        	output.println("Email: " + email + ", ");
  	        	output.println("Company: " + company + ", ");
+ 	        	
+ 	        	//save into the other outputfile
+ 	        	// .submitJob(job)
  	        	output.println("Duration: " + duration + ", ");
  	        	output.println("Deadline: " + deadline + ", ");
  	        	output.println("timestamp: " + timestamp + ", ");
