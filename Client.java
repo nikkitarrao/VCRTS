@@ -6,25 +6,45 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Client extends User{
-	public Queue<Job> jobs;
+	private String email;
+	private String company;
+	private String deadline;
+	//Queue<Integer> jobs;
+	
+	
 
-	public Client(String id, String name, String password) {
+	public Client(String id, String name, String password, String email, String company, String deadline) {
 		super(id, name, password);
-		jobs = new LinkedList<>();
+		this.email = email;
+		this.company = company;
+		this.deadline = deadline;
+	
+		//jobs = new LinkedList<>();
 	}
 	
-	public void submitJob(Job job) throws FileNotFoundException {
+	public void submitJob(int duration, Queue<Integer>jobs) throws FileNotFoundException {
 		// adds element to the end of the list
-		jobs.offer(job); 
-		
+		jobs.add(duration);
+		System.out.println("Submit" + jobs);
+
+
 		//store to file
     	PrintStream output = new PrintStream(new File("Jobs.txt"));
     	//prints info gathered to printstream output folder
-      	output.println("Job Information: " + job);
-      	output.println("");
+      	//output.println("Job Information: " + jobs);
+      	//output.println("");
 	}
 	
 	public String checkJobStatus(Job job) {
 		return job.getStatus();
 	}
+	
+	
+		
+		
+		
+		
+	
+	
+	
 }

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Queue;
 
 public class VC_Controller extends User {
 	private int redundancyLevel;
@@ -13,6 +14,16 @@ public class VC_Controller extends User {
 	
 	//compute completion time
 	//duration length + duration length in the queue
+	public int computeCompletionTime(Queue<Integer>jobs) {
+		int totalDuration = 0;
+		while (!jobs.isEmpty()) {
+            // Add the head of the queue to the cumulative sum
+            totalDuration += jobs.element();
+            System.out.println(totalDuration);
+        }
+		return totalDuration;
+		
+	}
 
 
 }

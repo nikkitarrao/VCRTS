@@ -1,12 +1,13 @@
 import java.awt.*;
+
 import java.util.*;
+import java.util.Queue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
-import java.util.Scanner;
 
 import javax.swing.*;
 /*
@@ -29,6 +30,8 @@ public class ClickListener implements ActionListener {
     private ArrayList<String> vehicleOwnerInfo = new ArrayList<>();
     private ArrayList<String> clientInfo = new ArrayList<>();
     private ArrayList<String> cloudControllerInfo = new ArrayList<>();
+    //public Queue<Integer> jobs;
+    public Queue<Integer> jobs = new LinkedList<>();
 
     // Constructor to initialize the main panel and layout
     public ClickListener(JPanel mainPanel, CardLayout cardLayout) {
@@ -309,7 +312,7 @@ public class ClickListener implements ActionListener {
         user2Panel.add(t4);
         user2Panel.add(new JLabel("Approximate Job Duration(in mins): "));
         user2Panel.add(t5);
-        user2Panel.add(new JLabel("Job Deadline: "));
+        user2Panel.add(new JLabel("Job Deadline(YYYY-MM-DD): "));
         user2Panel.add(t6);
         
         // File reading operations
@@ -329,23 +332,43 @@ public class ClickListener implements ActionListener {
         	String password = t2.getText();
         	String email = t3.getText();
         	String company = t4.getText();
-        	String duration = t5.getText();
+        	int duration = Integer.parseInt(t5.getText());
         	String deadline = t6.getText();
         	String name = t7.getText();
         	String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         	
         	//check if fields are empty
- 	       if(clientID.isEmpty() || password.isEmpty() || email.isEmpty() || company.isEmpty()|| duration.isEmpty() || deadline.isEmpty() ||name.isEmpty()) {
+ 	       if(clientID.isEmpty() || password.isEmpty() || email.isEmpty() || company.isEmpty()|| duration == 0 || deadline.isEmpty() ||name.isEmpty()) {
  	    		   JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Infomation");
  	       } else {
  	    	 	//save it into the arraylist
+ 	    	  Client client = new Client(clientID, name, password, email, company, deadline);
+ 	    	   //these are all string s
  	        	clientInfo.add(clientID);
+ 	        	clientInfo.add(name);
  	        	clientInfo.add(password);
  	        	clientInfo.add(email);
- 	        	//create a new job class saved here 
  	        	clientInfo.add(company);
- 	        	clientInfo.add(duration);
  	        	clientInfo.add(deadline);
+ 	        	System.out.println("clients" + clientInfo);
+ 	        	
+ 	        	//save to job queue
+ 	        	
+ 	        	//jobs.add(duration);
+ 	        	try {
+					client.submitJob(duration, jobs);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+ 	        	
+ 	        	
+ 	      
+ 	        	
+ 	       	//prints info gathered to printstream output folder
+ 	         	output.println("Job Information: " + jobs);
+ 	         	output.println("");
+ 	        	
 
 
  	        	//prints info gathered to printstream output folder
@@ -427,28 +450,26 @@ public class ClickListener implements ActionListener {
         	String password = t5.getText();
         	String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         	
-        	//doesnt allow you to create repeat accounts
-        	for(int i = 0; i < cloudControllerInfo.size(); i++) {
-        		if(adminCode.equals(cloudControllerInfo.get(i))) {
-            		
-            	}
-        	}
+
  
         	//check if fields are empty
   	       if(adminCode.isEmpty() || password.isEmpty() || email.isEmpty() || fname.isEmpty()|| lname.isEmpty()) {
   	    		   JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Infomation");
   	       } 
-  	       else if (!adminCode.equals("SR1") || !adminCode.equals("LV2") || !adminCode.equals("NT3") || !adminCode.equals("PM4") || !adminCode.equals("JV5")) {
+  	      /* else if (!adminCode.equals("SR1") || !adminCode.equals("LV2") || !adminCode.equals("NT3") || !adminCode.equals("PM4") || !adminCode.equals("JV5")) {
   	    	 JOptionPane.showMessageDialog(new JFrame("Error"), "INCORRECT ADMIN CODE!");
-  	       }
+  	       }*/
   	       else {
   	    	//save it into the arraylist
   	        	cloudControllerInfo.add(adminCode);
-  	        	/*cloudControllerInfo.add(fname); take out this info, they are not creating an account
+  	        	/*cloudControllerInfo.add(fname); 
   	        	cloudControllerInfo.add(lname);
   	        	cloudControllerInfo.add(email);*/ 
   	        	cloudControllerInfo.add(password);
   	        	
+  	        	VC_Controller vc = new VC_Controller(adminCode, fname, password);
+  	        	int completionTime = vc.computeCompletionTime(jobs); // Call the method
+  	        	System.out.println(completionTime);
   	        	//prints info gathered to printstream output folder
   	        	output.println("Admin Code: " + adminCode + ", ");
   	        	output.println("First Name: " + fname + ", ");
