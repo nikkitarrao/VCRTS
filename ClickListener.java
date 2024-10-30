@@ -423,9 +423,9 @@ public class ClickListener implements ActionListener {
   	       else {
   	    	//save it into the arraylist
   	        	cloudControllerInfo.add(adminCode);
-  	        	cloudControllerInfo.add(fname);
+  	        	/*cloudControllerInfo.add(fname); take out this info, they are not creating an account
   	        	cloudControllerInfo.add(lname);
-  	        	cloudControllerInfo.add(email);
+  	        	cloudControllerInfo.add(email);*/ 
   	        	cloudControllerInfo.add(password);
   	        	
   	        	//prints info gathered to printstream output folder
