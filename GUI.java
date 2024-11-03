@@ -28,13 +28,16 @@ public class GUI {
         // Create the welcome panel
         JPanel welcomePanel = new JPanel();
         welcomePanel.setLayout(new BoxLayout(welcomePanel, BoxLayout.Y_AXIS));
-        welcomePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        welcomePanel.setBorder(BorderFactory.createEmptyBorder(175, 20, 20, 20));
         
+        Color specifcColor = new Color(199, 230, 246);
+        welcomePanel.setBackground(specifcColor);
   
         
         JLabel titleLabel = new JLabel("Vehicular Cloud Real-Time System Console", JLabel.CENTER);
-        titleLabel.setFont(new Font("Serif", Font.BOLD, 18));
+        titleLabel.setFont(new Font("Serif", Font.BOLD, 25));
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
         JLabel descriptionLabel = new JLabel(
                 "<html><p style='text-align: center;'>"
                 + "The Vehicular Cloud Real-Time System (VCRTS) manages and organizes "
@@ -74,7 +77,7 @@ public class GUI {
 
         // Set up the frame
         frame.add(mainPanel);
-        frame.setSize(400, 500);
+        frame.setSize(650, 650);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
