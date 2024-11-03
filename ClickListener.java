@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Scanner;
 
 import javax.swing.*;
@@ -29,6 +30,7 @@ public class ClickListener implements ActionListener {
     private ArrayList<String> vehicleOwnerInfo = new ArrayList<>();
     private ArrayList<String> clientInfo = new ArrayList<>();
     private ArrayList<String> cloudControllerInfo = new ArrayList<>();
+    public Queue<Integer>jobs = new LinkedList<>();
 
     // Constructor to initialize the main panel and layout
     public ClickListener(JPanel mainPanel, CardLayout cardLayout) {
@@ -440,23 +442,36 @@ public class ClickListener implements ActionListener {
         	String password = t2.getText();
         	String email = t3.getText();
         	String company = t4.getText();
-        	String duration = t5.getText();
+        	String jobDuration = t5.getText();
         	String deadline = t6.getText();
         	String name = t7.getText();
         	String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         	
         	//check if fields are empty
- 	       if(clientID.isEmpty() || password.isEmpty() || email.isEmpty() || company.isEmpty()|| duration.isEmpty() || deadline.isEmpty() ||name.isEmpty()) {
+ 	       if(clientID.isEmpty() || password.isEmpty() || email.isEmpty() || company.isEmpty()|| jobDuration.isEmpty() || deadline.isEmpty() ||name.isEmpty()) {
  	    		   JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Infomation");
  	       } else {
  	    	 	//save it into the arraylist
+ 	    	   Client client = new Client (clientID, name, password, email, company, jobDuration, deadline);
  	        	clientInfo.add(clientID);
+ 	        	clientInfo.add(name);
  	        	clientInfo.add(password);
  	        	clientInfo.add(email);
- 	        	//create a new job class saved here 
  	        	clientInfo.add(company);
- 	        	clientInfo.add(duration);
+ 	        	clientInfo.add(jobDuration);
  	        	clientInfo.add(deadline);
+ 	        	
+ 	        	int duration = Integer.parseInt(jobDuration);
+ 	        	System.out.print("Clients: " + clientInfo);
+ 	        	
+ 	        	try {
+					client.submitJob(duration, jobs);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+ 	        	
+ 	        
 
 
  	        	//prints info gathered to printstream output folder
@@ -594,16 +609,17 @@ public class ClickListener implements ActionListener {
             // Check if fields are empty
             if (adminCode.isEmpty() || password.isEmpty() || email.isEmpty() || fname.isEmpty() || lname.isEmpty()) {
                 JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Information");
-            } else if (!adminCode.equals("SR1") && !adminCode.equals("LV2") && !adminCode.equals("NT3") &&
-                       !adminCode.equals("PM4") && !adminCode.equals("JV5")) {
-                JOptionPane.showMessageDialog(new JFrame("Error"), "INCORRECT ADMIN CODE!");
-            } else {
+            } 
+            else {
                 // Save it into the array list
                 cloudControllerInfo.add(adminCode);
                 cloudControllerInfo.add(fname);
                 cloudControllerInfo.add(lname);
                 cloudControllerInfo.add(email);
                 cloudControllerInfo.add(password);
+                
+                VC_Controller vc = new VC_Controller(adminCode, fname, password);
+                int completionTime = vc.computeCompletionTime(jobs);
 
                 // Prints info gathered to print stream output folder
                 output.println("Admin Code: " + adminCode + ", ");

@@ -8,15 +8,17 @@ import java.util.Queue;
 public class Client extends User{
 	private String email;
 	private String company;
+	private String jobDuration;
 	private String deadline;
-	//Queue<Integer> jobs;
+
 	
 	
 
-	public Client(String id, String name, String password, String email, String company, String deadline) {
+	public Client(String id, String name, String password, String email, String company, String jobDuration, String deadline) {
 		super(id, name, password);
 		this.email = email;
 		this.company = company;
+		this.jobDuration=jobDuration;
 		this.deadline = deadline;
 	
 		//jobs = new LinkedList<>();
