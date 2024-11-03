@@ -1,12 +1,13 @@
 
 public class Job {
-	private String duration;
-	private String completionTime;
+	private int duration;
+	private int completionTime;
 	private String status;
 	private boolean isCompleted;
 	
 	//Constructor
-	public Job () {
+	public Job (int duration) {
+		this.duration = duration;
 		if (status.equals("Completed") || status.equals("In Progress")) {
 			this.setStatus(status);
 		}
@@ -23,5 +24,12 @@ public class Job {
 	public void markCompleted() {
         this.isCompleted = true;
     }
+
+	public int getDuration() {
+		return duration;
+	}
+	
+	
+
 	
 }

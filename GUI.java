@@ -84,6 +84,7 @@ public class GUI {
         // Add action listeners
         createAccountButton.addActionListener(listener);
         signInButton.addActionListener(listener);
+        
 
     }
 }
