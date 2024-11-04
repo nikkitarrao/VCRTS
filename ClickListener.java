@@ -2,6 +2,7 @@ import java.awt.*;
 import java.util.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.font.TextAttribute;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -66,10 +67,15 @@ public class ClickListener implements ActionListener {
         signInPanel.setLayout(new BoxLayout(signInPanel, BoxLayout.Y_AXIS));
         signInPanel.setBorder(BorderFactory.createEmptyBorder(175, 20, 20, 20));
         
+        //Establish background color
+        Color specificColor = new Color(199, 230, 246);
+        signInPanel.setBackground(specificColor);
+        
         JLabel signInLabel = new JLabel("<html><b><u>Sign In</u></b></html>", JLabel.CENTER);
         signInLabel.setFont(new Font("Serif", Font.PLAIN, 25));
         signInLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
+     
         JLabel label = new JLabel("ID: ");
         JLabel label2= new JLabel("Password: ");
         JButton button = new JButton("Submit");
@@ -78,7 +84,7 @@ public class ClickListener implements ActionListener {
     	JTextField t2 = new JTextField(20);
  
     	
-    	//my edits to adjust jpanel size
+    	//Adjusting JPanel Size
     	t1.setMinimumSize(new Dimension(200,15));
     	t1.setMaximumSize(new Dimension (300,35));
     	
@@ -134,8 +140,11 @@ public class ClickListener implements ActionListener {
         createAccountPanel.setBorder(BorderFactory.createEmptyBorder(200, 20, 20, 20));
         createAccountPanel.setAlignmentX(Component.CENTER_ALIGNMENT);  // Ensure the main panel itself is centered
 
+        Color specificColor = new Color(199, 230, 246);
+        outerPanel.setBackground(specificColor);
+        createAccountPanel.setBackground(specificColor);
         
-        JLabel label = new JLabel("<html><center><b><u>What type of account would you like to create?</u></b></center></html>");
+        JLabel label = new JLabel("<html><center><b><u>What Type of Account Would You Like to Create?</u></b></center></html>");
         label.setFont(new Font("Serif", Font.PLAIN, 20));
         label.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center-align the label
 
@@ -197,10 +206,28 @@ public class ClickListener implements ActionListener {
     	//full name, email, phone number, username password, car make model, vin, year
     	JPanel user1Panel = new JPanel();
     	
-    	JLabel label = new JLabel("<html><center><b><u>Create User 1 Account</u></b></center></html>");
-    	label.setFont(new Font("Arial", Font.PLAIN, 20));
+    	   //Establish background color
+        Color specificColor = new Color(199, 230, 246);
+        user1Panel.setBackground(specificColor);
+        
+        
+        //
+        user1Panel.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	
+    	
+    	JLabel label = new JLabel("Create User 1 Account");
+        //JLabel label = new JLabel("<html><center><b><u>Create User 1 Account</u></b></center></html>");
+    	//label.setFont(new Font("Serif", Font.PLAIN, 20));
+    	label.setFont(new Font("Serif", Font.BOLD, 20));
+    	label.setAlignmentX(Component.CENTER_ALIGNMENT);
         user1Panel.add(label);
-        user1Panel.add(new JLabel("Enter the following information below"));
+        
+        JLabel infoText = new JLabel("Enter the following information below");
+        infoText.setAlignmentX(Component.CENTER_ALIGNMENT);
+        user1Panel.add(infoText);
+        
+        
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
     	JTextField nameText = new JTextField(10);
     	JTextField userNameText = new JTextField(20);
     	JTextField passwordText = new JTextField(20);
@@ -214,48 +241,141 @@ public class ClickListener implements ActionListener {
     	JTextField residencyTimeText = new JTextField(10);
         //user info
     	
+ 	
     	
     	user1Panel.add(Box.createVerticalStrut(10));
     	JLabel userInfoLabel = new JLabel("User Information");
-    	userInfoLabel.setFont(new Font("Apotos", Font.PLAIN, 15));
+    	userInfoLabel.setFont(new Font("Apotos", Font.BOLD, 15));
+    	userInfoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
     	user1Panel.add(userInfoLabel);
-    	user1Panel.add(new JLabel("Owner Name: "));
+    	
+    	
+    	Dimension format = new Dimension(400,27);
+    	
+    	//Owner Name
+    	JLabel ownerNameCenter = new JLabel("Owner Name: ");
+    	user1Panel.add(ownerNameCenter);
+    	ownerNameCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	nameText.setMinimumSize(format);
+    	nameText.setMaximumSize(format);
+    	nameText.setAlignmentX(Component.CENTER_ALIGNMENT);
         user1Panel.add(nameText);
-        user1Panel.add(new JLabel("Username: "));
+        
+        //Username
+        JLabel userNameCenter = new JLabel("Username: ");
+        user1Panel.add(userNameCenter);
+        userNameCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	userNameText.setMinimumSize(format);
+    	userNameText.setMaximumSize(format);
+    	userNameText.setAlignmentX(Component.CENTER_ALIGNMENT);
         user1Panel.add(userNameText);
-        user1Panel.add(new JLabel("Password: "));
+        
+        //Password
+        JLabel passwordCenter = new JLabel("Password: ");
+        user1Panel.add(passwordCenter);
+        passwordCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+        passwordText.setMinimumSize(format);
+        passwordText.setMaximumSize(format);
+        passwordText.setAlignmentX(Component.CENTER_ALIGNMENT);
         user1Panel.add(passwordText);
-        user1Panel.add(new JLabel("Phone Number: "));
+        
+        //Phone Number
+        JLabel numberCenter = new JLabel("Phone Number: ");
+        user1Panel.add(numberCenter);
+        numberCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+        phoneText.setMinimumSize(format);
+        phoneText.setMaximumSize(format);
+        phoneText.setAlignmentX(Component.CENTER_ALIGNMENT);
         user1Panel.add(phoneText);
-        user1Panel.add(new JLabel("Email: "));
+        
+        //Email
+        JLabel emailCenter = new JLabel("Email: ");
+        user1Panel.add(emailCenter);
+        emailCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+        emailText.setMinimumSize(format);
+        emailText.setMaximumSize(format);
+        emailText.setAlignmentX(Component.CENTER_ALIGNMENT);
         user1Panel.add(emailText);
+        
+        
         //car info
         user1Panel.add(Box.createVerticalStrut(10));
+        
+        
+        //Vehicle Label
         JLabel vehicleInfoLabel = new JLabel("Vehicle Information");
-        vehicleInfoLabel.setFont(new Font("Apotos", Font.PLAIN, 15));
+        vehicleInfoLabel.setFont(new Font("Apotos", Font.BOLD, 15));
+        vehicleInfoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
     	user1Panel.add(vehicleInfoLabel);
-        user1Panel.add(new JLabel("Make: "));
+    	
+    	//Make
+    	JLabel makeCenter = new JLabel("Make: ");
+    	user1Panel.add(makeCenter);
+    	makeCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	makeText.setMinimumSize(format);
+    	makeText.setMaximumSize(format);
+    	makeText.setAlignmentX(Component.CENTER_ALIGNMENT);
         user1Panel.add(makeText);
-        user1Panel.add(new JLabel("Model: "));
+        
+        //Model
+        JLabel modelCenter = new JLabel("Model: ");
+        user1Panel.add(modelCenter);
+    	modelCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	modelText.setMinimumSize(format);
+    	modelText.setMaximumSize(format);
+    	modelText.setAlignmentX(Component.CENTER_ALIGNMENT);
         user1Panel.add(modelText);
-        user1Panel.add(new JLabel("VIN: "));
+        
+        //VIN
+        JLabel vinCenter = new JLabel("VIN: ");
+        user1Panel.add(vinCenter);
+        vinCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	vinText.setMinimumSize(format);
+    	vinText.setMaximumSize(format);
+    	vinText.setAlignmentX(Component.CENTER_ALIGNMENT);
         user1Panel.add(vinText);
-        user1Panel.add(new JLabel("Year: "));
+        
+        //Year
+        JLabel yearCenter = new JLabel("Year: ");
+        user1Panel.add(yearCenter);
+        yearCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	yearText.setMinimumSize(format);
+    	yearText.setMaximumSize(format);
+    	yearText.setAlignmentX(Component.CENTER_ALIGNMENT);
         user1Panel.add(yearText);
-        user1Panel.add(new JLabel("Color: "));
+        
+        //Color
+        JLabel colorCenter = new JLabel("Color: ");
+        user1Panel.add(colorCenter);
+        colorCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	colorText.setMinimumSize(format);
+    	colorText.setMaximumSize(format);
+    	colorText.setAlignmentX(Component.CENTER_ALIGNMENT);
         user1Panel.add(colorText);
-        user1Panel.add(new JLabel("Approximate Vehicle Residency Time (in hrs): "));
+        
+        //Vehicle Residency Time
+        JLabel residencyTimeCenter = new JLabel("Approximate Vehicle Residency Time (in hrs): ");
+        user1Panel.add(residencyTimeCenter);
+        residencyTimeCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	residencyTimeText.setMinimumSize(format);
+    	residencyTimeText.setMaximumSize(format);
+    	residencyTimeText.setAlignmentX(Component.CENTER_ALIGNMENT);
         user1Panel.add(residencyTimeText);
+        
+    
+        
         
      // File reading operations
     	PrintStream output = new PrintStream(new File("User1Out.txt"));
 
         JButton submitButton = new JButton("Submit");
+        submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         submitButton.addActionListener(this);
         user1Panel.add(submitButton);
 
         
         JButton backButton = new JButton("Back"); 
+        backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.addActionListener(e -> {
         	cardLayout.show(mainPanel, "Welcome");
     	});
@@ -343,39 +463,51 @@ public class ClickListener implements ActionListener {
     public JPanel user2() throws FileNotFoundException {
         JPanel user2Panel = new JPanel();
         user2Panel.setLayout(new BoxLayout(user2Panel, BoxLayout.Y_AXIS)); // Use BoxLayout for vertical stacking
-
-        JLabel label = new JLabel("<html><center><b><u>Create User 2 Account</u></b></center></html>");
-    	label.setFont(new Font("Arial", Font.PLAIN, 20));
+        
+        //Establish background color
+        Color specificColor = new Color(199, 230, 246);
+        user2Panel.setBackground(specificColor);
+        
+        JLabel label = new JLabel("Create User 2 Account");
+        label.setFont(new Font("Serif", Font.BOLD, 20));
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
     	user2Panel.add(label);
+    	
     	
         user2Panel.add(new JLabel("Enter the following information below"));
         
+        Dimension format = new Dimension(400,27);
+        
         JTextField t1 = new JTextField();
-        t1.setPreferredSize(new Dimension(200, 30)); 
+        t1.setPreferredSize(format); 
 
         JTextField t2 = new JTextField();
-        t2.setPreferredSize(new Dimension(200, 30)); 
+        t2.setPreferredSize(format); 
         
         JTextField t3 = new JTextField();
-        t3.setPreferredSize(new Dimension(200, 30));
+        t3.setPreferredSize(format);
 
         JTextField t4 = new JTextField();
-        t4.setPreferredSize(new Dimension(200, 30));
+        t4.setPreferredSize(format);
 
         JTextField t5 = new JTextField();
-        t5.setPreferredSize(new Dimension(200, 30));
+        t5.setPreferredSize(format);
 
         JTextField t6 = new JTextField();
-        t6.setPreferredSize(new Dimension(200, 30));
+        t6.setPreferredSize(format);
 
         JTextField t7 = new JTextField();
-        t7.setPreferredSize(new Dimension(200, 30));
+        t7.setPreferredSize(format);
 
+        //new Dimension(200, 30)
+        
+        
 
     	JPanel clientIdPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
     	clientIdPanel.add(new JLabel("Client ID: "));
     	clientIdPanel.add(t1);
     	user2Panel.add(clientIdPanel);
+    	
     	
     	JPanel fullNamePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
     	fullNamePanel.add(new JLabel("Full Name: "));
@@ -431,6 +563,18 @@ public class ClickListener implements ActionListener {
         // Add the button to the wrapper panel
         backButtonPanel.add(backButton);
         user2Panel.add(backButtonPanel); 
+        
+      //Establishing Background Colors
+        clientIdPanel.setBackground(specificColor);
+        fullNamePanel.setBackground(specificColor);
+        passwordPanel.setBackground(specificColor);
+        emailPanel.setBackground(specificColor);
+        companyPanel.setBackground(specificColor);
+        jobDurationPanel.setBackground(specificColor);
+        deadlinePanel.setBackground(specificColor);
+        submitButtonPanel.setBackground(specificColor);
+        backButtonPanel.setBackground(specificColor);
+        
         
       //line break to make more neat
        user2Panel.setLayout(new BoxLayout(user2Panel, BoxLayout.Y_AXIS)); 
@@ -510,15 +654,19 @@ public class ClickListener implements ActionListener {
         JPanel cloudControllerPanel = new JPanel();
         cloudControllerPanel.setLayout(new BoxLayout(cloudControllerPanel, BoxLayout.Y_AXIS));
         
+        //Establish background color
+        Color specificColor = new Color(199, 230, 246);
+        cloudControllerPanel.setBackground(specificColor);
+        
         // Centered Title
-        JLabel label = new JLabel("<html><center><b><u>Create Cloud Controller Account</u></b></center></html>");
-        label.setFont(new Font("Arial", Font.PLAIN, 20));
+        JLabel label = new JLabel("<html><center><b>Create Cloud Controller Account</b></center></html>");
+        label.setFont(new Font("Serif", Font.PLAIN, 20));
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
         cloudControllerPanel.add(label);
         
         // Centered Sub-Title
         JLabel label2 = new JLabel("<html><center><b>Authorized Users Only</b></center></html>");
-        label2.setFont(new Font("Arial", Font.PLAIN, 15));
+        label.setFont(new Font("Serif", Font.PLAIN, 15));
         label2.setAlignmentX(Component.CENTER_ALIGNMENT);
         cloudControllerPanel.add(label2);
         
@@ -535,54 +683,83 @@ public class ClickListener implements ActionListener {
         JTextField t3 = new JTextField(20);
         JTextField t4 = new JTextField(20);
         JTextField t5 = new JTextField(20);
+        
+        t1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        t2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        t3.setAlignmentX(Component.CENTER_ALIGNMENT);
+        t4.setAlignmentX(Component.CENTER_ALIGNMENT);
+        t5.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        Dimension textFieldSize = new Dimension(300, 30);
-        t1.setPreferredSize(textFieldSize);
-        t2.setPreferredSize(textFieldSize);
-        t3.setPreferredSize(textFieldSize);
-        t4.setPreferredSize(textFieldSize);
-        t5.setPreferredSize(textFieldSize);
+        //Dimension textFieldSize = new Dimension(300, 30);
+        Dimension format = new Dimension(400,27);
+        t1.setPreferredSize(format);
+        t2.setPreferredSize(format);
+        t3.setPreferredSize(format);
+        t4.setPreferredSize(format);
+        t5.setPreferredSize(format);
 
-        t1.setMaximumSize(textFieldSize);
-        t2.setMaximumSize(textFieldSize);
-        t3.setMaximumSize(textFieldSize);
-        t4.setMaximumSize(textFieldSize);
-        t5.setMaximumSize(textFieldSize);
+        t1.setMaximumSize(format);
+        t2.setMaximumSize(format);
+        t3.setMaximumSize(format);
+        t4.setMaximumSize(format);
+        t5.setMaximumSize(format);
+        
+        t1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        t2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        t3.setAlignmentX(Component.CENTER_ALIGNMENT);
+        t4.setAlignmentX(Component.CENTER_ALIGNMENT);
+        t5.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         // File reading operations
         PrintStream output = new PrintStream(new File("CloudOut.txt"));
         
         // Adding labels and text fields
        
-        cloudControllerPanel.add(new JLabel("Admin ID:"));
+        
+        JLabel adminCenter = new JLabel("Admin ID:");
+        adminCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cloudControllerPanel.add(adminCenter);
         cloudControllerPanel.add(t1);
         cloudControllerPanel.add(Box.createVerticalStrut(3)); // Small spacing
 
-        cloudControllerPanel.add(new JLabel("First Name:"));
+        JLabel fnameCenter = new JLabel("First Name: ");
+        fnameCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cloudControllerPanel.add(fnameCenter);
         cloudControllerPanel.add(t2);
         cloudControllerPanel.add(Box.createVerticalStrut(3));
 
-        cloudControllerPanel.add(new JLabel("Last Name:"));
+        JLabel lnameCenter = new JLabel("Last Name: ");
+        lnameCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cloudControllerPanel.add(lnameCenter);
         cloudControllerPanel.add(t3);
         cloudControllerPanel.add(Box.createVerticalStrut(3));
 
-        cloudControllerPanel.add(new JLabel("Email:"));
+        JLabel emailCenter = new JLabel("Email: ");
+        emailCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cloudControllerPanel.add(emailCenter);
         cloudControllerPanel.add(t4);
         cloudControllerPanel.add(Box.createVerticalStrut(3));
 
-        cloudControllerPanel.add(new JLabel("Password:"));
+        JLabel passwordCenter = new JLabel("Password: ");
+        passwordCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cloudControllerPanel.add(passwordCenter);
         cloudControllerPanel.add(t5);
         cloudControllerPanel.add(Box.createVerticalStrut(10));
 
         // Button panel for centering
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+        buttonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        buttonPanel.setBackground(specificColor);
         
         JButton submitButton = new JButton("Submit");
+        submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         submitButton.setPreferredSize(new Dimension(100, 40));
         submitButton.addActionListener(this);
         
         JButton backButton = new JButton("Back");
+        backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setPreferredSize(new Dimension(100, 40));
         backButton.addActionListener(e -> cardLayout.show(mainPanel, "Welcome"));
         
