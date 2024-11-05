@@ -796,7 +796,7 @@ public class ClickListener implements ActionListener {
                 cloudControllerInfo.add(password);
                 
                 VC_Controller vc = new VC_Controller(adminCode, fname, password);
-                int completionTime = vc.computeCompletionTime(jobs);
+                String completionTime = vc.computeCompletionTime(jobs);
 
                 // Prints info gathered to print stream output folder
                 output.println("Admin Code: " + adminCode + ", ");
@@ -813,13 +813,45 @@ public class ClickListener implements ActionListener {
                 t3.setText("");
                 t4.setText("");
                 t5.setText("");
+                
+                JPanel computePanel = compute(completionTime);
+                mainPanel.add(computePanel, "Compute");
 
                 // Returns to the welcome page
-                cardLayout.show(mainPanel, "Welcome");
+                cardLayout.show(mainPanel, "Compute");
             }
         });
 
         return cloudControllerPanel;
     }
-
+    
+    //new panel to have a button to compute completion time
+    public JPanel compute(String completionTime) {
+        JPanel computePanel = new JPanel(new BorderLayout());
+        computePanel.setLayout(new BoxLayout(computePanel, BoxLayout.Y_AXIS));
+        computePanel.setBorder(BorderFactory.createEmptyBorder(175, 20, 20, 20));
+        
+        //Establish background color
+        Color specificColor = new Color(199, 230, 246);
+        computePanel.setBackground(specificColor);
+        
+        JLabel label = new JLabel("Welcome Cloud Controller", JLabel.CENTER);
+        label.setFont(new Font("Serif", Font.BOLD, 25));
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        computePanel.add(label);
+        
+        computePanel.add(Box.createVerticalStrut(100));
+        
+        JButton computeButton = new JButton("Compute Completion Time");
+        computeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        computePanel.add(computeButton);
+        
+        
+        computeButton.addActionListener(e -> {
+        	//compute the completion time
+        	JOptionPane.showMessageDialog(new JFrame("Current Job Completion Times: "), completionTime);
+        });
+        
+        return computePanel;
+    }
 }
