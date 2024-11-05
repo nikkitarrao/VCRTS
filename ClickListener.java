@@ -81,7 +81,7 @@ public class ClickListener implements ActionListener {
         JButton button = new JButton("Submit");
         JButton backButton = new JButton("Back");
         JTextField t1 = new JTextField(20);
-    	JTextField t2 = new JTextField(20);
+    	JPasswordField t2 = new JPasswordField(20);
  
     	
     	//Adjusting JPanel Size
@@ -230,7 +230,7 @@ public class ClickListener implements ActionListener {
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
     	JTextField nameText = new JTextField(10);
     	JTextField userNameText = new JTextField(20);
-    	JTextField passwordText = new JTextField(20);
+    	JPasswordField passwordText = new JPasswordField(20);
     	JTextField emailText = new JTextField(20);
     	JTextField phoneText = new JTextField(20);
     	JTextField makeText = new JTextField(10);
@@ -481,8 +481,9 @@ public class ClickListener implements ActionListener {
         JTextField t1 = new JTextField();
         t1.setPreferredSize(format); 
 
-        JTextField t2 = new JTextField();
-        t2.setPreferredSize(format); 
+        JPasswordField t2 = new JPasswordField();
+        t2.setPreferredSize(format);
+      
         
         JTextField t3 = new JTextField();
         t3.setPreferredSize(format);
@@ -535,7 +536,7 @@ public class ClickListener implements ActionListener {
     	user2Panel.add(jobDurationPanel);
         
         JPanel deadlinePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        deadlinePanel.add(new JLabel("Job Deadline: "));
+        deadlinePanel.add(new JLabel("Job Deadline (MM-DD-YYYY): "));
         deadlinePanel.add(t6);
     	user2Panel.add(deadlinePanel);
   
@@ -682,7 +683,7 @@ public class ClickListener implements ActionListener {
         JTextField t2 = new JTextField(20);
         JTextField t3 = new JTextField(20);
         JTextField t4 = new JTextField(20);
-        JTextField t5 = new JTextField(20);
+        JPasswordField t5 = new JPasswordField(20);
         
         t1.setAlignmentX(Component.CENTER_ALIGNMENT);
         t2.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -846,10 +847,18 @@ public class ClickListener implements ActionListener {
         computeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         computePanel.add(computeButton);
         
+        JButton backButton = new JButton("Back");
+        backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        backButton.setPreferredSize(new Dimension(100, 40));
+        backButton.addActionListener(e -> cardLayout.show(mainPanel, "Welcome"));
+        computePanel.add(backButton);
+        
         
         computeButton.addActionListener(e -> {
         	//compute the completion time
-        	JOptionPane.showMessageDialog(new JFrame("Current Job Completion Times: "), completionTime);
+        	JOptionPane.showMessageDialog(null,completionTime,"Estimated Completion Time", JOptionPane.INFORMATION_MESSAGE);	
+        	 
+            
         });
         
         return computePanel;
