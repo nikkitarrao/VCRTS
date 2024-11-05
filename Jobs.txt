@@ -1,2 +1,2 @@
-Job Information: [10, 12]
+Job Information: [5, 5, 10]
 

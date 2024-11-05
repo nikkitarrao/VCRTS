@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.Scanner;
 
 import javax.swing.*;
 /*
@@ -32,6 +31,7 @@ public class ClickListener implements ActionListener {
     private ArrayList<String> clientInfo = new ArrayList<>();
     private ArrayList<String> cloudControllerInfo = new ArrayList<>();
     public Queue<Integer>jobs = new LinkedList<>();
+    ArrayList<String> completionTime = new ArrayList<String>();
 
     // Constructor to initialize the main panel and layout
     public ClickListener(JPanel mainPanel, CardLayout cardLayout) {
@@ -796,7 +796,7 @@ public class ClickListener implements ActionListener {
                 cloudControllerInfo.add(password);
                 
                 VC_Controller vc = new VC_Controller(adminCode, fname, password);
-                String completionTime = vc.computeCompletionTime(jobs);
+                completionTime = vc.computeCompletionTime(jobs);
 
                 // Prints info gathered to print stream output folder
                 output.println("Admin Code: " + adminCode + ", ");
@@ -826,7 +826,7 @@ public class ClickListener implements ActionListener {
     }
     
     //new panel to have a button to compute completion time
-    public JPanel compute(String completionTime) {
+    public JPanel compute(ArrayList<String>completionTime) {
         JPanel computePanel = new JPanel(new BorderLayout());
         computePanel.setLayout(new BoxLayout(computePanel, BoxLayout.Y_AXIS));
         computePanel.setBorder(BorderFactory.createEmptyBorder(175, 20, 20, 20));

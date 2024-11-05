@@ -18,14 +18,18 @@ public class VC_Controller extends User {
 	
 	//compute completion time
 	//duration length + duration length in the queue
-	public String computeCompletionTime(Queue<Integer>jobs) {
+	public ArrayList<String> computeCompletionTime(Queue<Integer>jobs) {
 		int totalDuration = 0;
+		ArrayList<String> computedTimes = new ArrayList<String>();
 		while (!jobs.isEmpty()) {
             // Add the head of the queue to the cumulative sum
             totalDuration += jobs.poll(); //.poll() deletes the value in the queue that it has already read through
+            computedTimes.add(totalDuration + " mins");
             System.out.println("Completion time (in order of first to last job): " + totalDuration + " mins");
+            System.out.println("times: " + computedTimes);
+            
         }
-		return "totalDuration" ;
+		return computedTimes ;
 		
 	}
 
