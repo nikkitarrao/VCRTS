@@ -1,7 +1,0 @@
-Admin Code: r, 
-First Name: r, 
-Last Name: r, 
-Email: r, 
-Password: r, 
-timestamp: 2024-11-06 14:40:56, 
-

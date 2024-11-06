@@ -262,7 +262,7 @@ public class ClickListener implements ActionListener {
         user1Panel.add(nameText);
         
         //Username
-        JLabel userNameCenter = new JLabel("Username: ");
+        JLabel userNameCenter = new JLabel("Owner ID: ");
         user1Panel.add(userNameCenter);
         userNameCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
     	userNameText.setMinimumSize(format);
@@ -389,7 +389,7 @@ public class ClickListener implements ActionListener {
     		
     		    //retrieves the info from the input fields 
     	   		String ownerName = nameText.getText();
-    	   		String username = userNameText.getText();
+    	   		String ownerID = userNameText.getText();
     	   		String pw = passwordText.getText();
     	   		String phone = phoneText.getText();
     	   		String email = emailText.getText();
@@ -406,12 +406,12 @@ public class ClickListener implements ActionListener {
 
     	   	
     		 	//event listener on submit button 
-    	       if(ownerName.isEmpty() || pw.isEmpty() || email.isEmpty() || make.isEmpty()|| make.isEmpty() || model.isEmpty() || year.isEmpty() || vin.isEmpty()|| color.isEmpty()|| duration.isEmpty()) {
+    	       if(ownerName.isEmpty() || ownerID.isEmpty()||pw.isEmpty() || email.isEmpty() || make.isEmpty()|| make.isEmpty() || model.isEmpty() || year.isEmpty() || vin.isEmpty()|| color.isEmpty()|| duration.isEmpty()) {
     	    		   JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Infomation");
     	       } else {
     	    	 	//save it into the arraylist
     	           	vehicleOwnerInfo.add(ownerName);
-    	           	vehicleOwnerInfo.add(username);
+    	           	vehicleOwnerInfo.add(ownerID);
     	           	vehicleOwnerInfo.add(pw);
     	           	vehicleOwnerInfo.add(phone);
     	           	vehicleOwnerInfo.add(email);
@@ -423,7 +423,8 @@ public class ClickListener implements ActionListener {
     	           	vehicleOwnerInfo.add(duration);
 
     	           	//prints info gathered to printstream output folder
-    	           	output.println("Owner ID: " + ownerName + ", ");
+    	           	output.println("Owner Name: " + ownerName + ", ");
+    	           	output.println("Owner ID: " + ownerID + ", ");
     	           	output.println("Password: " + pw + ", ");
     	           	output.println("Email: " + email + ", ");
     	           	output.println("Make: " + make + ", ");
