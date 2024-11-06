@@ -1,0 +1,11 @@
+Owner ID: r, 
+Password: r, 
+Email: r, 
+Make: nissan, 
+Model: altima, 
+Year: 2012, 
+VIN: 1234444, 
+Color: red, 
+Residency time (hrs): 25, 
+Timestamp: 2024-11-06 14:44:02, 
+

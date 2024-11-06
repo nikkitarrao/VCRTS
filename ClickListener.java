@@ -418,21 +418,21 @@ public class ClickListener implements ActionListener {
     	           	vehicleOwnerInfo.add(make);
     	           	vehicleOwnerInfo.add(model);
     	           	vehicleOwnerInfo.add(year);
-    	           	vehicleOwnerInfo.add(vin);
+    	           	vehicleOwnerInfo.add(vin);  	
     	           	vehicleOwnerInfo.add(color);
     	           	vehicleOwnerInfo.add(duration);
 
     	           	//prints info gathered to printstream output folder
     	           	output.println("Owner ID: " + ownerName + ", ");
-    	           	output.println("Password: " + passwordText + ", ");
-    	           	output.println("Email: " + emailText + ", ");
+    	           	output.println("Password: " + pw + ", ");
+    	           	output.println("Email: " + email + ", ");
     	           	output.println("Make: " + make + ", ");
     	           	output.println("Model: " + model + ", ");
     	           	output.println("Year: " + year + ", ");
     	           	output.println("VIN: " + vin + ", ");
-    	           	output.println("color: " + color + ", ");
-    	           	output.println("duration: " + duration + ", ");
-    	           	output.println("timestamp: " + timestamp + ", ");
+    	           	output.println("Color: " + color + ", ");
+    	           	output.println("Residency time (hrs): " + duration + ", ");
+    	           	output.println("Timestamp: " + timestamp + ", ");
     	           	output.println("");
     	           	
     	           	//clear fields
@@ -628,9 +628,9 @@ public class ClickListener implements ActionListener {
  	        	
  	        	//save into the other outputfile
  	        	// .submitJob(job)
- 	        	output.println("Duration: " + duration + ", ");
+ 	        	output.println("Duration (mins): " + duration + ", ");
  	        	output.println("Deadline: " + deadline + ", ");
- 	        	output.println("timestamp: " + timestamp + ", ");
+ 	        	output.println("Timestamp: " + timestamp + ", ");
  	        	output.println("");
  	        	
  	        	t1.setText("");

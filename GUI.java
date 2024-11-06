@@ -42,8 +42,8 @@ public class GUI {
                 "<html><p style='text-align: center;'>"
                 + "The Vehicular Cloud Real-Time System (VCRTS) manages and organizes "
                 + "computation resources in a vehicular cloud.<br><br>"
-                + "It allows owners of smart vehicles equipped with computing capabilities to rent out their "
-                + "vehicle's computing power and users to submit jobs for cloud-based computation."
+                + "We allow owners of smart vehicles equipped with computing capabilities to rent out their "
+                + "vehicle's computing power and clients to submit jobs for cloud-based computation."
                 + "</p></html>", JLabel.CENTER);
             descriptionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
