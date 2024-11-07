@@ -1,16 +1,24 @@
-import java.util.ArrayList;
-import java.util.Queue;
+import java.io.IOException;
+import java.net.*;
+import java.util.*;
+import java.io.*;
 
 public class VC_Controller extends User {
+	private ServerSocket serverSocket;
 	private int redundancyLevel;
 	private ArrayList<Job> activeJobs; //queue/linked list
 	private ArrayList<Job> completedJobs;
+	
+	
 
-	public VC_Controller(String id, String name, String password) {
+
+	public VC_Controller(String id, String name, String password, int port) throws IOException {
 		super(id, name, password);
 		activeJobs = new ArrayList<>();
 		completedJobs = new ArrayList<>();
+		serverSocket = new ServerSocket(port); //start server on port
 	}
+	
 	
 	public void collectJobs() {
 		
@@ -32,6 +40,8 @@ public class VC_Controller extends User {
 		return computedTimes ;
 		
 	}
+	
+	
 
 
 }
