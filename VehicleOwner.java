@@ -1,8 +1,17 @@
+import java.io.*;
+import java.net.*; 
+
 public class VehicleOwner extends User{
     private String email;
     private String phoneNumber;
     private String vehicleResidencyTime;
     private Vehicle vehicle;
+    
+  //for the client server
+  	static ServerSocket serverSocket;
+  	static Socket socket;
+  	static DataInputStream inputStream;
+  	static DataOutputStream outputStream;
     
     // Constructor
     public VehicleOwner(String name, String id, String password,  String email, String phoneNumber, String vehicleResidencyTime, Vehicle vehicle) {

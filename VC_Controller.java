@@ -4,19 +4,35 @@ import java.util.*;
 import java.io.*;
 
 public class VC_Controller extends User {
-	private ServerSocket serverSocket;
 	private int redundancyLevel;
 	private ArrayList<Job> activeJobs; //queue/linked list
 	private ArrayList<Job> completedJobs;
 	
-	
+	//for the client server
+	static ServerSocket serverSocket;
+	static Socket socket;
+	static DataInputStream inputStream;
+	static DataOutputStream outputStream;
 
-
-	public VC_Controller(String id, String name, String password, int port) throws IOException {
+	public VC_Controller(String id, String name, String password) {
 		super(id, name, password);
 		activeJobs = new ArrayList<>();
 		completedJobs = new ArrayList<>();
-		serverSocket = new ServerSocket(port); //start server on port
+		//serverSocket = new ServerSocket(port); //start server on port
+	}
+	
+	public void startServer() {
+		System.out.println("----------$$$ This is server side $$$--------");
+		System.out.println("wating for client to connect...");
+		while(true) {
+			try {
+				Socket clientSocket = serverSocket.accept();//accepts the client
+			}
+			catch(IOException e){
+				System.out.println("Error" + e.getMessage());
+			}
+			
+		}
 	}
 	
 	

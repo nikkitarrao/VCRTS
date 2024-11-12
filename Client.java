@@ -1,6 +1,8 @@
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintStream;
+import java.io.*;
+import java.net.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -10,6 +12,12 @@ public class Client extends User{
 	private String company;
 	private String jobDuration;
 	private String deadline;
+	
+	//for the client server
+	static ServerSocket serverSocket;
+	static Socket socket;
+	static DataInputStream inputStream;
+	static DataOutputStream outputStream;
 
 	
 	

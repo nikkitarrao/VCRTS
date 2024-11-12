@@ -377,7 +377,7 @@ public class ClickListener implements ActionListener {
         JButton backButton = new JButton("Back"); 
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.addActionListener(e -> {
-        	cardLayout.show(mainPanel, "Welcome");
+        	cardLayout.show(mainPanel, "CreateAccount");
     	});
         user1Panel.add(backButton);
         
@@ -450,8 +450,8 @@ public class ClickListener implements ActionListener {
     	        	colorText.setText("");
     	           	residencyTimeText.setText("");
     	           	
-    	           	// returns to the welcome page
-    	               cardLayout.show(mainPanel, "Welcome");
+    	         // Stays on the same page
+    	           	JOptionPane.showMessageDialog(null, "Vehicle Submitted Successfully ","Alert", JOptionPane.INFORMATION_MESSAGE);	
     	       }
            	
            });
@@ -560,7 +560,7 @@ public class ClickListener implements ActionListener {
         JPanel backButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JButton backButton = new JButton("Back");
         backButton.setPreferredSize(new Dimension(100, 40)); // Set preferred size if needed
-        backButton.addActionListener(e -> cardLayout.show(mainPanel, "Welcome"));
+        backButton.addActionListener(e -> cardLayout.show(mainPanel, "CreateAccount"));
 
         // Add the button to the wrapper panel
         backButtonPanel.add(backButton);
@@ -642,8 +642,8 @@ public class ClickListener implements ActionListener {
            		t6.setText("");
            		t7.setText("");
            	
- 	        	// returns to the welcome page
- 	            cardLayout.show(mainPanel, "Welcome");
+ 	        	// Stays on the same page
+           		JOptionPane.showMessageDialog(null, "Job Submitted Successfully ","Alert", JOptionPane.INFORMATION_MESSAGE);	
  	       }
   
         });
@@ -763,7 +763,7 @@ public class ClickListener implements ActionListener {
         JButton backButton = new JButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setPreferredSize(new Dimension(100, 40));
-        backButton.addActionListener(e -> cardLayout.show(mainPanel, "Welcome"));
+        backButton.addActionListener(e -> cardLayout.show(mainPanel, "CreateAccount"));
         
         // Add horizontal glue before and after buttons to center them
         buttonPanel.add(Box.createHorizontalGlue());
@@ -848,7 +848,7 @@ public class ClickListener implements ActionListener {
         computeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         computePanel.add(computeButton);
         
-        JButton backButton = new JButton("Back");
+        JButton backButton = new JButton("Log Out");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         backButton.setPreferredSize(new Dimension(100, 40));
         backButton.addActionListener(e -> cardLayout.show(mainPanel, "Welcome"));
@@ -857,7 +857,7 @@ public class ClickListener implements ActionListener {
         
         computeButton.addActionListener(e -> {
         	//compute the completion time
-        	JOptionPane.showMessageDialog(null,completionTime,"Estimated Completion Time", JOptionPane.INFORMATION_MESSAGE);	
+        	JOptionPane.showMessageDialog(null,"<html>Estimated Completion Time: <br>" + completionTime + "</html>","Estimated Completion Time", JOptionPane.INFORMATION_MESSAGE);	
         	 
             
         });

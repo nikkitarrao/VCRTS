@@ -1,0 +1,12 @@
+Owner Name: 0, 
+Owner ID: 0, 
+Password: 0, 
+Email: 0, 
+Make: 0, 
+Model: 0, 
+Year: 0, 
+VIN: 0, 
+Color: 0, 
+Residency time (hrs): 00, 
+Timestamp: 2024-11-12 13:46:17, 
+
