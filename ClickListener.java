@@ -854,10 +854,10 @@ public class ClickListener implements ActionListener {
         backButton.addActionListener(e -> cardLayout.show(mainPanel, "Welcome"));
         computePanel.add(backButton);
         
-        
+       
         computeButton.addActionListener(e -> {
         	//compute the completion time
-        	JOptionPane.showMessageDialog(null,"<html>Estimated Completion Time: <br>" + completionTime + "</html>","Estimated Completion Time", JOptionPane.INFORMATION_MESSAGE);	
+        	JOptionPane.showMessageDialog(null,"<html>Jobs And Estimated Completion Time: <br>" + completionTime + "</html>","Estimated Completion Time", JOptionPane.INFORMATION_MESSAGE);	
         	 
             
         });

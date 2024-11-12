@@ -32,6 +32,38 @@ public class Client extends User{
 		//jobs = new LinkedList<>();
 	}
 	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public String getJobDuration() {
+		return jobDuration;
+	}
+
+	public void setJobDuration(String jobDuration) {
+		this.jobDuration = jobDuration;
+	}
+
+	public String getDeadline() {
+		return deadline;
+	}
+
+	public void setDeadline(String deadline) {
+		this.deadline = deadline;
+	}
+
 	public void submitJob(int duration, Queue<Integer>jobs) throws FileNotFoundException {
 		// adds element to the end of the list
 		jobs.add(duration);
