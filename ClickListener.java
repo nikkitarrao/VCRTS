@@ -33,7 +33,7 @@ public class ClickListener implements ActionListener {
 
     // ArrayLists to hold account information
     private ArrayList<String> vehicleOwnerInfo = new ArrayList<>();
-    private ArrayList<String> clientInfo = new ArrayList<>();
+    private ArrayList<Client> clientInfo = new ArrayList<>();
     private ArrayList<String> cloudControllerInfo = new ArrayList<>();
     public Queue<Integer>jobDurations = new LinkedList<>();
     ArrayList<String> completionTime = new ArrayList<String>();
@@ -606,16 +606,10 @@ public class ClickListener implements ActionListener {
  	       } else {
  	    	 	//save it into the arraylist
  	    	   Client client = new Client (clientID, name, password, email, company, jobDuration, deadline);
- 	        	clientInfo.add(clientID);
- 	        	clientInfo.add(name);
- 	        	clientInfo.add(password);
- 	        	clientInfo.add(email);
- 	        	clientInfo.add(company);
- 	        	clientInfo.add(jobDuration);
- 	        	clientInfo.add(deadline);
+ 	        	clientInfo.add(client);
  	        	
  	        	//attempting to connect to server
- 	        	client.talkToServer();
+ 	        	//client.talkToServer();
  	        	
  	        	int duration = Integer.parseInt(jobDuration);
  	        	System.out.print("Clients: " + clientInfo);
@@ -809,12 +803,12 @@ public class ClickListener implements ActionListener {
                 VC_Controller vc = new VC_Controller(adminCode, fname, password);
                 completionTime = vc.computeCompletionTime(jobDurations);
                 
-                try {
+              /*  try {
 					vc.startServer();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
+				}*/
 
                 // Prints info gathered to print stream output folder
                 output.println("Admin Code: " + adminCode + ", ");
@@ -872,9 +866,25 @@ public class ClickListener implements ActionListener {
         
        
         computeButton.addActionListener(e -> {
-        	String message = String.format("<html>Client ID: %s<br>Job ID: %s<br>Job Duration: %s<br>Time till completion: %s</html>",clientID ,jId, jobDuration, completionTime);
-        	JOptionPane.showMessageDialog(null,message,"Estimated Completion Time", JOptionPane.INFORMATION_MESSAGE);	
-        	 
+        	
+        	// Initialize a StringBuilder to accumulate all the client info
+        	StringBuilder messageBuilder = new StringBuilder("<html>");
+        	
+            for(int i = 0; i < clientInfo.size(); i++) {
+            	
+            	Client client = clientInfo.get(i);
+            	String currentCompletionTime = completionTime.get(i);
+            	  // Add the client's information to the message
+                String clientMessage = String.format("Client ID: %s<br> Job Duration: %s<br>Time till completion: %s<br><br>",
+                        client.getId(), client.getJobDuration() + " mins", currentCompletionTime );
+                
+                messageBuilder.append(clientMessage);
+            	} 
+            
+         // Close the HTML tags for the message
+            messageBuilder.append("</html>");
+    
+            JOptionPane.showMessageDialog(null, messageBuilder.toString(), "Estimated Completion Times", JOptionPane.INFORMATION_MESSAGE);
             
         });
         
