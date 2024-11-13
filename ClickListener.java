@@ -26,14 +26,13 @@ import javax.swing.*;
 public class ClickListener implements ActionListener {
     private CardLayout cardLayout;
     private JPanel mainPanel;
-    private String jId;
     private String jobDuration;
     private String clientID;
     
 
     // ArrayLists to hold account information
     private ArrayList<String> vehicleOwnerInfo = new ArrayList<>();
-    private ArrayList<Client> clientInfo = new ArrayList<>();
+    public ArrayList<Client> clientInfo = new ArrayList<>();
     private ArrayList<String> cloudControllerInfo = new ArrayList<>();
     public Queue<Integer>jobDurations = new LinkedList<>();
     ArrayList<String> completionTime = new ArrayList<String>();
@@ -607,12 +606,12 @@ public class ClickListener implements ActionListener {
  	    	 	//save it into the arraylist
  	    	   Client client = new Client (clientID, name, password, email, company, jobDuration, deadline);
  	        	clientInfo.add(client);
- 	        	
- 	        	//attempting to connect to server
- 	        	//client.talkToServer();
+ 	       
  	        	
  	        	int duration = Integer.parseInt(jobDuration);
  	        	System.out.print("Clients: " + clientInfo);
+ 	        	
+ 	        	//client.talkToServer();
  	        	
  	        	try {
 					client.submitJob(duration, jobDurations);
@@ -622,19 +621,28 @@ public class ClickListener implements ActionListener {
 				}
  	        	
  	        
-
-
- 	        	//prints info gathered to printstream output folder
- 	        	output.println("Client ID: " + clientID + ", ");
- 	        	output.println("Full Name: " + name + ", ");
- 	        	output.println("Password: " + password + ", ");
- 	        	output.println("Email: " + email + ", ");
- 	        	output.println("Company: " + company + ", ");
  	        	
- 	        	output.println("Duration (mins): " + duration + ", ");
- 	        	output.println("Deadline: " + deadline + ", ");
- 	        	output.println("Timestamp: " + timestamp + ", ");
- 	        	output.println("");
+ 	        	try {
+ 	        		//prints info gathered to printstream output folder
+ 	 	        	output.println("Client ID: " + clientID + ", ");
+ 	 	        	output.println("Full Name: " + name + ", ");
+ 	 	        	output.println("Password: " + password + ", ");
+ 	 	        	output.println("Email: " + email + ", ");
+ 	 	        	output.println("Company: " + company + ", ");
+ 	 	        	
+ 	 	        	output.println("Duration (mins): " + duration + ", ");
+ 	 	        	output.println("Deadline: " + deadline + ", ");
+ 	 	        	output.println("Timestamp: " + timestamp + ", ");
+ 	 	        	output.println("");
+ 	        		
+ 	        	}
+ 	        	finally {
+ 	        		if(output!= null) {
+ 	        			output.close();
+ 	        		}
+ 	        	}
+
+ 	        
  	        	
  	        	t1.setText("");
  	        	t2.setText("");
@@ -802,6 +810,7 @@ public class ClickListener implements ActionListener {
                 
                 VC_Controller vc = new VC_Controller(adminCode, fname, password);
                 completionTime = vc.computeCompletionTime(jobDurations);
+                //vc.startServer();
                 
               /*  try {
 					vc.startServer();

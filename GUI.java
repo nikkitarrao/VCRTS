@@ -85,10 +85,7 @@ public class GUI {
         createAccountButton.addActionListener(listener);
         signInButton.addActionListener(listener);
        
-        /*Attempting to connect to server here and in clicklistener, nothing is working
-      Client newClient = new Client(null, null, null, null, null, null, null);
-      
-      newClient.talkToServer();*/
+        VC_Controller.startServer();
     }
 }
 

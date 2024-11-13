@@ -21,61 +21,46 @@ public class VC_Controller extends User {
 		//serverSocket = new ServerSocket(port); //start server on port
 	}
 	
-	public void startServer() throws IOException {
-		
-		
+	public static void startServer() {
+	    String messageIn = "";
+	    String messageOut = "";
 
-		
-		String messageIn = "";
-		String messageOut = "";
-		Scanner keyInput;
+	    try {
+	        System.out.println("----------$$$ This is server side $$$--------");
+	        System.out.println("Waiting for client to connect...");
 
-		try {
+	        // Start the server
+	        serverSocket = new ServerSocket(12346);
+	        socket = serverSocket.accept();
+	        System.out.println("Client connected!");
 
-			System.out.println("----------$$$ This is server side $$$--------");
-			System.out.println("wating for client to connect...");
-			// creating the server
-			serverSocket = new ServerSocket(9807);
-			
-			 socket = serverSocket.accept();
-		     System.out.println("client is connected!");
-		     System.out.println("go to client side and send me a message");
 
-			// server reads a message message from client
-			inputStream = new DataInputStream(socket.getInputStream());
+	        while (!messageIn.equals("exit")) {
+	            messageIn = inputStream.readUTF();
+	            System.out.println("Job data received from client: " + messageIn);
+	            
+	            System.out.println("Do you want to accept or reject the job? (yes/no):" );
+	            Scanner scanner = new Scanner(System.in);
+	            String decision = scanner.nextLine();
+	        }
+	    } catch (Exception e ) {
+	        e.printStackTrace();
+	    }
+	}
 
-			// server sends a message to client
-			outputStream = new DataOutputStream(socket.getOutputStream());
-
-			// as long as message is not exit keep reading and sending message to client
-			while (!messageIn.equals("exit")) {
-
-				// extract the message from client
-				messageIn = inputStream.readUTF();
-				// server prints the message received from client to console
-				System.out.println("message received from client: " + "\"" + messageIn + "\"");
-
-				// ********************************************************
-				// server reads a message from keyboard
-				System.out.println("Enter a message you want to send to client side: ");
-				keyInput = new Scanner(System.in);
-				messageOut = keyInput.nextLine();
-				// server sends the message to client
-				outputStream.writeUTF(messageOut);
-			}
-			
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
+	// Helper method to save job data to a file
+	private void saveJobToFile(String jobData) {
+		//let's change the .txt to out user2 textfile. Just using this one to test everything out
+	    try (BufferedWriter writer = new BufferedWriter(new FileWriter("AcceptedJobs.txt", true))) {
+	        writer.write(jobData);
+	        writer.newLine();
+	        System.out.println("Job saved to file: AcceptedJobs.txt");
+	    } catch (IOException e) {
+	        System.out.println("Error saving job to file: " + e.getMessage());
+	    }
 	}
 	
-	
-	
-	
-	public void collectJobs() {
-		
-	}
+
 	
 	//compute completion time
 	//duration length + duration length in the queue
