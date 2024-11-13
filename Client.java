@@ -1,6 +1,3 @@
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
@@ -20,7 +17,18 @@ public class Client extends User{
 	static DataOutputStream outputStream;
 
 	
-	
+	public void connectToServer() {
+        try {
+        	//connecting to server
+            socket = new Socket("localhost", 3000);
+            
+            //client reads message from server
+            inputStream = new DataInputStream(socket.getInputStream());
+            outputStream = new DataOutputStream(socket.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 	public Client(String id, String name, String password, String email, String company, String jobDuration, String deadline) {
 		super(id, name, password);
@@ -65,6 +73,46 @@ public class Client extends User{
 	}
 
 	public void submitJob(int duration, Queue<Integer>jobs) throws FileNotFoundException {
+	try {
+		//Sending job info to server
+		outputStream.writeUTF(getName());
+		outputStream.writeUTF(getId());
+		outputStream.writeUTF(company);
+		outputStream.writeUTF(email);
+		outputStream.writeUTF(company);
+		outputStream.writeUTF(jobDuration);
+		outputStream.writeUTF(deadline);
+		
+		// Getting response from server
+        String vc_response = inputStream.readUTF();
+        
+        if(vc_response.equalsIgnoreCase("Accepted")){
+        	jobs.add(duration);
+    		System.out.println("Submit" + jobs);
+    		
+    		//store to file
+            PrintStream output = new PrintStream(new File("Jobs.txt"));
+            
+          //prints info gathered to printstream output folder
+            output.println("Job Information: " + jobs);
+            output.println("");
+            
+            System.out.println("Job accepted by VC Controller");      
+            }
+        else {
+        	System.out.println("Job Rejected");
+        }
+        
+
+    }
+	catch (IOException e) {
+		System.out.println("Failure connecting to server");
+		e.printStackTrace();
+	}
+	
+		
+		
+	/**
 		// adds element to the end of the list
 		jobs.add(duration);
 		System.out.println("Submit" + jobs);
@@ -75,7 +123,9 @@ public class Client extends User{
     	//prints info gathered to printstream output folder
       	output.println("Job Information: " + jobs);
       	output.println("");
+      	**/
 	}
+	
 	
 	public String checkJobStatus(Job job) {
 		return job.getStatus();

@@ -25,6 +25,10 @@ import javax.swing.*;
 public class ClickListener implements ActionListener {
     private CardLayout cardLayout;
     private JPanel mainPanel;
+    private String jId;
+    private String jobDuration;
+    private String clientID;
+    
 
     // ArrayLists to hold account information
     private ArrayList<String> vehicleOwnerInfo = new ArrayList<>();
@@ -500,6 +504,9 @@ public class ClickListener implements ActionListener {
 
         JTextField t7 = new JTextField();
         t7.setPreferredSize(format);
+        
+        JTextField jobId = new JTextField();
+        jobId.setPreferredSize(format);
 
         //new Dimension(200, 30)
         
@@ -530,6 +537,11 @@ public class ClickListener implements ActionListener {
     	companyPanel.add(new JLabel("Company/Organization: "));
     	companyPanel.add(t4);
     	user2Panel.add(companyPanel);
+    	
+    	JPanel jobIdPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        jobIdPanel.add(new JLabel("Job Id: "));
+        jobIdPanel.add(jobId);
+    	user2Panel.add(jobIdPanel);
         
     	JPanel jobDurationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         jobDurationPanel.add(new JLabel("Approx Job Duration (in mins): "));
@@ -572,6 +584,7 @@ public class ClickListener implements ActionListener {
         passwordPanel.setBackground(specificColor);
         emailPanel.setBackground(specificColor);
         companyPanel.setBackground(specificColor);
+        jobIdPanel.setBackground(specificColor);
         jobDurationPanel.setBackground(specificColor);
         deadlinePanel.setBackground(specificColor);
         submitButtonPanel.setBackground(specificColor);
@@ -588,6 +601,7 @@ public class ClickListener implements ActionListener {
         	String password = t2.getText();
         	String email = t3.getText();
         	String company = t4.getText();
+        	String jId = jobId.getText();
         	String jobDuration = t5.getText();
         	String deadline = t6.getText();
         	String name = t7.getText();
@@ -604,6 +618,7 @@ public class ClickListener implements ActionListener {
  	        	clientInfo.add(password);
  	        	clientInfo.add(email);
  	        	clientInfo.add(company);
+ 	        	clientInfo.add(jId);
  	        	clientInfo.add(jobDuration);
  	        	clientInfo.add(deadline);
  	        	
@@ -641,6 +656,7 @@ public class ClickListener implements ActionListener {
            		t5.setText("");
            		t6.setText("");
            		t7.setText("");
+           		jobId.setText("");
            	
  	        	// Stays on the same page
            		JOptionPane.showMessageDialog(null, "Job Submitted Successfully ","Alert", JOptionPane.INFORMATION_MESSAGE);	
@@ -856,8 +872,8 @@ public class ClickListener implements ActionListener {
         
        
         computeButton.addActionListener(e -> {
-        	//compute the completion time
-        	JOptionPane.showMessageDialog(null,"<html>Jobs And Estimated Completion Time: <br>" + completionTime + "</html>","Estimated Completion Time", JOptionPane.INFORMATION_MESSAGE);	
+        	String message = String.format("<html>Client ID: %s<br>Job ID: %s<br>Job Duration: %s<br>Time till completion: %s</html>",clientID ,jId, jobDuration, completionTime);
+        	JOptionPane.showMessageDialog(null,message,"Estimated Completion Time", JOptionPane.INFORMATION_MESSAGE);	
         	 
             
         });
