@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -34,7 +35,7 @@ public class ClickListener implements ActionListener {
     private ArrayList<String> vehicleOwnerInfo = new ArrayList<>();
     private ArrayList<String> clientInfo = new ArrayList<>();
     private ArrayList<String> cloudControllerInfo = new ArrayList<>();
-    public Queue<Integer>jobs = new LinkedList<>();
+    public Queue<Integer>jobDurations = new LinkedList<>();
     ArrayList<String> completionTime = new ArrayList<String>();
 
     // Constructor to initialize the main panel and layout
@@ -185,6 +186,7 @@ public class ClickListener implements ActionListener {
         
       //event listener on user 1 button
         button1.addActionListener(e -> {
+        	
             cardLayout.show(mainPanel, "User1");
         });
         //event listener on user 2 button
@@ -504,9 +506,7 @@ public class ClickListener implements ActionListener {
 
         JTextField t7 = new JTextField();
         t7.setPreferredSize(format);
-        
-        JTextField jobId = new JTextField();
-        jobId.setPreferredSize(format);
+       
 
         //new Dimension(200, 30)
         
@@ -537,12 +537,7 @@ public class ClickListener implements ActionListener {
     	companyPanel.add(new JLabel("Company/Organization: "));
     	companyPanel.add(t4);
     	user2Panel.add(companyPanel);
-    	
-    	JPanel jobIdPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        jobIdPanel.add(new JLabel("Job Id: "));
-        jobIdPanel.add(jobId);
-    	user2Panel.add(jobIdPanel);
-        
+    
     	JPanel jobDurationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         jobDurationPanel.add(new JLabel("Approx Job Duration (in mins): "));
         jobDurationPanel.add(t5);
@@ -584,7 +579,6 @@ public class ClickListener implements ActionListener {
         passwordPanel.setBackground(specificColor);
         emailPanel.setBackground(specificColor);
         companyPanel.setBackground(specificColor);
-        jobIdPanel.setBackground(specificColor);
         jobDurationPanel.setBackground(specificColor);
         deadlinePanel.setBackground(specificColor);
         submitButtonPanel.setBackground(specificColor);
@@ -601,7 +595,6 @@ public class ClickListener implements ActionListener {
         	String password = t2.getText();
         	String email = t3.getText();
         	String company = t4.getText();
-        	String jId = jobId.getText();
         	String jobDuration = t5.getText();
         	String deadline = t6.getText();
         	String name = t7.getText();
@@ -618,15 +611,17 @@ public class ClickListener implements ActionListener {
  	        	clientInfo.add(password);
  	        	clientInfo.add(email);
  	        	clientInfo.add(company);
- 	        	clientInfo.add(jId);
  	        	clientInfo.add(jobDuration);
  	        	clientInfo.add(deadline);
+ 	        	
+ 	        	//attempting to connect to server
+ 	        	client.talkToServer();
  	        	
  	        	int duration = Integer.parseInt(jobDuration);
  	        	System.out.print("Clients: " + clientInfo);
  	        	
  	        	try {
-					client.submitJob(duration, jobs);
+					client.submitJob(duration, jobDurations);
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -642,8 +637,6 @@ public class ClickListener implements ActionListener {
  	        	output.println("Email: " + email + ", ");
  	        	output.println("Company: " + company + ", ");
  	        	
- 	        	//save into the other outputfile
- 	        	// .submitJob(job)
  	        	output.println("Duration (mins): " + duration + ", ");
  	        	output.println("Deadline: " + deadline + ", ");
  	        	output.println("Timestamp: " + timestamp + ", ");
@@ -656,7 +649,7 @@ public class ClickListener implements ActionListener {
            		t5.setText("");
            		t6.setText("");
            		t7.setText("");
-           		jobId.setText("");
+
            	
  	        	// Stays on the same page
            		JOptionPane.showMessageDialog(null, "Job Submitted Successfully ","Alert", JOptionPane.INFORMATION_MESSAGE);	
@@ -814,7 +807,14 @@ public class ClickListener implements ActionListener {
                 cloudControllerInfo.add(password);
                 
                 VC_Controller vc = new VC_Controller(adminCode, fname, password);
-                completionTime = vc.computeCompletionTime(jobs);
+                completionTime = vc.computeCompletionTime(jobDurations);
+                
+                try {
+					vc.startServer();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
                 // Prints info gathered to print stream output folder
                 output.println("Admin Code: " + adminCode + ", ");

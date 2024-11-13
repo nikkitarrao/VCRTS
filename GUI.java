@@ -68,11 +68,11 @@ public class GUI {
         // Create ClickListener and add the create account panel
         ClickListener listener = new ClickListener(mainPanel, cardLayout);
         
-        mainPanel.add(listener.createAccount(), "CreateAccount");// Add create account panel
+       mainPanel.add(listener.createAccount(), "CreateAccount");// Add create account panel
         mainPanel.add(listener.signIn(), "SignIn"); // Add sign in panel
         mainPanel.add(listener.cloudController(), "CloudController"); // Add Cloud Controller panel
         mainPanel.add(listener.user2(), "User2"); // Add User2 panel
-        mainPanel.add(listener.user1(), "User1"); // Add User1 panel
+        mainPanel.add(listener.user1(), "User1"); // Add User1 panel 
         
 
         // Set up the frame
@@ -84,8 +84,11 @@ public class GUI {
         // Add action listeners
         createAccountButton.addActionListener(listener);
         signInButton.addActionListener(listener);
-        
-
+       
+        /*Attempting to connect to server here and in clicklistener, nothing is working
+      Client newClient = new Client(null, null, null, null, null, null, null);
+      
+      newClient.talkToServer();*/
     }
 }
 
