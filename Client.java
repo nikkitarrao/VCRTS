@@ -42,66 +42,69 @@ public class Client extends User{
 	public String getDeadline() {
 		return deadline;
 	}
+	
+	public String toString() {
+        return "Client{" +
+                "id='" + getId() + '\'' +
+                ", name='" + getName() + '\'' +
+                ", email='" + email + '\'' +
+                ", company='" + company + '\'' +
+                ", jobDuration='" + jobDuration + '\'' +
+                ", deadline='" + deadline + '\'' +
+                '}';
+    }
 
-	public void talkToServer() {
-	    String messageIn = "";
-	    String messageOut = "";
 
-	    try {
-	        System.out.println("----------*** This is client side ***--------");
-	        System.out.println("Client started!");
+	public void talkToServer(String jobDetails) {
+        try (Socket socket = new Socket("localhost", 1010); // Connect to server at localhost:12345
+             DataInputStream inputStream = new DataInputStream(socket.getInputStream());
+             DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream())) {
 
-	        // Connect to the server
-	        socket = new Socket("localhost", 12346);
+            System.out.println("Connected to server!");
 
-	        // Set up input and output streams
-	        inputStream = new DataInputStream(socket.getInputStream());
-	        outputStream = new DataOutputStream(socket.getOutputStream());
-	        
-	        System.out.println("Enter Job Details to send to server: ");
-	        Scanner in = new Scanner(System.in);
-	        messageOut = in.nextLine();
-	        
-	        outputStream.writeUTF(messageOut);
-	        
-	        outputStream.flush();
+            // Send job details to the server
+            outputStream.writeUTF(jobDetails);
+            outputStream.flush();
 
-	        messageIn = inputStream.readUTF();
-	        System.out.println("Response from server: " + messageIn);
+            // Read response from the server
+            String response = inputStream.readUTF();
+            System.out.println("Response from server: " + response);
 
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-	}
+        } catch (IOException e) {
+            System.err.println("Error communicating with server: " + e.getMessage());
+        }
+    }
+
 
 	public void submitJob(int duration, Queue<Integer>jobDurations) throws FileNotFoundException {
 		
-			/*jobDurations.add(duration);
-			System.out.println("submitted: " + jobDurations);*/
-		
-		    try {
+		   try {
 		    	if(!jobDurations.offer(duration)) {
 		    		System.err.println("Failed to add job duration: Queue is full");
 		    		return;
 		    	}
-		    	System.out.println("Submitted: " + jobDurations);
+		    	System.out.println("Submitted: " + jobDuration);
 		    	
 		        // Write job information to file
 		        try (PrintWriter output = new PrintWriter(new FileWriter("Jobs.txt", true))) {
-		            output.println("Job Information: " + jobDurations);
+		            output.println("Job Information: " + jobDuration);
 		            output.println("");
 		        }
+		    
 
 		        // Communicate with server
-		        talkToServer();
+		      // talkToServer();
 		    } catch (IOException e) {
 		        System.err.println("I/O Error: " + e.getMessage());
-		    } catch (Exception e) {
+		   } 
+			catch (Exception e) {
 		        e.printStackTrace();
 		    }
 		
 
-	}
+}
+	
+	
 	
 	
 	public String checkJobStatus(Job job) {

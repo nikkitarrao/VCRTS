@@ -1,9 +1,13 @@
 import java.io.IOException;
 import java.net.*;
 import java.util.*;
+
+import javax.swing.JTextArea;
+
 import java.io.*;
 
 public class VC_Controller extends User {
+	private static JTextArea outputArea;
 	private int redundancyLevel;
 	private ArrayList<Job> activeJobs; //queue/linked list
 	private ArrayList<Job> completedJobs;
@@ -22,49 +26,64 @@ public class VC_Controller extends User {
 	}
 	
 	public static void startServer() {
-	    String messageIn = "";
-	    String messageOut = "";
+	    try (ServerSocket serverSocket = new ServerSocket(1010)) {
+	        System.out.println("Server started and waiting for clients...");
+	        while (true) {
+	            Socket socket = serverSocket.accept();
+	            System.out.println("Client connected!");
+	            // Create a new thread for each client
+	            new Thread(new ClientHandler(socket)).start();
+	        }
+	    } catch (IOException e) {
+	        System.err.println("Server error: " + e.getMessage());
+	    }
+	}
 
-	    try {
-	        System.out.println("----------$$$ This is server side $$$--------");
-	        System.out.println("Waiting for client to connect...");
+	static class ClientHandler implements Runnable {
+	    private Socket socket;
 
-	        // Start the server
-	        serverSocket = new ServerSocket(12346);
-	        socket = serverSocket.accept();
-	        System.out.println("Client connected!");
+	    public ClientHandler(Socket socket) {
+	        this.socket = socket;
+	    }
 
+	    @Override
+	    public void run() {
+	        try (DataInputStream inputStream = new DataInputStream(socket.getInputStream());
+	             DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream())) {
 
-	        while (!messageIn.equals("exit")) {
-	            messageIn = inputStream.readUTF();
+	            String messageIn = inputStream.readUTF();
 	            System.out.println("Job data received from client: " + messageIn);
-	            
-	            System.out.println("Do you want to accept or reject the job? (yes/no):" );
+
+	            System.out.println("Do you want to accept or reject the job? (yes/no):");
 	            Scanner scanner = new Scanner(System.in);
 	            String decision = scanner.nextLine();
+
+	            if (decision.equalsIgnoreCase("yes")) {
+	                outputStream.writeUTF("Accepted");
+	                saveJobData(messageIn);
+	            } else {
+	                outputStream.writeUTF("Rejected");
+	            }
+
+	        } catch (IOException e) {
+	            System.err.println("Error handling client: " + e.getMessage());
 	        }
-	    } catch (Exception e ) {
-	        e.printStackTrace();
 	    }
-	}
+        }
 
-	// Helper method to save job data to a file
-	private void saveJobToFile(String jobData) {
-		//let's change the .txt to out user2 textfile. Just using this one to test everything out
-	    try (BufferedWriter writer = new BufferedWriter(new FileWriter("AcceptedJobs.txt", true))) {
-	        writer.write(jobData);
-	        writer.newLine();
-	        System.out.println("Job saved to file: AcceptedJobs.txt");
-	    } catch (IOException e) {
-	        System.out.println("Error saving job to file: " + e.getMessage());
-	    }
-	}
-	
+        // Helper method to save job data to a file
+        private static void saveJobData(String jobData) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("AcceptedJobs.txt", true))) {
+                writer.write(jobData);
+                writer.newLine();
+            } catch (IOException e) {
+                System.err.println("Error saving job to file: " + e.getMessage());
+            }
+        }
+    
 
-	
-	//compute completion time
-	//duration length + duration length in the queue
-	public ArrayList<String> computeCompletionTime(Queue<Integer>jobDurations) {
+
+	public ArrayList<String> computeCompletionTime(Queue<Integer> jobDurations) {
 		int totalDuration = 0;
 		ArrayList<String> computedTimes = new ArrayList<String>();
 		while (!jobDurations.isEmpty()) {
@@ -76,11 +95,7 @@ public class VC_Controller extends User {
             
         }
 		return computedTimes ;
-		
 	}
-	
-	
-	
 	
 
 

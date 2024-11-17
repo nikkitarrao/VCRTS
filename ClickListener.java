@@ -611,7 +611,7 @@ public class ClickListener implements ActionListener {
  	        	int duration = Integer.parseInt(jobDuration);
  	        	System.out.print("Clients: " + clientInfo);
  	        	
- 	        	//client.talkToServer();
+ 	        	
  	        	
  	        	try {
 					client.submitJob(duration, jobDurations);
@@ -622,7 +622,7 @@ public class ClickListener implements ActionListener {
  	        	
  	        
  	        	
- 	        	try {
+ 	        	
  	        		//prints info gathered to printstream output folder
  	 	        	output.println("Client ID: " + clientID + ", ");
  	 	        	output.println("Full Name: " + name + ", ");
@@ -634,13 +634,8 @@ public class ClickListener implements ActionListener {
  	 	        	output.println("Deadline: " + deadline + ", ");
  	 	        	output.println("Timestamp: " + timestamp + ", ");
  	 	        	output.println("");
- 	        		
- 	        	}
- 	        	finally {
- 	        		if(output!= null) {
- 	        			output.close();
- 	        		}
- 	        	}
+ 	        
+ 	        	
 
  	        
  	        	

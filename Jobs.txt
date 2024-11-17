@@ -1,2 +1,60 @@
 Job Information: [9, 8]
 
+Job Information: [5]
+
+Job Information: [5, 5]
+
+Job Information: [5, 5, 5]
+
+Job Information: [5]
+
+Job Information: [5, 5]
+
+Job Information: [5]
+
+Job Information: [5]
+
+Job Information: [5, 5]
+
+Job Information: [5]
+
+Job Information: [5, 5]
+
+Job Information: [Client{id='f', name='ff', email='f', company='f', jobDuration='5', deadline='f'}]
+
+Job Information: [Client{id='f', name='ff', email='f', company='f', jobDuration='5', deadline='f'}, Client{id='c', name='cc', email='c', company='c', jobDuration='5', deadline='f'}]
+
+Job Information: [5]
+
+Job Information: [5, 5]
+
+Job Information: [5]
+
+Job Information: [5, 4]
+
+Job Information: 5
+
+Job Information: 7
+
+Job Information: 6
+
+Job Information: 4
+
+Job Information: 4
+
+Job Information: 5
+
+Job Information: 4
+
+Job Information: 7
+
+Job Information: 9
+
+Job Information: 5
+
+Job Information: 6
+
+Job Information: 10
+
+Job Information: 22
+

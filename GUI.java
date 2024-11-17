@@ -85,9 +85,11 @@ public class GUI {
         createAccountButton.addActionListener(listener);
         signInButton.addActionListener(listener);
        
-        VC_Controller.startServer();
+
     }
+ 
 }
+
 
 
 
