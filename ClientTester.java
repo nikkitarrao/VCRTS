@@ -3,7 +3,7 @@ import java.net.Socket;
 import java.util.*;
 public class ClientTester {
 	
-	public static void talkToServer(String jobDetails) {
+	/*public static void talkToServer(String jobDetails) {
         try (Socket socket = new Socket("localhost", 1111); // Connect to server at localhost:1111
              DataInputStream inputStream = new DataInputStream(socket.getInputStream());
              DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream())) {
@@ -21,12 +21,12 @@ public class ClientTester {
         } catch (IOException e) {
             System.err.println("Error communicating with server: " + e.getMessage());
         }
-    }
+    }*/
 
 	public static void main(String[] args) {
 		//id, name, password, email, company, duration, deadline
 		//Client client = new Client("1", "John Doe", "password123", "john@example.com", "TechCorp", "2 hours", "5 PM");
-		Scanner in = new Scanner(System.in);
+		/*Scanner in = new Scanner(System.in);
 		System.out.println("Enter ID: ");
 		String id = in.nextLine();
 		
@@ -48,9 +48,9 @@ public class ClientTester {
 		System.out.println("Deadline (hrs): ");
 		String deadline = in.nextLine();
 		
-		Client client = new Client(id, name, pw, email, company, duration, deadline);
+		Client client = new Client(id, name, pw, email, company, duration, deadline);*/
 		
-		ClientTester.talkToServer(client.toString());
+		//ClientTester.talkToServer(client.toString());
 	}
 
 }

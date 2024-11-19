@@ -204,6 +204,7 @@ public class ClickListener implements ActionListener {
         //event listener on user 2 button
         button2.addActionListener(e -> {
             cardLayout.show(mainPanel, "User2");
+        	
         });
 
         //event listener on cloud controller button
@@ -612,17 +613,22 @@ public class ClickListener implements ActionListener {
         	String name = t7.getText();
         	String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         	
+        	
+        	
         	//check if fields are empty
  	       if(clientID.isEmpty() || password.isEmpty() || email.isEmpty() || company.isEmpty()|| jobDuration.isEmpty() || deadline.isEmpty() ||name.isEmpty()) {
  	    		   JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Infomation");
  	       } else {
  	    	 	//save it into the arraylist
+ 	    	  String jobDetails = "Client ID: " + clientID + "\nJob Duration:  " + jobDuration + "\nDeadline: " + deadline + "\n";
+	        	System.out.println(jobDetails);
+	        	
+ 	    	  ClickListener.talkToServer(jobDetails);
+ 	    	  
  	    	   Client client = new Client (clientID, name, password, email, company, jobDuration, deadline);
  	        	clientInfo.add(client);
- 	        	String jobDetails = "Client ID: " + clientID + "\nJob Duration:  " + jobDuration + "\nDeadline: " + deadline + "\n";
- 	        	System.out.println(jobDetails);
  	        	
- 	        	ClientTester.talkToServer(jobDetails);
+ 	        	
  	       
  	        	
  	        	int duration = Integer.parseInt(jobDuration);
@@ -640,7 +646,7 @@ public class ClickListener implements ActionListener {
  	        
  	        	
  	        	
- 	        		//prints info gathered to printstream output folder
+ 	        	/*	//prints info gathered to printstream output folder
  	 	        	output.println("Client ID: " + clientID + ", ");
  	 	        	output.println("Full Name: " + name + ", ");
  	 	        	output.println("Password: " + password + ", ");
@@ -653,7 +659,7 @@ public class ClickListener implements ActionListener {
  	 	        	output.println("");
  	        
  	        	
-
+ 	        	 */
  	        
  	        	
  	        	t1.setText("");
@@ -666,6 +672,7 @@ public class ClickListener implements ActionListener {
 
            	
  	        	// Stays on the same page
+           		
            		JOptionPane.showMessageDialog(null, "Job Submitted Successfully ","Alert", JOptionPane.INFORMATION_MESSAGE);	
  	       }
   
@@ -673,7 +680,7 @@ public class ClickListener implements ActionListener {
         
         
         return user2Panel;
-    }
+    } 
     
     public JPanel cloudController() throws FileNotFoundException {
         JPanel cloudControllerPanel = new JPanel();
@@ -788,12 +795,17 @@ public class ClickListener implements ActionListener {
         backButton.setPreferredSize(new Dimension(100, 40));
         backButton.addActionListener(e -> cardLayout.show(mainPanel, "CreateAccount"));
         
+      
+        
         // Add horizontal glue before and after buttons to center them
         buttonPanel.add(Box.createHorizontalGlue());
         buttonPanel.add(submitButton);
         buttonPanel.add(Box.createRigidArea(new Dimension(10, 0))); // Space between buttons
         buttonPanel.add(backButton);
         buttonPanel.add(Box.createHorizontalGlue());
+      
+
+
 
         // Add button panel to main panel
         cloudControllerPanel.add(buttonPanel);
@@ -904,9 +916,27 @@ public class ClickListener implements ActionListener {
         });
         
         return computePanel;
-    }
+    } 
     
-  
+    public static void talkToServer(String jobDetails) {
+        try (Socket socket = new Socket("localhost", 1111); // Connect to server at localhost:1111
+             DataInputStream inputStream = new DataInputStream(socket.getInputStream());
+             DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream())) {
+
+            System.out.println("Connected to server!");
+
+            // Send job details to the server
+            outputStream.writeUTF(jobDetails);
+            outputStream.flush();
+
+            // Read response from the server
+            String response = inputStream.readUTF();
+            System.out.println("Response from server: " + response);
+
+        } catch (IOException e) {
+            System.err.println("Error communicating with server: " + e.getMessage());
+        }
+    }
         
        
 }

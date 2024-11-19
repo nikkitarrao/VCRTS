@@ -11,3 +11,36 @@ Client{id='1', name='John Doe', email='john@example.com', company='TechCorp', jo
 Client{id='22', name='gu', email='ff', company='ff', jobDuration='10', deadline='10'}
 Client{id='1', name='3', email='f', company='f', jobDuration='55', deadline='v'}
 Client{id='f', name='f', email='f', company='f', jobDuration='10', deadline='5'}
+Client{id='12d', name='d', email='d', company='d', jobDuration='12', deadline='3'}
+Client ID: d
+Job Duration:  10
+Deadline: dd
+
+Client ID: f
+Job Duration:  10
+Deadline: f
+
+Client ID: rf
+Job Duration:  10
+Deadline: f
+
+Client ID: Payal
+Job Duration:  10
+Deadline: rf
+
+Client ID: d
+Job Duration:  10
+Deadline: d
+
+Client ID: jj
+Job Duration:  19
+Deadline: c
+
+Client ID: d
+Job Duration:  11
+Deadline: d
+
+Client ID: oooooo
+Job Duration:  12
+Deadline: p
+

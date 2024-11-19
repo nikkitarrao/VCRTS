@@ -75,6 +75,14 @@ public class GUI {
         mainPanel.add(listener.user2(), "User2"); // Add User2 panel
         mainPanel.add(listener.user1(), "User1"); // Add User1 panel 
         
+      /*  //server
+        ServerGUI serverGUI = new ServerGUI(cardLayout, mainPanel);
+        mainPanel.add(serverGUI.getPanel(), "ServerGUI");
+        
+        //client
+        ClientGUI clientGUI = new ClientGUI(cardLayout, mainPanel);
+        mainPanel.add(clientGUI.getPanel(), "ClientGUI");
+        */
 
         // Set up the frame
         frame.add(mainPanel);
