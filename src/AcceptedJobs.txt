@@ -7,3 +7,4 @@ Client{id='1', name='John Doe', email='john@example.com', company='TechCorp', jo
 Client{id='1', name='John Doe', email='john@example.com', company='TechCorp', jobDuration='2 hours', deadline='5 PM'}
 Client{id='1', name='John Doe', email='john@example.com', company='TechCorp', jobDuration='2 hours', deadline='5 PM'}
 Client{id='1', name='John Doe', email='john@example.com', company='TechCorp', jobDuration='2 hours', deadline='5 PM'}
+Client{id='1', name='John Doe', email='john@example.com', company='TechCorp', jobDuration='2 hours', deadline='5 PM'}

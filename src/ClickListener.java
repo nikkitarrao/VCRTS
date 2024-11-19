@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-
+import java.net.*;
 import javax.swing.*;
 /*
  * Project: Stage 2 
@@ -583,81 +583,90 @@ public class ClickListener implements ActionListener {
         submitButtonPanel.setBackground(specificColor);
         backButtonPanel.setBackground(specificColor);
         
+     // Single back button action listener
+        
         
       //line break to make more neat
        user2Panel.setLayout(new BoxLayout(user2Panel, BoxLayout.Y_AXIS)); 
         
-      //event listener on submit button 
-        submitButton.addActionListener(e -> {
-        	//retrieves the info from the input fields 
-        	String clientID = t1.getText();
-        	String password = t2.getText();
-        	String email = t3.getText();
-        	String company = t4.getText();
-        	String jobDuration = t5.getText();
-        	String deadline = t6.getText();
-        	String name = t7.getText();
-        	String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        	
-        	//check if fields are empty
- 	       if(clientID.isEmpty() || password.isEmpty() || email.isEmpty() || company.isEmpty()|| jobDuration.isEmpty() || deadline.isEmpty() ||name.isEmpty()) {
- 	    		   JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Infomation");
- 	       } else {
- 	    	 	//save it into the arraylist
- 	    	   Client client = new Client (clientID, name, password, email, company, jobDuration, deadline);
- 	        	clientInfo.add(client);
- 	       
- 	        	
- 	        	int duration = Integer.parseInt(jobDuration);
- 	        	System.out.print("Clients: " + clientInfo);
- 	        	
- 	        	
- 	        	
- 	        	try {
-					client.submitJob(duration, jobDurations);
-				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
- 	        	
- 	        
- 	        	
- 	        	
- 	        		//prints info gathered to printstream output folder
- 	 	        	output.println("Client ID: " + clientID + ", ");
- 	 	        	output.println("Full Name: " + name + ", ");
- 	 	        	output.println("Password: " + password + ", ");
- 	 	        	output.println("Email: " + email + ", ");
- 	 	        	output.println("Company: " + company + ", ");
- 	 	        	
- 	 	        	output.println("Duration (mins): " + duration + ", ");
- 	 	        	output.println("Deadline: " + deadline + ", ");
- 	 	        	output.println("Timestamp: " + timestamp + ", ");
- 	 	        	output.println("");
- 	        
- 	        	
+    // Update the user2() method's submit button action listener:
+    // Single back button action listener
+       backButton.addActionListener(e -> {
+           clearFields(t1, t2, t3, t4, t5, t6, t7);  // Clear fields before going back
+           cardLayout.show(mainPanel, "CreateAccount");
+       });
+       
+       submitButton.addActionListener(e -> {
+    	   String clientID = t1.getText();
+           String name = t7.getText();
+           String password = t2.getText();
+           String email = t3.getText();
+           String company = t4.getText();
+           String jobDuration = t5.getText();
+           String deadline = t6.getText();
+           String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+           
+           if(clientID.isEmpty() || password.isEmpty() || email.isEmpty() || 
+                   company.isEmpty() || jobDuration.isEmpty() || deadline.isEmpty() || 
+                   name.isEmpty()) {
+                    JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Information");
+                    return;
+                }
 
- 	        
- 	        	
- 	        	t1.setText("");
- 	        	t2.setText("");
- 	        	t3.setText("");
-           		t4.setText("");
-           		t5.setText("");
-           		t6.setText("");
-           		t7.setText("");
+           // Check if server is running
+           if (VC_Controller.getInstance() == null) {
+               JOptionPane.showMessageDialog(null,
+                   "No active VC Controller found. Please create a controller account first.",
+                   "Server Error",
+                   JOptionPane.ERROR_MESSAGE);
+               return;
+           }
 
-           	
- 	        	// Stays on the same page
-           		JOptionPane.showMessageDialog(null, "Job Submitted Successfully ","Alert", JOptionPane.INFORMATION_MESSAGE);	
- 	       }
-  
-        });
-        
-        
+           try {
+               Client client = new Client(clientID, name, password, email, 
+                                        company, jobDuration, deadline);
+               
+               // Try to connect to server first
+               try {
+                   client.talkToServer(client.toString());
+                   clientInfo.add(client);  // Add to list
+                   
+                   // Clear fields - whether accepted or rejected
+                   clearFields(t1, t2, t3, t4, t5, t6, t7);
+                   
+                   // Always navigate back after submission
+                   cardLayout.show(mainPanel, "CreateAccount");
+                   
+                   if (VC_Controller.getInstance() != null && 
+                       VC_Controller.getInstance().getControllerFrame() != null) {
+                       VC_Controller.getInstance().getControllerFrame().toFront();
+                   }
+                   
+               } catch (Exception serverEx) {
+                   JOptionPane.showMessageDialog(null,
+                       "Error connecting to server. Please ensure VC Controller is running.",
+                       "Connection Error",
+                       JOptionPane.ERROR_MESSAGE);
+                   clientInfo.remove(client);  // Remove if connection failed
+               }
+               
+           } catch (Exception ex) {
+               JOptionPane.showMessageDialog(null,
+                   "Error creating client: " + ex.getMessage(),
+                   "Creation Error",
+                   JOptionPane.ERROR_MESSAGE);
+           }
+       });
+            
+
         return user2Panel;
     }
     
+    private void clearFields(JTextField... fields) {
+        for (JTextField field : fields) {
+            field.setText("");
+        }
+    }
     public JPanel cloudController() throws FileNotFoundException {
         JPanel cloudControllerPanel = new JPanel();
         cloudControllerPanel.setLayout(new BoxLayout(cloudControllerPanel, BoxLayout.Y_AXIS));
@@ -719,7 +728,7 @@ public class ClickListener implements ActionListener {
         t5.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         // File reading operations
-        PrintStream output = new PrintStream(new File("CloudOut.txt"));
+        PrintStream fileOutput = new PrintStream(new File("CloudOut.txt"));
         
         // Adding labels and text fields
        
@@ -792,7 +801,8 @@ public class ClickListener implements ActionListener {
             String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
             // Check if fields are empty
-            if (adminCode.isEmpty() || password.isEmpty() || email.isEmpty() || fname.isEmpty() || lname.isEmpty()) {
+            if (adminCode.isEmpty() || password.isEmpty() || email.isEmpty() || 
+                fname.isEmpty() || lname.isEmpty()) {
                 JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Information");
             } 
             else {
@@ -802,47 +812,40 @@ public class ClickListener implements ActionListener {
                 cloudControllerInfo.add(lname);
                 cloudControllerInfo.add(email);
                 cloudControllerInfo.add(password);
-                
-                VC_Controller vc = new VC_Controller(adminCode, fname, password);
-                completionTime = vc.computeCompletionTime(jobDurations);
-                //vc.startServer();
-                
-              /*  try {
-					vc.startServer();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}*/
 
-                // Prints info gathered to print stream output folder
-                output.println("Admin Code: " + adminCode + ", ");
-                output.println("First Name: " + fname + ", ");
-                output.println("Last Name: " + lname + ", ");
-                output.println("Email: " + email + ", ");
-                output.println("Password: " + password + ", ");
-                output.println("timestamp: " + timestamp + ", ");
-                output.println("");
+                // Create the VC_Controller instance with all necessary references
+                VC_Controller vc = new VC_Controller(
+                    adminCode, 
+                    fname, 
+                    password,
+                    clientInfo,
+                    jobDurations,
+                    mainPanel,
+                    cardLayout
+                );
 
+                // Save account info to file using the fileOutput reference
+                fileOutput.println("Admin Code: " + adminCode + ", ");
+                fileOutput.println("First Name: " + fname + ", ");
+                fileOutput.println("Last Name: " + lname + ", ");
+                fileOutput.println("Email: " + email + ", ");
+                fileOutput.println("Password: " + password + ", ");
+                fileOutput.println("timestamp: " + timestamp + ", ");
+                fileOutput.println("");
+                
                 // Clear text fields
                 t1.setText("");
                 t2.setText("");
                 t3.setText("");
                 t4.setText("");
                 t5.setText("");
-                
-                JPanel computePanel = compute(completionTime);
-                mainPanel.add(computePanel, "Compute");
-
-                // Returns to the welcome page
-                cardLayout.show(mainPanel, "Compute");
             }
         });
 
         return cloudControllerPanel;
     }
-    
     //new panel to have a button to compute completion time
-    public JPanel compute(ArrayList<String>completionTime) {
+    /**  public JPanel compute(ArrayList<String>completionTime) {
         JPanel computePanel = new JPanel(new BorderLayout());
         computePanel.setLayout(new BoxLayout(computePanel, BoxLayout.Y_AXIS));
         computePanel.setBorder(BorderFactory.createEmptyBorder(175, 20, 20, 20));
@@ -858,9 +861,19 @@ public class ClickListener implements ActionListener {
         
         computePanel.add(Box.createVerticalStrut(100));
         
+        JButton acceptButton = new JButton("Accept Jobs");
+        acceptButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        computePanel.add(acceptButton);
+        
+        JButton declineButton = new JButton("Decline Jobs");
+        declineButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        computePanel.add(declineButton);
+        
+        
         JButton computeButton = new JButton("Compute Completion Time");
         computeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         computePanel.add(computeButton);
+       
         
         JButton backButton = new JButton("Log Out");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -868,16 +881,53 @@ public class ClickListener implements ActionListener {
         backButton.addActionListener(e -> cardLayout.show(mainPanel, "Welcome"));
         computePanel.add(backButton);
         
+        
+       
+    
        
         computeButton.addActionListener(e -> {
         	
-        	// Initialize a StringBuilder to accumulate all the client info
-        	StringBuilder messageBuilder = new StringBuilder("<html>");
+        	 if (clientInfo.isEmpty()) {
+        	        JOptionPane.showMessageDialog(null, 
+        	            "No jobs to compute time for", 
+        	            "No Jobs", 
+        	            JOptionPane.INFORMATION_MESSAGE);
+        	        return;
+        	    }
         	
-            for(int i = 0; i < clientInfo.size(); i++) {
+        	// Initialize a StringBuilder to accumulate all the client info
+        	
+         StringBuilder messageBuilder = new StringBuilder("<html>");
+         try {
+             for(Client client : clientInfo) {
+                 String clientMessage = String.format(
+                     "Client ID: %s<br>Job Duration: %s<br>Deadline: %s<br><br>",
+                     client.getId(), 
+                     client.getJobDuration() + " mins", 
+                     client.getDeadline()
+                 );
+                 messageBuilder.append(clientMessage);
+             }
+             
+             messageBuilder.append("</html>");
+             JOptionPane.showMessageDialog(null, 
+                 messageBuilder.toString(), 
+                 "Job Information", 
+                 JOptionPane.INFORMATION_MESSAGE);
+         } catch (Exception ex) {
+             JOptionPane.showMessageDialog(null,
+                 "Error computing completion times: " + ex.getMessage(),
+                 "Computation Error",
+                 JOptionPane.ERROR_MESSAGE);
+         }
+     });
+     
+    
+        	
+      for(int i = 0; i < clientInfo.size(); i++) {
             	
             	Client client = clientInfo.get(i);
-            	String currentCompletionTime = completionTime.get(i);
+           	String currentCompletionTime = completionTime.get(i);
             	  // Add the client's information to the message
                 String clientMessage = String.format("Client ID: %s<br> Job Duration: %s<br>Time till completion: %s<br><br>",
                         client.getId(), client.getJobDuration() + " mins", currentCompletionTime );
@@ -890,8 +940,12 @@ public class ClickListener implements ActionListener {
     
             JOptionPane.showMessageDialog(null, messageBuilder.toString(), "Estimated Completion Times", JOptionPane.INFORMATION_MESSAGE);
             
-        });
-        
+        }); 
+   
+         
         return computePanel;
-    }
+        
+ 
+    } 
+    **/
 }
