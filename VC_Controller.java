@@ -1,16 +1,22 @@
-import java.io.IOException;
 import java.net.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Queue;
 
-import javax.swing.JTextArea;
+import javax.swing.*;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 
-public class VC_Controller extends User {
+public class VC_Controller extends User implements ActionListener {
 	private static JTextArea outputArea;
 	private int redundancyLevel;
 	private ArrayList<Job> activeJobs; //queue/linked list
 	private ArrayList<Job> completedJobs;
+	
+	
 	
 	//for the client server
 	static ServerSocket serverSocket;
@@ -25,7 +31,9 @@ public class VC_Controller extends User {
 		//serverSocket = new ServerSocket(port); //start server on port
 	}
 	
-	public static void startServer() {
+
+	
+	/*public static void startServer() {
 	    try (ServerSocket serverSocket = new ServerSocket(1010)) {
 	        System.out.println("Server started and waiting for clients...");
 	        while (true) {
@@ -79,7 +87,7 @@ public class VC_Controller extends User {
             } catch (IOException e) {
                 System.err.println("Error saving job to file: " + e.getMessage());
             }
-        }
+        }*/
     
 
 
@@ -96,6 +104,17 @@ public class VC_Controller extends User {
         }
 		return computedTimes ;
 	}
+
+
+	
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 	
 
 

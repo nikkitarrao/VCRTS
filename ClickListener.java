@@ -1,12 +1,19 @@
 import java.awt.*;
+
 import java.util.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
+import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 
@@ -28,6 +35,12 @@ public class ClickListener implements ActionListener {
     private JPanel mainPanel;
     private String jobDuration;
     private String clientID;
+    
+    //added from vc controller
+    static ServerSocket serverSocket;
+	static Socket socket;
+	static DataInputStream inputStream;
+	static DataOutputStream outputStream;
     
 
     // ArrayLists to hold account information
@@ -606,6 +619,10 @@ public class ClickListener implements ActionListener {
  	    	 	//save it into the arraylist
  	    	   Client client = new Client (clientID, name, password, email, company, jobDuration, deadline);
  	        	clientInfo.add(client);
+ 	        	String jobDetails = "Client ID: " + clientID + "\nJob Duration:  " + jobDuration + "\nDeadline: " + deadline + "\n";
+ 	        	System.out.println(jobDetails);
+ 	        	
+ 	        	ClientTester.talkToServer(jobDetails);
  	       
  	        	
  	        	int duration = Integer.parseInt(jobDuration);
@@ -805,14 +822,8 @@ public class ClickListener implements ActionListener {
                 
                 VC_Controller vc = new VC_Controller(adminCode, fname, password);
                 completionTime = vc.computeCompletionTime(jobDurations);
-                //vc.startServer();
                 
-              /*  try {
-					vc.startServer();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}*/
+       
 
                 // Prints info gathered to print stream output folder
                 output.println("Admin Code: " + adminCode + ", ");
@@ -880,7 +891,7 @@ public class ClickListener implements ActionListener {
             	String currentCompletionTime = completionTime.get(i);
             	  // Add the client's information to the message
                 String clientMessage = String.format("Client ID: %s<br> Job Duration: %s<br>Time till completion: %s<br><br>",
-                        client.getId(), client.getJobDuration() + " mins", currentCompletionTime );
+                        client.getId(), client.getDuration() + " mins", currentCompletionTime );
                 
                 messageBuilder.append(clientMessage);
             	} 
@@ -894,4 +905,8 @@ public class ClickListener implements ActionListener {
         
         return computePanel;
     }
+    
+  
+        
+       
 }
