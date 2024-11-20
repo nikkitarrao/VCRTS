@@ -806,8 +806,17 @@ public class VC_Controller extends User {
             e.printStackTrace();
         }
     }
+    
+    private static void saveCarData(String carData) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("AcceptedCars.txt", true))) {
+            writer.write(carData);
+            writer.newLine();
+        } catch (IOException e) {
+            System.err.println("Error saving job to file: " + e.getMessage());
+        }
+    }
 
-    private void saveCarData(String carData) {
+    /*private void saveCarData(String carData) {
         System.out.println("[SERVER] Starting to save job to AcceptedCars.txt");
         String srcPath = "User1Out.txt";
         File file = new File(srcPath);
@@ -830,7 +839,36 @@ public class VC_Controller extends User {
             System.err.println("[SERVER] Error saving job to file: " + e.getMessage());
             e.printStackTrace();
         }
-    }
+    }*/
+    
+    /*private void saveCarData(String carData) {
+        System.out.println("[SERVER] Starting to save job to AcceptedCars.txt");
+        String srcPath = System.getProperty("user.dir") + File.separator + "AcceptedCars.txt";
+        File file = new File(srcPath);
+
+        try {
+            // Ensure parent directories exist (if applicable)
+            if (file.getParentFile() != null && !file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
+            }
+
+            // Write data to the file
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
+                String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+                writer.write("=================================\n");
+                writer.write("Accepted Car - " + timestamp + "\n");
+                writer.write("Car Details: " + carData + "\n");
+                writer.write("=================================\n");
+                writer.flush();
+                System.out.println("[SERVER] Car saved successfully to AcceptedCars.txt");
+                System.out.println("[SERVER] File location: " + file.getAbsolutePath());
+            }
+        } catch (IOException e) {
+            System.err.println("[SERVER] Error saving job to file: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }*/
+
     
     public ArrayList<String> computeCompletionTime(Queue<Integer> jobDurations) {
         int totalDuration = 0;

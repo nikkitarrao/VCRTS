@@ -373,7 +373,7 @@ public class ClickListener implements ActionListener {
         
         
      // File reading operations
-    	PrintStream output = new PrintStream(new File("User1Out.txt"));
+    	//PrintStream output = new PrintStream(new File("User1Out.txt"));
 
         JButton submitButton = new JButton("Submit");
         submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -418,7 +418,7 @@ public class ClickListener implements ActionListener {
     	       } else {
 
     	           	//prints info gathered to printstream output folder
-    	           	output.println("Owner Name: " + ownerName + ", ");
+    	          /* 	output.println("Owner Name: " + ownerName + ", ");
     	           	output.println("Owner ID: " + ownerID + ", ");
     	           	output.println("Password: " + pw + ", ");
     	           	output.println("Email: " + email + ", ");
@@ -429,7 +429,7 @@ public class ClickListener implements ActionListener {
     	           	output.println("Color: " + color + ", ");
     	           	output.println("Residency time (hrs): " + duration + ", ");
     	           	output.println("Timestamp: " + timestamp + ", ");
-    	           	output.println(""); 
+    	           	output.println(""); */
     	           	
     	           	
     	            // Create Client object and proceed with server communication
