@@ -1,0 +1,243 @@
+New Client Account:
+Timestamp: 2024-11-19 17:31:08
+Client ID: asd
+Name: ZX
+Email: ZX
+Company: asd
+Job Duration: 23
+Deadline: zx
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 17:32:46
+Client ID: dfssad
+Name: sad
+Email: asd
+Company: asd
+Job Duration: 34
+Deadline: asd
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 17:33:31
+Client ID: werwer
+Name: sdf
+Email: sdf
+Company: xzc
+Job Duration: 45
+Deadline: dsf
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 17:40:18
+Client ID: 324234324
+Name: emma
+Email: sdsdfsdf
+Company: apple
+Job Duration: 35
+Deadline: dfsdfds
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 17:41:17
+Client ID: 6757657
+Name: niki
+Email: njnkn
+Company: hukhk
+Job Duration: 78
+Deadline: nklnl
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 17:42:08
+Client ID: hvhghv
+Name: njknknjk
+Email: njknkjkn
+Company: bhjbj
+Job Duration: 56
+Deadline: njknj
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 18:00:51
+Client ID: wqe
+Name: as
+Email: we
+Company: asd
+Job Duration: 34
+Deadline: sad
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 20:55:05
+Client ID: asdasd
+Name: asd
+Email: asd
+Company: asd
+Job Duration: 12
+Deadline: wsa
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 21:20:35
+Client ID: asd
+Name: asd
+Email: sda
+Company: asd
+Job Duration: 23
+Deadline: asd
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 21:21:00
+Client ID: qweq
+Name: qwe
+Email: qwe
+Company: qew
+Job Duration: 35
+Deadline: asd
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 21:21:30
+Client ID: qwewqe
+Name: asdasd
+Email: zxXZ
+Company: qweqwe
+Job Duration: 67
+Deadline: SA
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 21:48:20
+Client ID: qwd
+Name: asd
+Email: asd
+Company: asd
+Job Duration: 1523
+Deadline: sda
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 21:49:28
+Client ID: asdas
+Name: asd
+Email: fref
+Company: regeg
+Job Duration: 45
+Deadline: wef
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 21:50:36
+Client ID: dewde
+Name: wedd
+Email: asd
+Company: fewf
+Job Duration: 567
+Deadline: wef
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 22:18:29
+Client ID: fnekfe
+Name: ekfe
+Email: efmlw
+Company: weml
+Job Duration: 4785
+Deadline: df
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 22:19:09
+Client ID: erfnwlrfnw
+Name: ffllwmf
+Email: fmls
+Company: wer
+Job Duration: 234234
+Deadline: fdfd
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 22:24:44
+Client ID: 23232
+Name: shivanni
+Email: @bayhpp
+Company: apple
+Job Duration: 123
+Deadline: 22
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 22:31:21
+Client ID: vghvhv
+Name: nkjn,m
+Email: n,m , m, m,
+Company: ftfyf
+Job Duration: 5
+Deadline: ftyfyt
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 22:32:18
+Client ID: 567575
+Name: jhjhbbm
+Email: ftfhg
+Company: bjhbjbjh
+Job Duration: 566
+Deadline: hkjbb
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 22:33:13
+Client ID: gygjhgj
+Name: bhjbjhb
+Email: bjhbhjb
+Company: bhbj
+Job Duration: 45
+Deadline: hihbkj
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 22:42:38
+Client ID: sdfsdfsdf
+Name: ewrwer
+Email: sdfsdfsdfdfdf
+Company: dfdfgdfgdf
+Job Duration: dfdfdd
+Deadline: dfdgf
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 22:56:27
+Client ID: jkbkbmnm
+Name: njknjkn
+Email: mnmnm
+Company: ,n,n,m
+Job Duration: 67
+Deadline: njnnm
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 23:00:50
+Client ID: BBMNBM
+Name: N,NM,NM
+Email: N,N,MNM
+Company: NMNM,N,
+Job Duration: 68768
+Deadline: N,MN
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 23:07:25
+Client ID: nfnfn
+Name: fnfnf
+Email: ffff
+Company: fff
+Job Duration: 3
+Deadline: c
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 23:12:59
+Client ID: 4454655
+Name: dgfdgf
+Email: bnbmn
+Company: ghfhg
+Job Duration: 567
+Deadline: vgvg
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 23:14:11
+Client ID: fgfhfhf
+Name: bbmnbm
+Email: bhnbh
+Company: vghv
+Job Duration: 56
+Deadline: bjbj
+------------------------
+New Client Account:
+Timestamp: 2024-11-19 23:14:49
+Client ID: nb b n
+Name: bnmbmn
+Email: bmnbn
+Company: bnmb
+Job Duration: 67
+Deadline: bjb
+------------------------

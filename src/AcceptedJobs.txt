@@ -1,10 +1,20 @@
-111:8:222
-01:ppp:hh:fh:5:3:hu:122
-Client{id='1', name='John Doe', email='john@example.com', company='TechCorp', jobDuration='2 hours', deadline='5 PM'}
-Client{id='1', name='John Doe', email='john@example.com', company='TechCorp', jobDuration='2 hours', deadline='5 PM'}
-Client{id='1', name='John Doe', email='john@example.com', company='TechCorp', jobDuration='2 hours', deadline='5 PM'}
-Client{id='1', name='John Doe', email='john@example.com', company='TechCorp', jobDuration='2 hours', deadline='5 PM'}
-Client{id='1', name='John Doe', email='john@example.com', company='TechCorp', jobDuration='2 hours', deadline='5 PM'}
-Client{id='1', name='John Doe', email='john@example.com', company='TechCorp', jobDuration='2 hours', deadline='5 PM'}
-Client{id='1', name='John Doe', email='john@example.com', company='TechCorp', jobDuration='2 hours', deadline='5 PM'}
-Client{id='1', name='John Doe', email='john@example.com', company='TechCorp', jobDuration='2 hours', deadline='5 PM'}
+=================================
+Accepted Job - 2024-11-19 22:31:42
+Job Details: Client{id='vghvhv', name='nkjn,m', email='n,m , m, m,', company='ftfyf', jobDuration='5', deadline='ftyfyt'}
+=================================
+=================================
+Accepted Job - 2024-11-19 22:32:47
+Job Details: Client{id='567575', name='jhjhbbm', email='ftfhg', company='bjhbjbjh', jobDuration='566', deadline='hkjbb'}
+=================================
+=================================
+Accepted Job - 2024-11-19 23:08:05
+Job Details: Client{id='nfnfn', name='fnfnf', email='ffff', company='fff', jobDuration='3', deadline='c'}
+=================================
+=================================
+Accepted Job - 2024-11-19 23:13:38
+Job Details: Client{id='4454655', name='dgfdgf', email='bnbmn', company='ghfhg', jobDuration='567', deadline='vgvg'}
+=================================
+=================================
+Accepted Job - 2024-11-19 23:14:28
+Job Details: Client{id='fgfhfhf', name='bbmnbm', email='bhnbh', company='vghv', jobDuration='56', deadline='bjbj'}
+=================================

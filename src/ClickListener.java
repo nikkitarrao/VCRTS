@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.net.*;
@@ -549,7 +551,7 @@ public class ClickListener implements ActionListener {
   
         
         // File reading operations
-    	PrintStream output = new PrintStream(new File("User2Out.txt"));
+    	//PrintStream output = new PrintStream(new File("User2Out.txt"));
 
     	
     	//Submit Button
@@ -597,7 +599,7 @@ public class ClickListener implements ActionListener {
        });
        
        submitButton.addActionListener(e -> {
-    	   String clientID = t1.getText();
+           String clientID = t1.getText();
            String name = t7.getText();
            String password = t2.getText();
            String email = t3.getText();
@@ -607,60 +609,61 @@ public class ClickListener implements ActionListener {
            String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
            
            if(clientID.isEmpty() || password.isEmpty() || email.isEmpty() || 
-                   company.isEmpty() || jobDuration.isEmpty() || deadline.isEmpty() || 
-                   name.isEmpty()) {
-                    JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Information");
-                    return;
-                }
-
-           // Check if server is running
-           if (VC_Controller.getInstance() == null) {
-               JOptionPane.showMessageDialog(null,
-                   "No active VC Controller found. Please create a controller account first.",
-                   "Server Error",
-                   JOptionPane.ERROR_MESSAGE);
+              company.isEmpty() || jobDuration.isEmpty() || deadline.isEmpty() || 
+              name.isEmpty()) {
+               JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Information");
                return;
            }
 
+           // Save to User2.txt first
+           try (PrintWriter writer = new PrintWriter(new FileWriter("User2.txt", true))) {
+               writer.println("New Client Account:");
+               writer.println("Timestamp: " + timestamp);
+               writer.println("Client ID: " + clientID);
+               writer.println("Name: " + name);
+               writer.println("Email: " + email);
+               writer.println("Company: " + company);
+               writer.println("Job Duration: " + jobDuration);
+               writer.println("Deadline: " + deadline);
+               writer.println("------------------------");
+               writer.flush();
+               System.out.println("[CLIENT] Account information saved to User2.txt");
+           } catch (IOException ex) {
+               System.err.println("[CLIENT] Error saving to User2.txt: " + ex.getMessage());
+               ex.printStackTrace();
+           }
+
+           // Create Client object and proceed with server communication
            try {
-               Client client = new Client(clientID, name, password, email, 
-                                        company, jobDuration, deadline);
+               Client client = new Client(clientID, name, password, email, company, jobDuration, deadline);
+               clientInfo.add(client); // Add to list before server communication
                
-               // Try to connect to server first
-               try {
-                   client.talkToServer(client.toString());
-                   clientInfo.add(client);  // Add to list
-                   
-                   // Clear fields - whether accepted or rejected
-                   clearFields(t1, t2, t3, t4, t5, t6, t7);
-                   
-                   // Always navigate back after submission
-                   cardLayout.show(mainPanel, "CreateAccount");
-                   
-                   if (VC_Controller.getInstance() != null && 
-                       VC_Controller.getInstance().getControllerFrame() != null) {
-                       VC_Controller.getInstance().getControllerFrame().toFront();
-                   }
-                   
-               } catch (Exception serverEx) {
+               if (VC_Controller.getInstance() == null) {
                    JOptionPane.showMessageDialog(null,
-                       "Error connecting to server. Please ensure VC Controller is running.",
-                       "Connection Error",
+                       "No active VC Controller found. Please create a controller account first.",
+                       "Server Error",
                        JOptionPane.ERROR_MESSAGE);
-                   clientInfo.remove(client);  // Remove if connection failed
+                   return;
                }
+
+               // Clear fields after successful save
+               clearFields(t1, t2, t3, t4, t5, t6, t7);
+               
+               // Communicate with server
+               client.talkToServer(client.toString());
                
            } catch (Exception ex) {
+               System.err.println("[CLIENT] Error creating client: " + ex.getMessage());
+               ex.printStackTrace();
                JOptionPane.showMessageDialog(null,
                    "Error creating client: " + ex.getMessage(),
                    "Creation Error",
                    JOptionPane.ERROR_MESSAGE);
            }
        });
-            
 
-        return user2Panel;
-    }
+       return user2Panel;
+   }
     
     private void clearFields(JTextField... fields) {
         for (JTextField field : fields) {
@@ -839,6 +842,14 @@ public class ClickListener implements ActionListener {
                 t3.setText("");
                 t4.setText("");
                 t5.setText("");
+                
+                cardLayout.show(mainPanel, "CreateAccount");
+                
+                JOptionPane.showMessageDialog(null, 
+                        "Cloud Controller account created successfully!", 
+                        "Account Created", 
+                        JOptionPane.INFORMATION_MESSAGE);
+
             }
         });
 
