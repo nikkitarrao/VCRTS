@@ -646,3 +646,57 @@ Company: 4
 Job Duration: 4
 Deadline: 4
 ------------------------
+New Client Account:
+Timestamp: 2024-11-20 17:04:44
+Client ID: 12345
+Name: seee
+Email: 2
+Company: 2
+Job Duration: 2
+Deadline: 2
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 17:05:20
+Client ID: 3333
+Name: 4
+Email: 4
+Company: 4
+Job Duration: 4
+Deadline: 4
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 17:05:36
+Client ID: q
+Name: q
+Email: q
+Company: q
+Job Duration: 12
+Deadline: q
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 17:30:49
+Client ID: 11111
+Name: 1
+Email: 1
+Company: 1
+Job Duration: 11
+Deadline: 1
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 17:32:26
+Client ID: 444
+Name: 44444
+Email: 44
+Company: 4
+Job Duration: 44
+Deadline: 4
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 17:54:30
+Client ID: 1111
+Name: 1
+Email: 1
+Company: 1
+Job Duration: 11
+Deadline: 1
+------------------------

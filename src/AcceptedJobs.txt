@@ -54,3 +54,23 @@ Job Details: Client{id='1234', name='2', email='2', company='2', jobDuration='2'
 Accepted Job - 2024-11-20 14:18:10
 Job Details: Client{id='789', name='4', email='4', company='4', jobDuration='4', deadline='4'}
 =================================
+=================================
+Accepted Job - 2024-11-20 17:04:49
+Job Details: Client{id='12345', name='seee', email='2', company='2', jobDuration='2', deadline='2'}
+=================================
+=================================
+Accepted Job - 2024-11-20 17:05:24
+Job Details: Client{id='3333', name='4', email='4', company='4', jobDuration='4', deadline='4'}
+=================================
+=================================
+Accepted Job - 2024-11-20 17:30:54
+Job Details: Client{id='11111', name='1', email='1', company='1', jobDuration='11', deadline='1'}
+=================================
+=================================
+Accepted Job - 2024-11-20 17:32:32
+Job Details: Client{id='444', name='44444', email='44', company='4', jobDuration='44', deadline='4'}
+=================================
+=================================
+Accepted Job - 2024-11-20 17:54:43
+Job Details: Client{id='1111', name='1', email='1', company='1', jobDuration='11', deadline='1'}
+=================================

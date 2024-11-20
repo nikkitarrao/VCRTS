@@ -1,0 +1,16 @@
+=================================
+Accepted Car - 2024-11-20 18:21:38
+Car Details: Owner [Name=v, ID=v, Phone=v, Make=v, Model=v, Year=v, VIN=v]
+=================================
+=================================
+Accepted Car - 2024-11-20 18:24:37
+Car Details: Owner [Name=gg, ID=g, Phone=g, Make=g, Model=g, Year=g, VIN=g]
+=================================
+=================================
+Accepted Car - 2024-11-20 18:26:11
+Car Details: Owner [Name=ppp, ID=pp, Phone=p, Make=p, Model=jk, Year=j, VIN=j]
+=================================
+=================================
+Accepted Car - 2024-11-20 18:27:08
+Car Details: Owner [Name=mm, ID=55555, Phone=56, Make=5, Model=5, Year=5, VIN=5]
+=================================

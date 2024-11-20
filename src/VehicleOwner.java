@@ -12,7 +12,7 @@ public class VehicleOwner extends User{
     private String vehicleResidencyTime;
     private Vehicle vehicle;
     private boolean carAccepted = false;
-    private static final int TIMEOUT_MS = 1000; //10 seconds 
+    private static final int TIMEOUT_MS = 2000; //10 seconds 
     
   //for the client server
   	static ServerSocket serverSocket;
@@ -153,6 +153,8 @@ public class VehicleOwner extends User{
             }
         }
     }
+    
+   
 
     // Optional: A toString method for easy printing of the user information
     @Override

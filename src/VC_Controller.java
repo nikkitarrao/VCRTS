@@ -250,6 +250,9 @@ public class VC_Controller extends User {
             System.out.println("[SERVER] Starting server...");
             new Thread(() -> {
                 try {
+                	// Create socket and set timeouts
+     
+
                     serverSocket = new ServerSocket(1010);
                     serverStarted = true;
                     System.out.println("[SERVER] Server started successfully on port 1010");
@@ -646,7 +649,7 @@ public class VC_Controller extends User {
         }
     }
     
-    private void handleCarRequest(boolean accepted) {
+    /*private void handleCarRequest(boolean accepted) {
         System.out.println("[SERVER] handleRequest called with accepted=" + accepted);
         
         synchronized (VC_Controller.class) {
@@ -705,7 +708,76 @@ public class VC_Controller extends User {
                 currentOutputStream = null;
             }
         }
+    }*/
+    
+    private void handleCarRequest(boolean accepted) {
+        // Start time for the request processing
+        long startTime = System.currentTimeMillis();
+        
+        System.out.println("[SERVER] handleRequest called with accepted=" + accepted);
+
+        synchronized (VC_Controller.class) {
+            if (!requestPending) {
+                System.out.println("[SERVER] No request pending, returning");
+                return;
+            }
+
+            try {
+                // Show message dialog in VC Controller window first
+                String status = accepted ? "Accepted" : "Rejected";
+                JOptionPane.showMessageDialog(
+                    controllerFrame,
+                    "Car " + status,
+                    "Response Sent",
+                    accepted ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.WARNING_MESSAGE
+                );
+
+                // Send response to client
+                String response = accepted ? "Accepted" : "Rejected";
+                System.out.println("[SERVER] Sending response: " + response);
+                currentOutputStream.writeUTF(response);
+                currentOutputStream.flush();
+                System.out.println("[SERVER] Response sent successfully");
+
+                if (accepted) {
+                    System.out.println("[SERVER] Processing accepted car");
+                    processAcceptedCar(currentRequest);
+                } else {
+                    System.out.println("[SERVER] Car rejected - not adding to queue or saving");
+                }
+
+                SwingUtilities.invokeLater(() -> {
+                    requestArea.append("\nRequest " + response + "\n");
+                    if (!accepted) {
+                        requestArea.append("rejected - not added to queue\n");
+                    }
+                    requestArea.append("=================================\n");
+                    acceptButton.setEnabled(false);
+                    rejectButton.setEnabled(false);
+                });
+
+            } catch (IOException e) {
+                System.err.println("[SERVER] Error sending response: " + e.getMessage());
+            } finally {
+                try {
+                    if (currentOutputStream != null) currentOutputStream.close();
+                    if (currentClientSocket != null) currentClientSocket.close();
+                } catch (IOException e) {
+                    System.err.println("[SERVER] Error closing connections: " + e.getMessage());
+                }
+                requestPending = false;
+                currentRequest = "";
+                currentClientSocket = null;
+                currentOutputStream = null;
+
+                // End time for the request processing
+                long endTime = System.currentTimeMillis();
+                // Log the duration it took to process the car request
+                System.out.println("[SERVER] Car request processing time: " + (endTime - startTime) + "ms");
+            }
+        }
     }
+
     
 
     private void processAcceptedJob(String jobRequest) {
@@ -761,7 +833,7 @@ public class VC_Controller extends User {
                 }
             }
             
-            if (!name.isEmpty()) {
+            //if (!name.isEmpty()) {
                // int duration = Integer.parseInt(name);
                // jobDurations.offer(duration);
                // System.out.println("[SERVER] Added duration to queue: " + duration);
@@ -771,11 +843,11 @@ public class VC_Controller extends User {
                 saveCarData(carRequest);
                 
                 SwingUtilities.invokeLater(() -> {
-                   // requestArea.append("Car added to queue. Duration: " + duration + " minutes\n");
+                    requestArea.append("Car added to file");
                     //requestArea.append("Current queue size: " + jobDurations.size() + "\n");
-                   // requestArea.append("=================================\n");
+                    //requestArea.append("=================================\n");
                 });
-            }
+           // }
         } catch (Exception e) {
             System.err.println("[SERVER] Error processing accepted car: " + e.getMessage());
             e.printStackTrace();
@@ -807,18 +879,39 @@ public class VC_Controller extends User {
         }
     }
     
-    private static void saveCarData(String carData) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("AcceptedCars.txt", true))) {
-            writer.write(carData);
-            writer.newLine();
+    
+    private void saveCarData(String carData) {
+        System.out.println("[SERVER] Starting to save car to AcceptedCars.txt");
+        String srcPath = "src/AcceptedCars.txt"; // Use a consistent file path
+        File file = new File(srcPath);
+
+        // Ensure parent directory exists
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdirs();
+        }
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
+            String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            writer.write("=================================\n");
+            writer.write("Accepted Car - " + timestamp + "\n");
+            writer.write("Car Details: " + carData + "\n");
+            writer.write("=================================\n");
+            writer.flush();
+            System.out.println("[SERVER] Job saved successfully to AcceptedCarss.txt");
+            System.out.println("[SERVER] File location: " + file.getAbsolutePath());
         } catch (IOException e) {
-            System.err.println("Error saving job to file: " + e.getMessage());
+            System.err.println("[SERVER] Error saving job to file: " + e.getMessage());
+            e.printStackTrace();
         }
     }
+    
+    
+   
+  
 
-    /*private void saveCarData(String carData) {
+   /* private void saveCarData(String carData) {
         System.out.println("[SERVER] Starting to save job to AcceptedCars.txt");
-        String srcPath = "User1Out.txt";
+        String srcPath = "vehicles.txt";
         File file = new File(srcPath);
         
         // Create parent directory if it doesn't exist
