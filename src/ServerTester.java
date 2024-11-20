@@ -48,9 +48,21 @@ public class ServerTester {
         Color specificColor = new Color(199, 230, 246);
         welcomePanel.setBackground(specificColor);
         
-        JLabel welcomeLabel = new JLabel("Welcome to VCRTS");
-        welcomeLabel.setFont(new Font("Serif", Font.BOLD, 24));
-        welcomeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel titleLabel = new JLabel("Vehicular Cloud Real-Time System Console", JLabel.CENTER);
+        titleLabel.setFont(new Font("Serif", Font.BOLD, 25));
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        JLabel descriptionLabel = new JLabel(
+                "<html><p style='text-align: center;'>"
+                + "The Vehicular Cloud Real-Time System (VCRTS) manages and organizes "
+                + "computation resources in a vehicular cloud.<br><br>"
+                + "We allow owners of smart vehicles equipped with computing capabilities to rent out their "
+                + "vehicle's computing power and clients to submit jobs for cloud-based computation."
+                + "</p></html>", JLabel.CENTER);
+            descriptionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            
+        welcomePanel.add(titleLabel);
+        welcomePanel.add(descriptionLabel);
         
         JButton createAccountButton = new JButton("Create an Account");
         createAccountButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -61,7 +73,6 @@ public class ServerTester {
         signInButton.addActionListener(listener);
         
         welcomePanel.add(Box.createVerticalGlue());
-        welcomePanel.add(welcomeLabel);
         welcomePanel.add(Box.createVerticalStrut(50));
         welcomePanel.add(createAccountButton);
         welcomePanel.add(Box.createVerticalStrut(20));

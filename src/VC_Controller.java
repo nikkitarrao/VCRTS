@@ -7,6 +7,15 @@ import javax.swing.*;
 import java.text.SimpleDateFormat;
 
 public class VC_Controller extends User {
+	// Define the enum to distinguish between job and car requests
+    private enum RequestType {
+        JOB, CAR
+    }
+
+    // Variables to track the current request type and data
+    private static RequestType currentRequestType;
+    public String currentRequestData;  // Data related to the request, whether it's a job or car
+
     private static JTextArea outputArea;
     private ArrayList<Job> activeJobs;
     private ArrayList<Job> completedJobs;
@@ -93,22 +102,30 @@ public class VC_Controller extends User {
         //adding the buttons
         acceptButton = new JButton("Accept Request");
         rejectButton = new JButton("Reject Request");
+       // acceptButton2 = new JButton("Accept Car Request");
+        //rejectButton2 = new JButton("Reject Car Request");
         computeTimeButton = new JButton("Compute Completion Time");
         logoutButton = new JButton("Log Out");
         
         Dimension buttonSize = new Dimension(200, 40);
         acceptButton.setPreferredSize(buttonSize);
         rejectButton.setPreferredSize(buttonSize);
+       // acceptButton2.setPreferredSize(buttonSize);
+       // rejectButton2.setPreferredSize(buttonSize);
         computeTimeButton.setPreferredSize(buttonSize);
         logoutButton.setPreferredSize(buttonSize);
         
         acceptButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         rejectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        //acceptButton2.setAlignmentX(Component.CENTER_ALIGNMENT);
+       // rejectButton2.setAlignmentX(Component.CENTER_ALIGNMENT);
         computeTimeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         logoutButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         acceptButton.setEnabled(false);
         rejectButton.setEnabled(false);
+       // acceptButton2.setEnabled(false);
+       // rejectButton2.setEnabled(false);
 
         buttonPanel.add(Box.createVerticalStrut(10));
         buttonPanel.add(acceptButton);
@@ -118,6 +135,10 @@ public class VC_Controller extends User {
         buttonPanel.add(computeTimeButton);
         buttonPanel.add(Box.createVerticalStrut(20));
         buttonPanel.add(logoutButton);
+       // buttonPanel.add(Box.createVerticalStrut(10));
+       // buttonPanel.add(acceptButton2);
+       // buttonPanel.add(Box.createVerticalStrut(10));
+       // buttonPanel.add(rejectButton2);
 
         mainPanel.add(titlePanel, BorderLayout.NORTH);
         mainPanel.add(scrollPane, BorderLayout.CENTER);
@@ -135,15 +156,35 @@ public class VC_Controller extends User {
     }
 
     private void setupButtonListeners() {
+    	//check to see if 
+    	System.out.println("[SERVER] Accept button clicked");
         acceptButton.addActionListener(e -> {
-            System.out.println("[SERVER] Accept button clicked");
-            handleRequest(true);
+        	if (currentRequestType == RequestType.JOB) {
+        		handleJobRequest(true);
+            } else {
+            	handleCarRequest(true);
+            }
+            
         });
         
         rejectButton.addActionListener(e -> {
             System.out.println("[SERVER] Reject button clicked");
-            handleRequest(false);
+            if (currentRequestType == RequestType.JOB) {
+        		handleJobRequest(false);
+            } else {
+            	handleCarRequest(false);
+            }
         });
+        
+     /*   acceptButton2.addActionListener(e -> {
+            System.out.println("[SERVER] Accept button clicked");
+            handleCarRequest(true);
+        });
+        
+        rejectButton2.addActionListener(e -> {
+            System.out.println("[SERVER] Reject button clicked");
+            handleCarRequest(false);
+        }); */
         
         computeTimeButton.addActionListener(e -> {
             System.out.println("[SERVER] Compute time button clicked");
@@ -203,6 +244,7 @@ public class VC_Controller extends User {
             }
         });
     }
+    
     public static void startServer() {
         if (!serverStarted) {
             System.out.println("[SERVER] Starting server...");
@@ -248,7 +290,7 @@ public class VC_Controller extends User {
         return controllerFrame;
     }
 
-    private static class ClientHandler extends Thread {
+   /* private static class ClientHandler extends Thread {
         private Socket socket;
         private DataInputStream inputStream;
         private DataOutputStream outputStream;
@@ -273,6 +315,21 @@ public class VC_Controller extends User {
                     System.out.println("[SERVER] Setting current connection details");
                     currentClientSocket = socket;
                     currentOutputStream = outputStream;
+                    
+                    //check type of request
+                    if (messageIn.contains("jobDuration=")) {
+                    	currentRequestType = RequestType.JOB;
+                    	VC_Controller.currentRequest = messageIn;
+                    	VC_Controller.requestPending = true;
+                        System.out.println("[SERVER] Job request detected");
+                    } else if (messageIn.contains("Vehicle=")) {
+                    	currentRequestType = RequestType.CAR;
+                    	VC_Controller.currentRequest = messageIn;
+                    	VC_Controller.requestPending = true;
+                        System.out.println("[SERVER] Car request detected");
+                    }
+                    
+                    
                     currentRequest = messageIn;
                     requestPending = true;
                     System.out.println("[SERVER] Connection details set, requestPending: " + requestPending);
@@ -283,7 +340,7 @@ public class VC_Controller extends User {
                 String duration = "";
                 String deadline = "";
                 try {
-                    System.out.println("[SERVER] Parsing job details...");
+                    System.out.println("[SERVER] Parsing Job details...");
                     String[] parts = messageIn.split(",");
                     for (String part : parts) {
                         if (part.contains("id='")) {
@@ -307,7 +364,7 @@ public class VC_Controller extends User {
                 final String displayMessage = String.format("""
                     
                     =================================
-                    NEW JOB REQUEST RECEIVED:
+                    NEW REQUEST RECEIVED:
                     Client ID: %s
                     Duration: %s
                     Deadline: %s
@@ -321,6 +378,8 @@ public class VC_Controller extends User {
                         requestArea.setCaretPosition(requestArea.getDocument().getLength());
                         acceptButton.setEnabled(true);
                         rejectButton.setEnabled(true);
+                        acceptButton2.setEnabled(true);
+                        rejectButton2.setEnabled(true);
                         System.out.println("[SERVER] GUI updated successfully");
                     } catch (Exception e) {
                         System.err.println("[SERVER] Error updating GUI: " + e.getMessage());
@@ -335,13 +394,204 @@ public class VC_Controller extends User {
                     requestArea.append("Error: " + e.getMessage() + "\n");
                     acceptButton.setEnabled(false);
                     rejectButton.setEnabled(false);
+                    acceptButton2.setEnabled(true);
+                    rejectButton2.setEnabled(true);
                 });
                 
             }
         }
+    } */
+    
+    /////test
+    private static class ClientHandler extends Thread {
+        private Socket socket;
+        private DataInputStream inputStream;
+        private DataOutputStream outputStream;
+
+        public ClientHandler(Socket socket) {
+            this.socket = socket;
+            System.out.println("[SERVER] New ClientHandler created for socket: " + socket);
+        }
+
+        @Override
+        public void run() {
+            try {
+                System.out.println("[SERVER] ClientHandler starting...");
+                inputStream = new DataInputStream(socket.getInputStream());
+                outputStream = new DataOutputStream(socket.getOutputStream());
+                System.out.println("[SERVER] Streams established");
+
+                // Read incoming message
+                String messageIn = inputStream.readUTF();
+                System.out.println("[SERVER] Received message: " + messageIn);
+
+                // Synchronize access to shared variables
+                synchronized (VC_Controller.class) {
+                    System.out.println("[SERVER] Setting current connection details");
+                    currentClientSocket = socket;
+                    currentOutputStream = outputStream;
+
+                    // Detect job or vehicle request
+                    if (messageIn.contains("jobDuration=")) {
+                        currentRequestType = RequestType.JOB;
+                        VC_Controller.currentRequest = messageIn;
+                        VC_Controller.requestPending = true;
+                        System.out.println("[SERVER] Job request detected");
+                    } else if (messageIn.contains("Vehicle=")) {
+                        currentRequestType = RequestType.CAR;
+                        VC_Controller.currentRequest = messageIn;
+                        VC_Controller.requestPending = true;
+                        System.out.println("[SERVER] Car request detected");
+                    }
+
+                    currentRequest = messageIn;
+                    requestPending = true;
+                    System.out.println("[SERVER] Connection details set, requestPending: " + requestPending);
+                }
+
+                // Parse job details if it's a job request
+                if (currentRequestType == RequestType.JOB) {
+                    parseJobDetails(messageIn);
+                }
+                // Parse vehicle details if it's a vehicle request
+                else if (currentRequestType == RequestType.CAR) {
+                    parseVehicleDetails(messageIn);
+                }
+
+            } catch (IOException e) {
+                System.err.println("[SERVER] Error in ClientHandler: " + e.getMessage());
+                e.printStackTrace();
+                SwingUtilities.invokeLater(() -> {
+                    requestArea.append("Error: " + e.getMessage() + "\n");
+                    acceptButton.setEnabled(false);
+                    rejectButton.setEnabled(false);
+                   // acceptButton2.setEnabled(false);
+                   // rejectButton2.setEnabled(false);
+                });
+            }
+        }
+
+        // Method to parse job details
+        private void parseJobDetails(String messageIn) {
+            String clientId = "";
+            String duration = "";
+            String deadline = "";
+            
+            try {
+                System.out.println("[SERVER] Parsing Job details...");
+                String[] parts = messageIn.split(",");
+                for (String part : parts) {
+                    if (part.contains("id='")) {
+                        clientId = part.split("'")[1];
+                        System.out.println("[SERVER] Found client ID: " + clientId);
+                    }
+                    if (part.contains("jobDuration='")) {
+                        duration = part.split("'")[1];
+                        System.out.println("[SERVER] Found duration: " + duration);
+                    }
+                    if (part.contains("deadline='")) {
+                        deadline = part.split("'")[1];
+                        System.out.println("[SERVER] Found deadline: " + deadline);
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println("[SERVER] Error parsing job details: " + e.getMessage());
+                e.printStackTrace();
+            }
+
+            // Construct message to display job request in the GUI
+            final String displayMessage = String.format("""
+            
+                    =================================
+                    NEW JOB REQUEST RECEIVED:
+                    Client ID: %s
+                    Duration: %s
+                    Deadline: %s
+                    =================================
+                    """, clientId, duration, deadline);
+
+            System.out.println("[SERVER] Updating GUI...");
+            SwingUtilities.invokeLater(() -> {
+                try {
+                    requestArea.append(displayMessage);
+                    requestArea.setCaretPosition(requestArea.getDocument().getLength());
+                    acceptButton.setEnabled(true);
+                    rejectButton.setEnabled(true);
+                   // acceptButton2.setEnabled(true);
+                   // rejectButton2.setEnabled(true);
+                    System.out.println("[SERVER] GUI updated successfully");
+                } catch (Exception e) {
+                    System.err.println("[SERVER] Error updating GUI: " + e.getMessage());
+                    e.printStackTrace();
+                }
+            });
+        }
+
+        // Method to parse vehicle details
+        private void parseVehicleDetails(String messageIn) {
+            String id = "";
+            String model = "";
+            String year = "";
+
+            try {
+                System.out.println("[SERVER] Parsing Vehicle details...");
+                String vehiclePart = messageIn.split("Vehicle\\[")[1].split("\\]")[0];  // Extract content inside Vehicle[ ... ]
+                System.out.println("[SERVER] Extracted Vehicle part: " + vehiclePart);
+                String[] parts = vehiclePart.split(", ");
+                for (String part : parts) {
+                	 // Check for specific fields in the vehicle part
+                    if (part.contains("ID=")) {
+                        id = part.split("=")[1];
+                        System.out.println("[SERVER] Found make: " + id);
+                    }
+                 /*   if (part.contains("Model=")) {
+                        model = part.split("=")[1];
+                        System.out.println("[SERVER] Found model: " + model);
+                    }
+                    if (part.contains("Year=")) {
+                        year = part.split("=")[1];
+                        System.out.println("[SERVER] Found VIN: " + year);
+                    } */
+                }
+            } catch (Exception e) {
+                System.err.println("[SERVER] Error parsing vehicle details: " + e.getMessage());
+                e.printStackTrace();
+            }
+
+            // Construct message to display vehicle request in the GUI
+            final String vehicleMessage = String.format("""
+            
+                    =================================
+                    NEW VEHICLE REQUEST RECEIVED:
+                    Owner ID: %s
+                    Model: %s
+                    VIN: %s
+                    =================================
+                    """, id, null, null);
+
+            System.out.println("[SERVER] Updating GUI with vehicle request...");
+            SwingUtilities.invokeLater(() -> {
+                try {
+                    requestArea.append(vehicleMessage);
+                    requestArea.setCaretPosition(requestArea.getDocument().getLength());
+                    acceptButton.setEnabled(true);
+                    rejectButton.setEnabled(true);
+                   // acceptButton2.setEnabled(true);
+                   // rejectButton2.setEnabled(true);
+                    System.out.println("[SERVER] GUI updated successfully with vehicle request");
+                } catch (Exception e) {
+                    System.err.println("[SERVER] Error updating GUI: " + e.getMessage());
+                    e.printStackTrace();
+                }
+            });
+        }
     }
     
-    private void handleRequest(boolean accepted) {
+    
+    
+    ////tests
+    
+    private void handleJobRequest(boolean accepted) {
         System.out.println("[SERVER] handleRequest called with accepted=" + accepted);
         
         synchronized (VC_Controller.class) {
@@ -372,13 +622,13 @@ public class VC_Controller extends User {
                     System.out.println("[SERVER] Processing accepted job");
                     processAcceptedJob(currentRequest);
                 } else {
-                    System.out.println("[SERVER] Job rejected - not adding to queue or saving");
+                    System.out.println("[SERVER] rejected - not adding to queue or saving");
                 }
 
                 SwingUtilities.invokeLater(() -> {
                     requestArea.append("\nRequest " + response + "\n");
                     if (!accepted) {
-                        requestArea.append("Job rejected - not added to queue\n");
+                        requestArea.append("rejected - not added to queue\n");
                     }
                     requestArea.append("=================================\n");
                     acceptButton.setEnabled(false);
@@ -401,6 +651,68 @@ public class VC_Controller extends User {
             }
         }
     }
+    
+    private void handleCarRequest(boolean accepted) {
+        System.out.println("[SERVER] handleRequest called with accepted=" + accepted);
+        
+        synchronized (VC_Controller.class) {
+            if (!requestPending) {
+                System.out.println("[SERVER] No request pending, returning");
+                return;
+            }
+
+            try {
+            	
+            	// Show message dialog in VC Controller window first
+                String status = accepted ? "Accepted" : "Rejected";
+                JOptionPane.showMessageDialog(
+                    controllerFrame,
+                    "Job " + status,
+                    "Response Sent",
+                    accepted ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.WARNING_MESSAGE
+                );
+            	
+                // Send response to client
+                String response = accepted ? "Accepted" : "Rejected";
+                System.out.println("[SERVER] Sending response: " + response);
+                currentOutputStream.writeUTF(response);
+                currentOutputStream.flush();
+                System.out.println("[SERVER] Response sent successfully");
+
+                if (accepted) {
+                    System.out.println("[SERVER] Processing accepted car");
+                    processAcceptedCar(currentRequest);
+                } else {
+                    System.out.println("[SERVER] car rejected - not adding to queue or saving");
+                }
+
+                SwingUtilities.invokeLater(() -> {
+                    requestArea.append("\nRequest " + response + "\n");
+                    if (!accepted) {
+                        requestArea.append("rejected - not added to queue\n");
+                    }
+                    requestArea.append("=================================\n");
+                    acceptButton.setEnabled(false);
+                    rejectButton.setEnabled(false);
+                });
+
+            } catch (IOException e) {
+                System.err.println("[SERVER] Error sending response: " + e.getMessage());
+            } finally {
+                try {
+                    if (currentOutputStream != null) currentOutputStream.close();
+                    if (currentClientSocket != null) currentClientSocket.close();
+                } catch (IOException e) {
+                    System.err.println("[SERVER] Error closing connections: " + e.getMessage());
+                }
+                requestPending = false;
+                currentRequest = "";
+                currentClientSocket = null;
+                currentOutputStream = null;
+            }
+        }
+    }
+    
 
     private void processAcceptedJob(String jobRequest) {
         try {
@@ -438,6 +750,43 @@ public class VC_Controller extends User {
             e.printStackTrace();
         }
     }
+    
+    private void processAcceptedCar(String carRequest) {
+        try {
+            // First extract and add the duration to the queue
+            String[] parts = carRequest.split(",");
+            String name = "";
+            String ownerid = "";
+            
+            for (String part : parts) {
+                if (part.contains("Name='")) {
+                    name = part.split("'")[1].replaceAll("[^0-9]", "");
+                }
+                if (part.contains("ID='")) {
+                    ownerid = part.split("'")[1];
+                }
+            }
+            
+            if (!name.isEmpty()) {
+               // int duration = Integer.parseInt(name);
+               // jobDurations.offer(duration);
+               // System.out.println("[SERVER] Added duration to queue: " + duration);
+                
+                // Now save the job to AcceptedJobs.txt
+                System.out.println("[SERVER] Saving accepted car to file");
+                saveCarData(carRequest);
+                
+                SwingUtilities.invokeLater(() -> {
+                   // requestArea.append("Car added to queue. Duration: " + duration + " minutes\n");
+                    //requestArea.append("Current queue size: " + jobDurations.size() + "\n");
+                   // requestArea.append("=================================\n");
+                });
+            }
+        } catch (Exception e) {
+            System.err.println("[SERVER] Error processing accepted car: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
     private void saveJobData(String jobData) {
         System.out.println("[SERVER] Starting to save job to AcceptedJobs.txt");
@@ -464,6 +813,31 @@ public class VC_Controller extends User {
         }
     }
 
+    private void saveCarData(String carData) {
+        System.out.println("[SERVER] Starting to save job to AcceptedCars.txt");
+        String srcPath = "User1Out.txt";
+        File file = new File(srcPath);
+        
+        // Create parent directory if it doesn't exist
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdirs();
+        }
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
+            String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            writer.write("=================================\n");
+            writer.write("Accepted Car - " + timestamp + "\n");
+            writer.write("Car Details: " + carData + "\n");
+            writer.write("=================================\n");
+            writer.flush();
+            System.out.println("[SERVER] Car saved successfully to AcceptedCars.txt");
+            System.out.println("[SERVER] File location: " + file.getAbsolutePath());
+        } catch (IOException e) {
+            System.err.println("[SERVER] Error saving job to file: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
     public ArrayList<String> computeCompletionTime(Queue<Integer> jobDurations) {
         int totalDuration = 0;
         ArrayList<String> computedTimes = new ArrayList<>();
@@ -476,3 +850,4 @@ public class VC_Controller extends User {
         return computedTimes;
     }
 }
+

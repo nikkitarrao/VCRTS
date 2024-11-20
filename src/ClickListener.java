@@ -33,7 +33,7 @@ public class ClickListener implements ActionListener {
     
 
     // ArrayLists to hold account information
-    private ArrayList<String> vehicleOwnerInfo = new ArrayList<>();
+    private ArrayList<VehicleOwner> vehicleOwnerInfo = new ArrayList<>();
     public ArrayList<Client> clientInfo = new ArrayList<>();
     private ArrayList<String> cloudControllerInfo = new ArrayList<>();
     public Queue<Integer>jobDurations = new LinkedList<>();
@@ -408,28 +408,16 @@ public class ClickListener implements ActionListener {
     	   		String color = colorText.getText();
     	   		String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     	   		
-    	   		Vehicle vehicle = new Vehicle(make, model, year, vin);
-    	        //VehicleOwner owner = new VehicleOwner(ownerName,username, email, phone, pw, vin, timestamp, vehicle);
+    	   		
+    	        //VehicleOwner owner = new VehicleOwner(ownerName, ownerID, email, phone, pw, vin, timestamp, vehicle);
 
     	   	
     		 	//event listener on submit button 
     	       if(ownerName.isEmpty() || ownerID.isEmpty()||pw.isEmpty() || email.isEmpty() || make.isEmpty()|| make.isEmpty() || model.isEmpty() || year.isEmpty() || vin.isEmpty()|| color.isEmpty()|| duration.isEmpty()) {
     	    		   JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Infomation");
     	       } else {
-    	    	 	//save it into the arraylist
-    	           	vehicleOwnerInfo.add(ownerName);
-    	           	vehicleOwnerInfo.add(ownerID);
-    	           	vehicleOwnerInfo.add(pw);
-    	           	vehicleOwnerInfo.add(phone);
-    	           	vehicleOwnerInfo.add(email);
-    	           	vehicleOwnerInfo.add(make);
-    	           	vehicleOwnerInfo.add(model);
-    	           	vehicleOwnerInfo.add(year);
-    	           	vehicleOwnerInfo.add(vin);  	
-    	           	vehicleOwnerInfo.add(color);
-    	           	vehicleOwnerInfo.add(duration);
 
-    	           	//prints info gathered to printstream output folder
+    	           	/*prints info gathered to printstream output folder
     	           	output.println("Owner Name: " + ownerName + ", ");
     	           	output.println("Owner ID: " + ownerID + ", ");
     	           	output.println("Password: " + pw + ", ");
@@ -441,24 +429,52 @@ public class ClickListener implements ActionListener {
     	           	output.println("Color: " + color + ", ");
     	           	output.println("Residency time (hrs): " + duration + ", ");
     	           	output.println("Timestamp: " + timestamp + ", ");
-    	           	output.println("");
+    	           	output.println(""); */
     	           	
-    	           	//clear fields
     	           	
-    	           	nameText.setText("");
-    	           	userNameText.setText("");
-    	        	passwordText.setText("");
-    	           	emailText.setText("");
-    	         	phoneText.setText("");
-    	           	makeText.setText("");
-    	        	modelText.setText("");
-    	        	yearText.setText("");
-    	        	vinText.setText("");
-    	        	colorText.setText("");
-    	           	residencyTimeText.setText("");
+    	            // Create Client object and proceed with server communication
+    	            try {
+    	            	Vehicle vehicle = new Vehicle(make, model, year, vin);
+    	            	VehicleOwner owner = new VehicleOwner(ownerName, ownerID, pw, email, phone, duration ,vehicle);
+    	                vehicleOwnerInfo.add(owner); // Add to list before server communication
+    	                
+    	                if (VC_Controller.getInstance() == null) {
+    	                    JOptionPane.showMessageDialog(null,
+    	                        "No active VC Controller found. Please create a controller account first.",
+    	                        "Server Error",
+    	                        JOptionPane.ERROR_MESSAGE);
+    	                    return;
+    	                }
+    	                
+    	            	//clear fields
+        	           	nameText.setText("");
+        	           	userNameText.setText("");
+        	        	passwordText.setText("");
+        	           	emailText.setText("");
+        	         	phoneText.setText("");
+        	           	makeText.setText("");
+        	        	modelText.setText("");
+        	        	yearText.setText("");
+        	        	vinText.setText("");
+        	        	colorText.setText("");
+        	           	residencyTimeText.setText("");
+    	                // Clear fields after successful save
+    	                //clearFields(t1, t2, t3, t4, t5, t6, t7);
+    	                
+    	                // Communicate with server
+    	                owner.talkToServer(owner.toString());
+    	                
+    	            } catch (Exception ex) {
+    	                System.err.println("[CLIENT] Error creating client: " + ex.getMessage());
+    	                ex.printStackTrace();
+    	                JOptionPane.showMessageDialog(null,
+    	                    "Error creating client: " + ex.getMessage(),
+    	                    "Creation Error",
+    	                    JOptionPane.ERROR_MESSAGE);
+    	            }
     	           	
     	         // Stays on the same page
-    	           	JOptionPane.showMessageDialog(null, "Vehicle Submitted Successfully ","Alert", JOptionPane.INFORMATION_MESSAGE);	
+    	           	//JOptionPane.showMessageDialog(null, "Vehicle Submitted Successfully ","Alert", JOptionPane.INFORMATION_MESSAGE);	
     	       }
            	
            });

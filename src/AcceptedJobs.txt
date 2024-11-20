@@ -1,20 +1,12 @@
 =================================
-Accepted Job - 2024-11-19 22:31:42
-Job Details: Client{id='vghvhv', name='nkjn,m', email='n,m , m, m,', company='ftfyf', jobDuration='5', deadline='ftyfyt'}
+Accepted Job - 2024-11-20 11:07:04
+Job Details: Client{id='1', name='1', email='1', company='1', jobDuration='1', deadline='1'}
 =================================
 =================================
-Accepted Job - 2024-11-19 22:32:47
-Job Details: Client{id='567575', name='jhjhbbm', email='ftfhg', company='bjhbjbjh', jobDuration='566', deadline='hkjbb'}
+Accepted Job - 2024-11-20 11:07:33
+Job Details: Client{id='2', name='2', email='2', company='2', jobDuration='2', deadline='2'}
 =================================
 =================================
-Accepted Job - 2024-11-19 23:08:05
-Job Details: Client{id='nfnfn', name='fnfnf', email='ffff', company='fff', jobDuration='3', deadline='c'}
-=================================
-=================================
-Accepted Job - 2024-11-19 23:13:38
-Job Details: Client{id='4454655', name='dgfdgf', email='bnbmn', company='ghfhg', jobDuration='567', deadline='vgvg'}
-=================================
-=================================
-Accepted Job - 2024-11-19 23:14:28
-Job Details: Client{id='fgfhfhf', name='bbmnbm', email='bhnbh', company='vghv', jobDuration='56', deadline='bjbj'}
+Accepted Job - 2024-11-20 11:22:14
+Job Details: Client{id='8', name='8', email='8', company='8', jobDuration='8', deadline='8'}
 =================================
