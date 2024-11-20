@@ -417,7 +417,7 @@ public class ClickListener implements ActionListener {
     	    		   JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Infomation");
     	       } else {
 
-    	           	/*prints info gathered to printstream output folder
+    	           	//prints info gathered to printstream output folder
     	           	output.println("Owner Name: " + ownerName + ", ");
     	           	output.println("Owner ID: " + ownerID + ", ");
     	           	output.println("Password: " + pw + ", ");
@@ -429,13 +429,13 @@ public class ClickListener implements ActionListener {
     	           	output.println("Color: " + color + ", ");
     	           	output.println("Residency time (hrs): " + duration + ", ");
     	           	output.println("Timestamp: " + timestamp + ", ");
-    	           	output.println(""); */
+    	           	output.println(""); 
     	           	
     	           	
     	            // Create Client object and proceed with server communication
     	            try {
     	            	Vehicle vehicle = new Vehicle(make, model, year, vin);
-    	            	VehicleOwner owner = new VehicleOwner(ownerName, ownerID, pw, email, phone, duration ,vehicle);
+    	            	VehicleOwner owner = new VehicleOwner(ownerID, ownerName, pw, email, phone, duration ,vehicle);
     	                vehicleOwnerInfo.add(owner); // Add to list before server communication
     	                
     	                if (VC_Controller.getInstance() == null) {

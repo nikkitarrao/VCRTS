@@ -402,7 +402,6 @@ public class VC_Controller extends User {
         }
     } */
     
-    /////test
     private static class ClientHandler extends Thread {
         private Socket socket;
         private DataInputStream inputStream;
@@ -437,7 +436,7 @@ public class VC_Controller extends User {
                         VC_Controller.currentRequest = messageIn;
                         VC_Controller.requestPending = true;
                         System.out.println("[SERVER] Job request detected");
-                    } else if (messageIn.contains("Vehicle=")) {
+                    } else if (messageIn.contains("Make=")) {
                         currentRequestType = RequestType.CAR;
                         VC_Controller.currentRequest = messageIn;
                         VC_Controller.requestPending = true;
@@ -531,27 +530,26 @@ public class VC_Controller extends User {
         private void parseVehicleDetails(String messageIn) {
             String id = "";
             String model = "";
-            String year = "";
+            String make = "";
 
             try {
                 System.out.println("[SERVER] Parsing Vehicle details...");
-                String vehiclePart = messageIn.split("Vehicle\\[")[1].split("\\]")[0];  // Extract content inside Vehicle[ ... ]
-                System.out.println("[SERVER] Extracted Vehicle part: " + vehiclePart);
-                String[] parts = vehiclePart.split(", ");
+                String[] parts = messageIn.split(",");
                 for (String part : parts) {
-                	 // Check for specific fields in the vehicle part
-                    if (part.contains("ID=")) {
-                        id = part.split("=")[1];
-                        System.out.println("[SERVER] Found make: " + id);
-                    }
-                 /*   if (part.contains("Model=")) {
-                        model = part.split("=")[1];
-                        System.out.println("[SERVER] Found model: " + model);
-                    }
-                    if (part.contains("Year=")) {
-                        year = part.split("=")[1];
-                        System.out.println("[SERVER] Found VIN: " + year);
-                    } */
+               	 // Check for specific fields in the vehicle part
+                   if (part.contains("ID=")) {
+                       id = part.split("=")[1];
+                       System.out.println("[SERVER] Found id: " + id);
+                   }
+              	 // Check for specific fields in the vehicle part}
+                   if (part.contains("Make=")) {
+                       make = part.split("=")[1];
+                       System.out.println("[SERVER] Found make: " + make);
+                   }
+                   if (part.contains("Model=")) {
+                       model = part.split("=")[1];
+                       System.out.println("[SERVER] Found model: " + model);
+                   } 
                 }
             } catch (Exception e) {
                 System.err.println("[SERVER] Error parsing vehicle details: " + e.getMessage());
@@ -564,10 +562,10 @@ public class VC_Controller extends User {
                     =================================
                     NEW VEHICLE REQUEST RECEIVED:
                     Owner ID: %s
+                    Make: %s
                     Model: %s
-                    VIN: %s
                     =================================
-                    """, id, null, null);
+                    """, id, make, model);
 
             System.out.println("[SERVER] Updating GUI with vehicle request...");
             SwingUtilities.invokeLater(() -> {
@@ -586,10 +584,6 @@ public class VC_Controller extends User {
             });
         }
     }
-    
-    
-    
-    ////tests
     
     private void handleJobRequest(boolean accepted) {
         System.out.println("[SERVER] handleRequest called with accepted=" + accepted);
@@ -667,7 +661,7 @@ public class VC_Controller extends User {
                 String status = accepted ? "Accepted" : "Rejected";
                 JOptionPane.showMessageDialog(
                     controllerFrame,
-                    "Job " + status,
+                    "Car " + status,
                     "Response Sent",
                     accepted ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.WARNING_MESSAGE
                 );

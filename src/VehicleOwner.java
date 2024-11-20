@@ -12,7 +12,7 @@ public class VehicleOwner extends User{
     private String vehicleResidencyTime;
     private Vehicle vehicle;
     private boolean carAccepted = false;
-    private static final int TIMEOUT_MS = 10000; //10 seconds 
+    private static final int TIMEOUT_MS = 1000; //10 seconds 
     
   //for the client server
   	static ServerSocket serverSocket;
@@ -21,8 +21,8 @@ public class VehicleOwner extends User{
   	static DataOutputStream outputStream;
     
     // Constructor
-    public VehicleOwner(String name, String id, String password,  String email, String phoneNumber, String vehicleResidencyTime, Vehicle vehicle) {
-    	super(name, id, password);
+    public VehicleOwner(String id, String name, String password,  String email, String phoneNumber, String vehicleResidencyTime, Vehicle vehicle) {
+    	super(id, name, password);
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
@@ -157,6 +157,6 @@ public class VehicleOwner extends User{
     // Optional: A toString method for easy printing of the user information
     @Override
     public String toString() {
-        return "Owner [Name=" + name + ", ID=" + getId() + ", Phone=" + phoneNumber + ", Vehicle=" + vehicle + "]";
+        return "Owner [Name=" + name + ", ID=" + getId() + ", Phone=" + phoneNumber + ", " + vehicle + "]";
     }
 }

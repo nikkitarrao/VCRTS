@@ -48,6 +48,6 @@ public class Vehicle {
     // Optional: A toString method for easy printing of the vehicle information
     @Override
     public String toString() {
-        return "Vehicle [Make=" + make + ", Model=" + model + ", Year=" + year + ", VIN=" + vin + "]";
+        return "Make=" + make + ", Model=" + model + ", Year=" + year + ", VIN=" + vin;
     }
 }

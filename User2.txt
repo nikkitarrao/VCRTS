@@ -484,3 +484,165 @@ Company: 8
 Job Duration: 8
 Deadline: 8
 ------------------------
+New Client Account:
+Timestamp: 2024-11-20 11:58:16
+Client ID: 7
+Name: 7
+Email: 7
+Company: 7
+Job Duration: 7
+Deadline: 7
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 12:52:49
+Client ID: 0
+Name: 0
+Email: 0
+Company: 0
+Job Duration: 0
+Deadline: 0
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 12:53:11
+Client ID: 1
+Name: 1
+Email: 1
+Company: 1
+Job Duration: 1
+Deadline: 1
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 12:54:15
+Client ID: 9
+Name: 9
+Email: 9
+Company: 9
+Job Duration: 9
+Deadline: 9
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 12:54:43
+Client ID: 8
+Name: 8
+Email: 8
+Company: 8
+Job Duration: 8
+Deadline: 8
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 13:32:31
+Client ID: 1
+Name: 1
+Email: 11
+Company: 1
+Job Duration: 1
+Deadline: 1
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 13:39:38
+Client ID: 1
+Name: 1
+Email: 1
+Company: 1
+Job Duration: 1
+Deadline: 1
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 13:40:10
+Client ID: 4
+Name: 4
+Email: 4
+Company: 4
+Job Duration: 4
+Deadline: 4
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 13:56:29
+Client ID: 0
+Name: 0
+Email: 0
+Company: 0
+Job Duration: 0
+Deadline: 0
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 14:03:56
+Client ID: 9
+Name: 9
+Email: 9
+Company: 9
+Job Duration: 9
+Deadline: 9
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 14:09:10
+Client ID: 1
+Name: 1
+Email: 1
+Company: 1
+Job Duration: 1
+Deadline: 1
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 14:12:25
+Client ID: 7
+Name: 7
+Email: 7
+Company: 7
+Job Duration: 7
+Deadline: 7
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 14:12:41
+Client ID: 7
+Name: 7
+Email: 7
+Company: 7
+Job Duration: 7
+Deadline: 7
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 14:12:53
+Client ID: 8
+Name: 8
+Email: 8
+Company: 8
+Job Duration: 8
+Deadline: 8
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 14:15:21
+Client ID: 1234
+Name: 2
+Email: 2
+Company: 2
+Job Duration: 2
+Deadline: 2
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 14:17:04
+Client ID: 456
+Name: 0
+Email: 0
+Company: 0
+Job Duration: 4
+Deadline: 0
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 14:17:45
+Client ID: 789
+Name: 9
+Email: 9
+Company: 9
+Job Duration: 9
+Deadline: 9
+------------------------
+New Client Account:
+Timestamp: 2024-11-20 14:18:04
+Client ID: 789
+Name: 4
+Email: 4
+Company: 4
+Job Duration: 4
+Deadline: 4
+------------------------

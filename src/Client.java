@@ -12,7 +12,7 @@ public class Client extends User {
     private String jobDuration;
     private String deadline;
     private boolean jobAccepted = false;
-    private static final int TIMEOUT_MS = 10000; //10 seconds 
+    private static final int TIMEOUT_MS = 1000; //10 seconds 
 
 
     public Client(String id, String name, String password, String email, String company, String jobDuration, String deadline) {
@@ -70,7 +70,7 @@ public class Client extends User {
             SwingUtilities.invokeLater(() -> {
                 // Create a custom dialog with the response message
                 JDialog dialog = new JDialog();
-                dialog.setTitle(jobAccepted ? "Job Accepted" : "Job Rejected");
+                dialog.setTitle(jobAccepted ? "Accepted" : "Rejected");
                 dialog.setModal(true);
                 dialog.setSize(400, 150);
                 dialog.setLocationRelativeTo(null);
