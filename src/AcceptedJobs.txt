@@ -94,3 +94,7 @@ Job Details: Client{id='2345', name='tttt', email='t', company='t', jobDuration=
 Accepted Job - 2024-12-03 10:57:42
 Job Details: Client{id='1266', name='h', email='h', company='h', jobDuration='6', deadline='h'}
 =================================
+=================================
+Accepted Job - 2024-12-03 12:33:37
+Job Details: Client{id='00', name='jj', email='ui', company='ih8', jobDuration='8', deadline='ihu'}
+=================================

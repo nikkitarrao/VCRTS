@@ -159,6 +159,6 @@ public class VehicleOwner extends User{
     // Optional: A toString method for easy printing of the user information
     @Override
     public String toString() {
-        return "Owner [Name=" + name + ", ID=" + getId() + ", Phone=" + phoneNumber + ", " + vehicle + "]";
+        return "Owner [Name=" + name + ", ID=" + getId() + ", Phone=" + phoneNumber + ", " + vehicle;
     }
 }
