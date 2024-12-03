@@ -6,6 +6,10 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.awt.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 /*
  * Project: Stage 2 GUI
  * Class: CUS 1166
@@ -84,6 +88,34 @@ public class GUI {
         // Add action listeners
         createAccountButton.addActionListener(listener);
         signInButton.addActionListener(listener);
+        
+        // Database credentials
+        String url = "jdbc:mysql://localhost:3306"; 
+        String user = "root"; 
+        String password = "nrt123"; 
+        
+        // Establishing the connection and handling the query
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+            System.out.println("Connection to the database successful!");
+
+            // Example query (replace with your actual SQL query)
+            String query = "SELECT * FROM your_table";  // Replace "your_table" with your actual table name
+
+            // Create a statement and execute the query
+            Statement statement = connection.createStatement();
+            statement.executeQuery(query);
+            System.out.println("Query executed successfully!");
+
+            // Optionally, if you want to insert data into the database (e.g., job data)
+            // Here’s an example of an insert query (replace with your actual data)
+            String insertQuery = "INSERT INTO job_owners (clientID, duration, deadline) VALUES ('client123', '30', '2024-12-31')";
+            statement.executeUpdate(insertQuery);
+            System.out.println("Data inserted successfully!");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
        
 
     }

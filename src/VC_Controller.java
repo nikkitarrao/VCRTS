@@ -5,6 +5,8 @@ import java.util.*;
 import java.awt.*;
 import javax.swing.*;
 import java.text.SimpleDateFormat;
+import java.sql.*;
+import java.util.Date;
 
 public class VC_Controller extends User {
 	// Define the enum to distinguish between job and car requests
@@ -877,6 +879,41 @@ public class VC_Controller extends User {
             System.err.println("[SERVER] Error saving job to file: " + e.getMessage());
             e.printStackTrace();
         }
+        
+     // Extract clientId, duration, and deadline from jobData
+    /*    String clientId = "";
+        String duration = "";
+        String deadline = "";
+       
+        String[] parts = jobData.split(",");
+        for (String part : parts) {
+            if (part.contains("jobDuration='")) {
+                duration = part.split("'")[1];
+            }
+            if (part.contains("id='")) {
+                clientId = part.split("'")[1];
+            }
+            if (part.contains("deadline='")) {
+                deadline = part.split("'")[1];
+            }
+        }
+        
+        
+        //adding the job data to SQL database
+        try(Connection connection = DatabaseConnection.getConnection()){
+        	String sql = "INSERT INTO job_owners (clientID, duration, deadline) VALUES (?, ?, ?)";
+        	try(PreparedStatement stmt = connection.prepareStatement(sql)){
+        		stmt.setString(1, clientId);
+        		stmt.setString(2, duration);
+        		stmt.setString(3, deadline);
+        		stmt.executeUpdate();
+        		//return "Request accepted and Data Inserted";
+        	}
+        	catch(Exception e) {
+        		e.printStackTrace();
+        	//	return "Error processing request";
+        	} 
+      }*/
     }
     
     
@@ -974,5 +1011,6 @@ public class VC_Controller extends User {
         }
         return computedTimes;
     }
+    
 }
 
