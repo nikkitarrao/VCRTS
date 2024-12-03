@@ -1,0 +1,7 @@
+Admin Code: 00, 
+First Name: 0, 
+Last Name: 0, 
+Email: 0, 
+Password: 0, 
+timestamp: 2024-12-02 22:31:24, 
+

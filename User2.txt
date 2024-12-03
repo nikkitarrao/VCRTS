@@ -700,3 +700,21 @@ Company: 1
 Job Duration: 11
 Deadline: 1
 ------------------------
+New Client Account:
+Timestamp: 2024-12-02 22:29:06
+Client ID: 0
+Name: 0
+Email: 0
+Company: 0
+Job Duration: 0
+Deadline: 0
+------------------------
+New Client Account:
+Timestamp: 2024-12-02 22:31:33
+Client ID: 0
+Name: 0
+Email: 0
+Company: 0
+Job Duration: 0
+Deadline: 0
+------------------------

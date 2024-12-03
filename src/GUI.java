@@ -90,7 +90,7 @@ public class GUI {
         signInButton.addActionListener(listener);
         
         // Database credentials
-        String url = "jdbc:mysql://localhost:3306"; 
+     /*   String url = "jdbc:mysql://localhost:3306/vcrts"; 
         String user = "root"; 
         String password = "nrt123"; 
         
@@ -114,7 +114,7 @@ public class GUI {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        } */
 
        
 

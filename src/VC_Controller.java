@@ -6,6 +6,11 @@ import java.awt.*;
 import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import java.util.Date;
 
 public class VC_Controller extends User {
@@ -881,7 +886,7 @@ public class VC_Controller extends User {
         }
         
      // Extract clientId, duration, and deadline from jobData
-    /*    String clientId = "";
+        String clientId = "";
         String duration = "";
         String deadline = "";
        
@@ -898,23 +903,27 @@ public class VC_Controller extends User {
             }
         }
         
+     // Database credentials
+        String url = "jdbc:mysql://localhost:3306/vcrts"; 
+        String user = "root"; 
+        String password = "nrt123"; 
         
         //adding the job data to SQL database
-        try(Connection connection = DatabaseConnection.getConnection()){
+        try {Connection connection =  DriverManager.getConnection(url, user, password);
+        	System.out.println("Database Connection Successful");
         	String sql = "INSERT INTO job_owners (clientID, duration, deadline) VALUES (?, ?, ?)";
         	try(PreparedStatement stmt = connection.prepareStatement(sql)){
         		stmt.setString(1, clientId);
         		stmt.setString(2, duration);
-        		stmt.setString(3, deadline);
+        		stmt.setString(3, deadline); 
         		stmt.executeUpdate();
-        		//return "Request accepted and Data Inserted";
         	}
+        }
         	catch(Exception e) {
         		e.printStackTrace();
         	//	return "Error processing request";
         	} 
-      }*/
-    }
+      }
     
     
     private void saveCarData(String carData) {
