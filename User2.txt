@@ -718,3 +718,48 @@ Company: 0
 Job Duration: 0
 Deadline: 0
 ------------------------
+New Client Account:
+Timestamp: 2024-12-03 10:24:34
+Client ID: 1111
+Name: d
+Email: d
+Company: d
+Job Duration: 5
+Deadline: d
+------------------------
+New Client Account:
+Timestamp: 2024-12-03 10:34:06
+Client ID: 2222
+Name: d
+Email: d
+Company: d
+Job Duration: 15
+Deadline: d
+------------------------
+New Client Account:
+Timestamp: 2024-12-03 10:57:19
+Client ID: 2345
+Name: tttt
+Email: t
+Company: t
+Job Duration: 5
+Deadline: t
+------------------------
+New Client Account:
+Timestamp: 2024-12-03 10:57:39
+Client ID: 1266
+Name: h
+Email: h
+Company: h
+Job Duration: 6
+Deadline: h
+------------------------
+New Client Account:
+Timestamp: 2024-12-03 10:57:54
+Client ID: b12
+Name: b
+Email: bb
+Company: b
+Job Duration: 14
+Deadline: tt
+------------------------

@@ -904,12 +904,13 @@ public class VC_Controller extends User {
         }
         
      // Database credentials
-        String url = "jdbc:mysql://localhost:3306/vcrts"; 
+        String url = "jdbc:mysql://127.0.0.1:3306/vcrts"; 
         String user = "root"; 
-        String password = "nrt123"; 
+        String password = "2daughters"; 
         
         //adding the job data to SQL database
-        try {Connection connection =  DriverManager.getConnection(url, user, password);
+        try {
+        	Connection connection =  DriverManager.getConnection(url, user, password);
         	System.out.println("Database Connection Successful");
         	String sql = "INSERT INTO job_owners (clientID, duration, deadline) VALUES (?, ?, ?)";
         	try(PreparedStatement stmt = connection.prepareStatement(sql)){
@@ -943,12 +944,85 @@ public class VC_Controller extends User {
             writer.write("Car Details: " + carData + "\n");
             writer.write("=================================\n");
             writer.flush();
-            System.out.println("[SERVER] Job saved successfully to AcceptedCarss.txt");
+            System.out.println("[SERVER] Job saved successfully to AcceptedCars.txt");
             System.out.println("[SERVER] File location: " + file.getAbsolutePath());
         } catch (IOException e) {
             System.err.println("[SERVER] Error saving job to file: " + e.getMessage());
             e.printStackTrace();
         }
+        
+        System.out.println("Received car data: " + carData);
+        
+        
+        String ownerId = "";
+        String make = "";
+        String model = "";
+        String year = "";
+        String vin = "";
+       
+        String[] parts = carData.split(",");
+        for (String part : parts) {
+            part = part.trim();  // Trim extra spaces
+            String[] keyValue = part.split("=");
+            
+            if (keyValue.length == 2) {
+                String key = keyValue[0].trim();
+                String value = keyValue[1].replace("'", "").trim(); // Remove quotes if they exist
+
+                switch (key) {
+                    case "ID":
+                        ownerId = value;
+                        break;
+                    case "Make":
+                        make = value;
+                        break;
+                    case "Model":
+                        model = value;
+                        break;
+                    case "Year":
+                        year = value;
+                        break;
+                    case "VIN":
+                        vin = value;
+                        break;
+                }
+            }
+        }
+
+            
+        
+        // Debugging Output
+        System.out.println("Owner ID: " + ownerId);
+        System.out.println("Make: " + make);
+        System.out.println("Model: " + model);
+        System.out.println("Year: " + year);
+        System.out.println("VIN: " + vin);
+        
+     // Database credentials
+        String url = "jdbc:mysql://127.0.0.1:3306/vcrts"; 
+        String user = "root"; 
+        String password = "2daughters"; 
+        
+        //adding the job data to SQL database
+        try {
+        	Connection connection =  DriverManager.getConnection(url, user, password);
+        	System.out.println("Database Connection Successful");
+        	String sql = "INSERT INTO car_owners (ownerID, make, model, year, vin) VALUES (?, ?, ?, ?, ?)";
+        	try(PreparedStatement stmt = connection.prepareStatement(sql)){
+        		stmt.setString(1, ownerId);
+        		stmt.setString(2, make);
+        		stmt.setString(3, model); 
+        		stmt.setString(4, year); 
+        		stmt.setString(5, vin); 
+        		stmt.executeUpdate();
+        		System.out.println("Car data inserted successfully into database.");
+        	}
+        }
+        	catch(Exception e) {
+        		System.err.println("Error inserting data into the database.");
+        		e.printStackTrace();
+        	//	return "Error processing request";
+        	} 
     }
     
     

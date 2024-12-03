@@ -1,0 +1,4 @@
+=================================
+Accepted Car - 2024-12-03 10:10:01
+Car Details: Owner [Name=f, ID=f, Phone=f, Make=ff, Model=f, Year=f, VIN=ff]
+=================================
