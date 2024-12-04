@@ -7,6 +7,7 @@ import java.util.*;
 import javax.swing.*;
 
 public class Client extends User {
+	private ArrayList<Client> acceptedClient;
     private String email;
     private String company;
     private String jobDuration;
@@ -72,6 +73,8 @@ public class Client extends User {
             // Update job status based on response
             jobAccepted = response.contains("Accepted");
             
+           
+            
             // Show detailed notification to user
             SwingUtilities.invokeLater(() -> {
                 // Create a custom dialog with the response message
@@ -107,7 +110,7 @@ public class Client extends User {
             e.printStackTrace();
             SwingUtilities.invokeLater(() -> {
                 JOptionPane.showMessageDialog(null,
-                    "Job Recieved! Check Submission",
+                    "Job Received! Waiting for server response",
                     "Job Submission",
                     JOptionPane.INFORMATION_MESSAGE);
             });

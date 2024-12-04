@@ -1340,3 +1340,30 @@ Job Duration: 9
 Deadline: ih
 >>>>>>> 954f76960e0fcc235af1cb85d6d8c46833e6ab04
 ------------------------
+New Client Account:
+Timestamp: 2024-12-04 16:27:47
+Client ID: d
+Name: d
+Email: d
+Company: d
+Job Duration: 2
+Deadline: d
+------------------------
+New Client Account:
+Timestamp: 2024-12-04 16:28:23
+Client ID: hhh
+Name: h
+Email: h
+Company: h
+Job Duration: 3
+Deadline: h
+------------------------
+New Client Account:
+Timestamp: 2024-12-04 16:28:33
+Client ID: www
+Name: w
+Email: ww
+Company: w
+Job Duration: 3
+Deadline: w
+------------------------

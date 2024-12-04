@@ -31,9 +31,7 @@ public class VC_Controller extends User {
     private ArrayList<Client> clientInfo;
     private static boolean serverStarted = false;
     private static VC_Controller instance = null;
-    //added to fix in the display after completion time button is clicked
-    private static boolean jobAccepted = false;
-    private Map<String, Boolean> jobStatusMap = new HashMap<>();
+
     
     private static ServerSocket serverSocket;
     private static volatile boolean requestPending = false;
@@ -172,7 +170,6 @@ public class VC_Controller extends User {
         acceptButton.addActionListener(e -> {
         	if (currentRequestType == RequestType.JOB) {
         		handleJobRequest(true);
-        		jobAccepted = true;
             } else {
             	handleCarRequest(true);
             }
@@ -183,7 +180,6 @@ public class VC_Controller extends User {
             System.out.println("[SERVER] Reject button clicked");
             if (currentRequestType == RequestType.JOB) {
         		handleJobRequest(false);
-        		jobAccepted = false;
             } else {
             	handleCarRequest(false);
             }
@@ -216,9 +212,6 @@ public class VC_Controller extends User {
             int jobIndex = 0;
             for (Client client : clientInfo) {
                 if (jobIndex < times.size()) {
-                	System.out.println("job is accepted?: " + jobAccepted);
-                	System.out.println("map?: " + jobStatusMap.getOrDefault(client.getId(), false));
-                    //if (jobStatusMap.getOrDefault(client.getId(), false)) {  // check if job is accepted
                     String completionTime = times.get(jobIndex);
                     messageBuilder.append(String.format(
                         "Client ID: %s<br>Job Duration: %s<br>Completion Time: %s<br><br>",
@@ -611,7 +604,6 @@ public class VC_Controller extends User {
         System.out.println("[SERVER] handleRequest called with accepted=" + accepted);
         for (Client client : clientInfo) {
 	        // Assuming clientId uniquely identifies each job
-	        jobStatusMap.put(client.getId(), accepted);  // Mark the job as accepted or rejected
 	    }
         
         synchronized (VC_Controller.class) {
@@ -1027,9 +1019,9 @@ public class VC_Controller extends User {
         
         
         // Database credentials
-        String url = "jdbc:mysql://localhost:3306/vcrts"; 
+        String url = "jdbc:mysql://127.0.0.1:3306/vcrts"; 
         String user = "root"; 
-        String password = "nrt123"; 
+        String password = "2daughters"; 
         
         //adding the job data to SQL database
         try {
