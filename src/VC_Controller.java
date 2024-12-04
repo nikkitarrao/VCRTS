@@ -972,23 +972,18 @@ public class VC_Controller extends User {
             e.printStackTrace();
         }
         
-<<<<<<< HEAD
-        
-        // Extract clientId, duration, and deadline from jobData
-=======
+
         System.out.println("Received car data: " + carData);
         
         
->>>>>>> 954f76960e0fcc235af1cb85d6d8c46833e6ab04
+
         String ownerId = "";
         String make = "";
         String model = "";
         String year = "";
         String vin = "";
-<<<<<<< HEAD
+
         String timestamp = "";
-=======
->>>>>>> 954f76960e0fcc235af1cb85d6d8c46833e6ab04
        
         String[] parts = carData.split(",");
         for (String part : parts) {
@@ -1015,17 +1010,21 @@ public class VC_Controller extends User {
                     case "VIN":
                         vin = value;
                         break;
-<<<<<<< HEAD
                     case "timestamp":
                         timestamp = value;
                         break;
-=======
->>>>>>> 954f76960e0fcc235af1cb85d6d8c46833e6ab04
+
                 }
             }
         }
 
-<<<<<<< HEAD
+
+        System.out.println("Owner ID: " + ownerId);
+        System.out.println("Make: " + make);
+        System.out.println("Model: " + model);
+        System.out.println("Year: " + year);
+        System.out.println("VIN: " + vin);
+        
         
         // Database credentials
         String url = "jdbc:mysql://localhost:3306/vcrts"; 
@@ -1033,55 +1032,31 @@ public class VC_Controller extends User {
         String password = "nrt123"; 
         
         //adding the job data to SQL database
-        try {Connection connection =  DriverManager.getConnection(url, user, password);
-        	System.out.println("Database Connection Successful");
-        	String sql = "INSERT INTO car_details (ownerId, make, model, year, vin, timestamp) VALUES (?, ?, ?, ?, ?, ?)";
-=======
-            
-        
-        // Debugging Output
-        System.out.println("Owner ID: " + ownerId);
-        System.out.println("Make: " + make);
-        System.out.println("Model: " + model);
-        System.out.println("Year: " + year);
-        System.out.println("VIN: " + vin);
-        
-     // Database credentials
-        String url = "jdbc:mysql://127.0.0.1:3306/vcrts"; 
-        String user = "root"; 
-        String password = "2daughters"; 
-        
-        //adding the job data to SQL database
         try {
         	Connection connection =  DriverManager.getConnection(url, user, password);
         	System.out.println("Database Connection Successful");
-        	String sql = "INSERT INTO car_owners (ownerID, make, model, year, vin) VALUES (?, ?, ?, ?, ?)";
->>>>>>> 954f76960e0fcc235af1cb85d6d8c46833e6ab04
+        	String sql = "INSERT INTO car_details (ownerId, make, model, year, vin, timestamp) VALUES (?, ?, ?, ?, ?, ?)";
+        	
         	try(PreparedStatement stmt = connection.prepareStatement(sql)){
         		stmt.setString(1, ownerId);
         		stmt.setString(2, make);
         		stmt.setString(3, model); 
-<<<<<<< HEAD
+
         		stmt.setString(4, year);
         		stmt.setString(5, vin);
         		stmt.setString(6, timestamp);
         		stmt.executeUpdate();
         	}
-        }
-        	catch(Exception e) {
-=======
-        		stmt.setString(4, year); 
-        		stmt.setString(5, vin); 
-        		stmt.executeUpdate();
-        		System.out.println("Car data inserted successfully into database.");
-        	}
+        
+        	
         }
         	catch(Exception e) {
         		System.err.println("Error inserting data into the database.");
->>>>>>> 954f76960e0fcc235af1cb85d6d8c46833e6ab04
         		e.printStackTrace();
         	//	return "Error processing request";
         	} 
+
+        	
     }
     
     
