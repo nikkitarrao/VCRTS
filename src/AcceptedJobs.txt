@@ -79,6 +79,7 @@ Accepted Job - 2024-12-02 22:31:38
 Job Details: Client{id='0', name='0', email='0', company='0', jobDuration='0', deadline='0'}
 =================================
 =================================
+<<<<<<< HEAD
 Accepted Job - 2024-12-03 12:55:41
 Job Details: Client{id='9', name='9', email='9', company='9', jobDuration='9', deadline='9'}
 =================================
@@ -233,4 +234,24 @@ Job Details: Client{id='9', name='9', email='9', company='9', jobDuration='9', d
 =================================
 Accepted Job - 2024-12-04 15:58:38
 Job Details: Client{id='7', name='7', email='7', company='7', jobDuration='7', deadline='7', timestamp='2024-12-04 15:58:33', jobstatus='false'}
+=======
+Accepted Job - 2024-12-03 10:24:39
+Job Details: Client{id='1111', name='d', email='d', company='d', jobDuration='5', deadline='d'}
+=================================
+=================================
+Accepted Job - 2024-12-03 10:34:10
+Job Details: Client{id='2222', name='d', email='d', company='d', jobDuration='15', deadline='d'}
+=================================
+=================================
+Accepted Job - 2024-12-03 10:57:26
+Job Details: Client{id='2345', name='tttt', email='t', company='t', jobDuration='5', deadline='t'}
+=================================
+=================================
+Accepted Job - 2024-12-03 10:57:42
+Job Details: Client{id='1266', name='h', email='h', company='h', jobDuration='6', deadline='h'}
+=================================
+=================================
+Accepted Job - 2024-12-03 12:33:37
+Job Details: Client{id='00', name='jj', email='ui', company='ih8', jobDuration='8', deadline='ihu'}
+>>>>>>> 954f76960e0fcc235af1cb85d6d8c46833e6ab04
 =================================

@@ -90,16 +90,18 @@ public class GUI {
         signInButton.addActionListener(listener);
         
         // Database credentials
-     /*   String url = "jdbc:mysql://localhost:3306/vcrts"; 
+       /* String url = "jdbc:mysql://127.0.0.1:3306/vcrts"; 
         String user = "root"; 
-        String password = "nrt123"; 
+        String password = "2daughters";*/
         
         // Establishing the connection and handling the query
-        try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            System.out.println("Connection to the database successful!");
+       // try {
+        	// Connection connection = DriverManager.getConnection(url, user, password);
+           // System.out.println("Connection to the database successful!");
+           // connection.close();
 
             // Example query (replace with your actual SQL query)
-            String query = "SELECT * FROM your_table";  // Replace "your_table" with your actual table name
+           /* String query = "SELECT * FROM your_table";  // Replace "your_table" with your actual table name
 
             // Create a statement and execute the query
             Statement statement = connection.createStatement();
@@ -110,9 +112,10 @@ public class GUI {
             // Here’s an example of an insert query (replace with your actual data)
             String insertQuery = "INSERT INTO job_owners (clientID, duration, deadline) VALUES ('client123', '30', '2024-12-31')";
             statement.executeUpdate(insertQuery);
-            System.out.println("Data inserted successfully!");
+            System.out.println("Data inserted successfully!");*/
+        	 
 
-        } catch (SQLException e) {
+        /*} catch (SQLException e) {
             e.printStackTrace();
         } */
 

@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 Admin Code: 0, 
 First Name: 0, 
 Last Name: 0, 
 Email: 0, 
 Password: 0, 
 timestamp: 2024-12-04 15:57:52, 
+=======
+Admin Code: g, 
+First Name: g, 
+Last Name: g, 
+Email: g, 
+Password: g, 
+timestamp: 2024-12-03 12:37:38, 
+>>>>>>> 954f76960e0fcc235af1cb85d6d8c46833e6ab04
 
