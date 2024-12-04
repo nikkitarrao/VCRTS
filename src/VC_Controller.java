@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 import java.util.Date;
 
@@ -30,6 +31,9 @@ public class VC_Controller extends User {
     private ArrayList<Client> clientInfo;
     private static boolean serverStarted = false;
     private static VC_Controller instance = null;
+    //added to fix in the display after completion time button is clicked
+    private static boolean jobAccepted = false;
+    private Map<String, Boolean> jobStatusMap = new HashMap<>();
     
     private static ServerSocket serverSocket;
     private static volatile boolean requestPending = false;
@@ -168,6 +172,7 @@ public class VC_Controller extends User {
         acceptButton.addActionListener(e -> {
         	if (currentRequestType == RequestType.JOB) {
         		handleJobRequest(true);
+        		jobAccepted = true;
             } else {
             	handleCarRequest(true);
             }
@@ -178,6 +183,7 @@ public class VC_Controller extends User {
             System.out.println("[SERVER] Reject button clicked");
             if (currentRequestType == RequestType.JOB) {
         		handleJobRequest(false);
+        		jobAccepted = false;
             } else {
             	handleCarRequest(false);
             }
@@ -210,13 +216,19 @@ public class VC_Controller extends User {
             int jobIndex = 0;
             for (Client client : clientInfo) {
                 if (jobIndex < times.size()) {
+                	System.out.println("job is accepted?: " + jobAccepted);
+                	System.out.println("map?: " + jobStatusMap.getOrDefault(client.getId(), false));
+                    //if (jobStatusMap.getOrDefault(client.getId(), false)) {  // check if job is accepted
                     String completionTime = times.get(jobIndex);
                     messageBuilder.append(String.format(
                         "Client ID: %s<br>Job Duration: %s<br>Completion Time: %s<br><br>",
                         client.getId(),
                         client.getJobDuration(),
                         completionTime
+                        
                     ));
+                   // }
+                    System.out.println("jobIndex: " + jobIndex);
                     jobIndex++;
                 }
             }
@@ -597,6 +609,10 @@ public class VC_Controller extends User {
     
     private void handleJobRequest(boolean accepted) {
         System.out.println("[SERVER] handleRequest called with accepted=" + accepted);
+        for (Client client : clientInfo) {
+	        // Assuming clientId uniquely identifies each job
+	        jobStatusMap.put(client.getId(), accepted);  // Mark the job as accepted or rejected
+	    }
         
         synchronized (VC_Controller.class) {
             if (!requestPending) {
@@ -889,6 +905,7 @@ public class VC_Controller extends User {
         String clientId = "";
         String duration = "";
         String deadline = "";
+        String timestamp = "";
        
         String[] parts = jobData.split(",");
         for (String part : parts) {
@@ -901,6 +918,9 @@ public class VC_Controller extends User {
             if (part.contains("deadline='")) {
                 deadline = part.split("'")[1];
             }
+            if (part.contains("timestamp='")) {
+                timestamp = part.split("'")[1];
+            }
         }
         
      // Database credentials
@@ -911,11 +931,12 @@ public class VC_Controller extends User {
         //adding the job data to SQL database
         try {Connection connection =  DriverManager.getConnection(url, user, password);
         	System.out.println("Database Connection Successful");
-        	String sql = "INSERT INTO job_owners (clientID, duration, deadline) VALUES (?, ?, ?)";
+        	String sql = "INSERT INTO job_details (clientID, duration, deadline, timeStamp) VALUES (?, ?, ?, ?)";
         	try(PreparedStatement stmt = connection.prepareStatement(sql)){
         		stmt.setString(1, clientId);
         		stmt.setString(2, duration);
         		stmt.setString(3, deadline); 
+        		stmt.setString(4, timestamp); 
         		stmt.executeUpdate();
         	}
         }
@@ -949,6 +970,72 @@ public class VC_Controller extends User {
             System.err.println("[SERVER] Error saving job to file: " + e.getMessage());
             e.printStackTrace();
         }
+        
+        
+        // Extract clientId, duration, and deadline from jobData
+        String ownerId = "";
+        String make = "";
+        String model = "";
+        String year = "";
+        String vin = "";
+        String timestamp = "";
+       
+        String[] parts = carData.split(",");
+        for (String part : parts) {
+            part = part.trim();  // Trim extra spaces
+            String[] keyValue = part.split("=");
+            
+            if (keyValue.length == 2) {
+                String key = keyValue[0].trim();
+                String value = keyValue[1].replace("'", "").trim(); // Remove quotes if they exist
+
+                switch (key) {
+                    case "ID":
+                        ownerId = value;
+                        break;
+                    case "Make":
+                        make = value;
+                        break;
+                    case "Model":
+                        model = value;
+                        break;
+                    case "Year":
+                        year = value;
+                        break;
+                    case "VIN":
+                        vin = value;
+                        break;
+                    case "timestamp":
+                        timestamp = value;
+                        break;
+                }
+            }
+        }
+
+        
+        // Database credentials
+        String url = "jdbc:mysql://localhost:3306/vcrts"; 
+        String user = "root"; 
+        String password = "nrt123"; 
+        
+        //adding the job data to SQL database
+        try {Connection connection =  DriverManager.getConnection(url, user, password);
+        	System.out.println("Database Connection Successful");
+        	String sql = "INSERT INTO car_details (ownerId, make, model, year, vin, timestamp) VALUES (?, ?, ?, ?, ?, ?)";
+        	try(PreparedStatement stmt = connection.prepareStatement(sql)){
+        		stmt.setString(1, ownerId);
+        		stmt.setString(2, make);
+        		stmt.setString(3, model); 
+        		stmt.setString(4, year);
+        		stmt.setString(5, vin);
+        		stmt.setString(6, timestamp);
+        		stmt.executeUpdate();
+        	}
+        }
+        	catch(Exception e) {
+        		e.printStackTrace();
+        	//	return "Error processing request";
+        	} 
     }
     
     

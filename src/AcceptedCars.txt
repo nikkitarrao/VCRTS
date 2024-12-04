@@ -18,3 +18,15 @@ Car Details: Owner [Name=mm, ID=55555, Phone=56, Make=5, Model=5, Year=5, VIN=5]
 Accepted Car - 2024-12-02 14:15:52
 Car Details: Owner [Name=0, ID=123, Phone=0, Make=honda, Model=crv, Year=0, VIN=0]
 =================================
+=================================
+Accepted Car - 2024-12-03 12:56:17
+Car Details: Owner [Name=123, ID=123, Phone=0, Make=8, Model=8, Year=8, VIN=8
+=================================
+=================================
+Accepted Car - 2024-12-04 15:51:12
+Car Details: Owner [Name=1, ID=1, Phone=1, timestamp=2024-12-04 15:51:05, Make=1, Model=1, Year=1, VIN=1
+=================================
+=================================
+Accepted Car - 2024-12-04 15:55:27
+Car Details: Owner [Name=9, ID=9, Phone=9, timestamp=2024-12-04 15:55:22, Make=9, Model=9, Year=9, VIN=9
+=================================

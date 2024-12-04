@@ -435,7 +435,7 @@ public class ClickListener implements ActionListener {
     	            // Create Client object and proceed with server communication
     	            try {
     	            	Vehicle vehicle = new Vehicle(make, model, year, vin);
-    	            	VehicleOwner owner = new VehicleOwner(ownerID, ownerName, pw, email, phone, duration ,vehicle);
+    	            	VehicleOwner owner = new VehicleOwner(ownerID, ownerName, pw, email, phone, duration, timestamp, vehicle);
     	                vehicleOwnerInfo.add(owner); // Add to list before server communication
     	                
     	                if (VC_Controller.getInstance() == null) {
@@ -651,7 +651,7 @@ public class ClickListener implements ActionListener {
 
            // Create Client object and proceed with server communication
            try {
-               Client client = new Client(clientID, name, password, email, company, jobDuration, deadline);
+               Client client = new Client(clientID, name, password, email, company, jobDuration, deadline, timestamp, false);
                clientInfo.add(client); // Add to list before server communication
                
                if (VC_Controller.getInstance() == null) {

@@ -11,22 +11,26 @@ public class Client extends User {
     private String company;
     private String jobDuration;
     private String deadline;
+    private String timeStamp;
     private boolean jobAccepted = false;
     private static final int TIMEOUT_MS = 1000; //10 seconds 
 
 
-    public Client(String id, String name, String password, String email, String company, String jobDuration, String deadline) {
+    public Client(String id, String name, String password, String email, String company, String jobDuration, String deadline,  String timeStamp, boolean jobAccepted) {
         super(id, name, password);
         this.email = email;
         this.company = company;
         this.jobDuration = jobDuration;
         this.deadline = deadline;
+        this.timeStamp = timeStamp;
+        this.jobAccepted = jobAccepted;
     }
 
     public String getEmail() { return email; }
     public String getCompany() { return company; }
     public String getJobDuration() { return jobDuration; }
     public String getDeadline() { return deadline; }
+    public String getTimeStamp() { return timeStamp; }
     public boolean isJobAccepted() { return jobAccepted; }
 
     public String toString() {
@@ -37,6 +41,8 @@ public class Client extends User {
                 ", company='" + company + '\'' +
                 ", jobDuration='" + jobDuration + '\'' +
                 ", deadline='" + deadline + '\'' +
+                ", timestamp='" + timeStamp + '\'' +
+                ", jobstatus='" + jobAccepted + '\'' +
                 '}';
     }
     
