@@ -79,3 +79,19 @@ Accepted Car - 2024-12-03 12:37:55
 Car Details: Owner [Name=f, ID=19191, Phone=f, Make=f, Model=f, Year=f, VIN=ff
 >>>>>>> 954f76960e0fcc235af1cb85d6d8c46833e6ab04
 =================================
+=================================
+Accepted Car - 2024-12-07 20:01:07
+Car Details: Owner [Name=e, ID=e, Phone=e, timestamp=2024-12-07 20:00:58, Make=e, Model=e, Year=e, VIN=e
+=================================
+=================================
+Accepted Car - 2024-12-07 20:16:23
+Car Details: Owner [Name=qwe, ID=qwe, Phone=qew, timestamp=2024-12-07 20:16:16, Make=qwe, Model=qwe, Year=qweqwe, VIN=qwe
+=================================
+=================================
+Accepted Car - 2024-12-07 20:53:37
+Car Details: Owner [Name=wer, ID=werwer, Phone=ewr, timestamp=2024-12-07 20:53:27, Make=wer, Model=wer, Year=erw, VIN=wer
+=================================
+=================================
+Accepted Car - 2024-12-07 20:54:31
+Car Details: Owner [Name=fsdf, ID=sdf, Phone=df, timestamp=2024-12-07 20:54:12, Make=dsf, Model=dfs, Year=sdf, VIN=sfd
+=================================

@@ -263,3 +263,115 @@ Job Details: Client{id='d', name='d', email='d', company='d', jobDuration='2', d
 Accepted Job - 2024-12-04 16:28:36
 Job Details: Client{id='www', name='w', email='ww', company='w', jobDuration='3', deadline='w', timestamp='2024-12-04 16:28:33', jobstatus='false'}
 =================================
+=================================
+Accepted Job - 2024-12-07 14:30:18
+Job Details: Client{id='wer', name='wer', email='wer', company='wer', jobDuration='45', deadline='we'}
+=================================
+=================================
+Accepted Job - 2024-12-07 14:30:42
+Job Details: Client{id='fwef', name='wef', email='wef', company='wef', jobDuration='34', deadline='er'}
+=================================
+=================================
+Accepted Job - 2024-12-07 14:31:25
+Job Details: Client{id='3e2', name='qew', email='qwe', company='3', jobDuration='56', deadline='ew'}
+=================================
+=================================
+Accepted Job - 2024-12-07 14:58:07
+Job Details: Client{id='ewr', name='wer', email='wer', company='wer', jobDuration='34', deadline='ewr', timestamp='2024-12-07 14:57:57', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 14:59:46
+Job Details: Client{id='mlmlm', name='kljklj', email='m.m,m.', company='m,.m.', jobDuration='67', deadline='m,.m', timestamp='2024-12-07 14:59:38', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 15:05:53
+Job Details: Client{id='dasasd', name='asd', email='asd', company='asd', jobDuration='89', deadline='asd', timestamp='2024-12-07 15:05:44', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 15:14:53
+Job Details: Client{id='1234', name='sdf', email='sdf', company='ew', jobDuration='12', deadline='wqe', timestamp='2024-12-07 15:14:48', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 15:16:46
+Job Details: Client{id='345', name='qwe', email='ads', company='qew', jobDuration='45', deadline='qwe', timestamp='2024-12-07 15:16:37', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 15:22:22
+Job Details: Client{id='789', name='wer', email='dfgddf', company='rgdf', jobDuration='9', deadline='dfs', timestamp='2024-12-07 15:22:17', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 17:04:29
+Job Details: Client{id='12', name='qwe', email='ads', company='wqe', jobDuration='34', deadline='sad', timestamp='2024-12-07 17:04:21', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 17:05:51
+Job Details: Client{id='34', name='qwe', email='qwe', company='sad', jobDuration='45', deadline='dsa', timestamp='2024-12-07 17:05:45', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 17:06:47
+Job Details: Client{id='67', name='QWE', email='EWR', company='24R', jobDuration='7', deadline='DS', timestamp='2024-12-07 17:06:41', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 17:21:15
+Job Details: Client{id='1', name='q', email='q', company='q', jobDuration='1', deadline='q', timestamp='2024-12-07 17:21:07', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 17:21:37
+Job Details: Client{id='2', name='w', email='w', company='w', jobDuration='2', deadline='w', timestamp='2024-12-07 17:21:28', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 17:22:22
+Job Details: Client{id='4', name='w', email='w', company='w', jobDuration='4', deadline='w', timestamp='2024-12-07 17:22:14', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 17:25:34
+Job Details: Client{id='5', name='r', email='e', company='e', jobDuration='5', deadline='e', timestamp='2024-12-07 17:25:27', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 17:26:23
+Job Details: Client{id='7', name='r', email='e', company='e', jobDuration='7', deadline='e', timestamp='2024-12-07 17:26:18', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 19:57:47
+Job Details: Client{id='asd', name='asd', email='asd', company='asd', jobDuration='1', deadline='asd', timestamp='2024-12-07 19:57:40', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 19:58:46
+Job Details: Client{id='3', name='e', email='e', company='e', jobDuration='3', deadline='e', timestamp='2024-12-07 19:58:39', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 20:00:02
+Job Details: Client{id='4', name='e', email='e', company='e', jobDuration='4', deadline='e', timestamp='2024-12-07 19:59:56', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 20:13:58
+Job Details: Client{id='1', name='q', email='s', company='w', jobDuration='1', deadline='w', timestamp='2024-12-07 20:13:52', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 20:14:39
+Job Details: Client{id='2', name='w', email='w', company='w', jobDuration='2', deadline='w', timestamp='2024-12-07 20:14:33', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 20:15:43
+Job Details: Client{id='5', name='e', email='e', company='e', jobDuration='5', deadline='e', timestamp='2024-12-07 20:15:36', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 20:23:04
+Job Details: Client{id='1', name='w', email='w', company='w', jobDuration='1', deadline='w', timestamp='2024-12-07 20:22:59', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 20:47:38
+Job Details: Client{id='1', name='d', email='d', company='d', jobDuration='1', deadline='w', timestamp='2024-12-07 20:47:27', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 20:48:32
+Job Details: Client{id='3', name='e', email='e', company='e', jobDuration='3', deadline='e', timestamp='2024-12-07 20:48:25', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 20:49:41
+Job Details: Client{id='5', name='df', email='43', company='fd', jobDuration='5', deadline='er', timestamp='2024-12-07 20:49:34', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 20:51:09
+Job Details: Client{id='8', name='7', email='6', company='6', jobDuration='8', deadline='7', timestamp='2024-12-07 20:51:04', jobstatus='false'}
+=================================
