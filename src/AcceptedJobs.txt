@@ -375,3 +375,39 @@ Job Details: Client{id='5', name='df', email='43', company='fd', jobDuration='5'
 Accepted Job - 2024-12-07 20:51:09
 Job Details: Client{id='8', name='7', email='6', company='6', jobDuration='8', deadline='7', timestamp='2024-12-07 20:51:04', jobstatus='false'}
 =================================
+=================================
+Accepted Job - 2024-12-07 21:11:08
+Job Details: Client{id='x', name='x', email='x', company='x', jobDuration='2', deadline='x', timestamp='2024-12-07 21:11:04', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-07 21:11:32
+Job Details: Client{id='v', name='v', email='v', company='v', jobDuration='5', deadline='v', timestamp='2024-12-07 21:11:27', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-08 11:27:38
+Job Details: Client{id='111', name='1', email='1', company='1', jobDuration='1', deadline='1', timestamp='2024-12-08 11:27:31', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-08 11:32:05
+Job Details: Client{id='88888', name='Shivanni Rambaran', email='sr@gmail.com', company='n/a', jobDuration='5', deadline='12/18/2024', timestamp='2024-12-08 11:32:00', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-08 11:33:01
+Job Details: Client{id='00000', name='Sitara Rambaran', email='srr@gmail.com', company='n/a', jobDuration='2', deadline='12-24-2024', timestamp='2024-12-08 11:32:57', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-10 20:31:48
+Job Details: Client{id='0000', name='Shivanni Rambaran', email='scr@yahoo.com', company='n/a', jobDuration='5', deadline='12-25-2024', timestamp='2024-12-10 20:31:40', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-10 20:33:15
+Job Details: Client{id='82828', name='Marja Ganesh', email='mfg@aol.com', company='FO', jobDuration='9', deadline='01-05-2025', timestamp='2024-12-10 20:33:07', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-11 11:28:28
+Job Details: Client{id='2222', name='f', email='f', company='f', jobDuration='4', deadline='f', timestamp='2024-12-11 11:28:24', jobstatus='false'}
+=================================
+=================================
+Accepted Job - 2024-12-11 11:29:12
+Job Details: Client{id='555', name='g', email='g', company='g', jobDuration='6', deadline='g', timestamp='2024-12-11 11:29:08', jobstatus='false'}
+=================================

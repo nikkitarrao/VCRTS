@@ -137,6 +137,16 @@ public class ClickListener implements ActionListener {
         //returning the panel so that it can be displayed when 'SignIn' button option is chosen 
         return signInPanel;
     }
+    
+    private void addFieldToPanel(JPanel panel, JLabel label, JTextField field, Dimension format) {
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(label);
+
+        field.setMinimumSize(format);
+        field.setMaximumSize(format);
+        field.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(field);
+    }
 
     public JPanel createAccount() {
     	JPanel outerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -485,7 +495,7 @@ public class ClickListener implements ActionListener {
     
     
     public JPanel user2() throws FileNotFoundException {
-        JPanel user2Panel = new JPanel();
+       /* JPanel user2Panel = new JPanel();
         user2Panel.setLayout(new BoxLayout(user2Panel, BoxLayout.Y_AXIS)); // Use BoxLayout for vertical stacking
         
         //Establish background color
@@ -676,7 +686,182 @@ public class ClickListener implements ActionListener {
                    "Creation Error",
                    JOptionPane.ERROR_MESSAGE);
            }
+       });*/
+    	JPanel user2Panel = new JPanel();
+        user2Panel.setLayout(new BoxLayout(user2Panel, BoxLayout.Y_AXIS)); // Use BoxLayout for vertical stacking
+        
+        //Establish background color
+        Color specificColor = new Color(199, 230, 246);
+        user2Panel.setBackground(specificColor);
+        
+        JLabel label = new JLabel("Create User 2 Account");
+        label.setFont(new Font("Serif", Font.BOLD, 20));
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        user2Panel.add(Box.createVerticalStrut(20));
+    	user2Panel.add(label);
+    	
+    	// Info label
+        JLabel infoText = new JLabel("Enter the following information below");
+        infoText.setAlignmentX(Component.CENTER_ALIGNMENT);
+        user2Panel.add(infoText);
+        user2Panel.add(Box.createVerticalStrut(20));
+        
+        Dimension format = new Dimension(400,27);
+        
+     // Input fields and labels
+        JTextField clientIDText = new JTextField(10);
+        JTextField nameText = new JTextField(20);
+        JPasswordField passwordText = new JPasswordField(20);
+        JTextField emailText = new JTextField(20);
+        JTextField companyText = new JTextField(20);
+        JTextField jobDurationText = new JTextField(20);
+        JTextField deadlineText = new JTextField(10);
+
+        JLabel clientIDLabel = new JLabel("Client ID: ");
+        JLabel nameLabel = new JLabel("Full Name: ");
+        JLabel passwordLabel = new JLabel("Password: ");
+        JLabel emailLabel = new JLabel("Email: ");
+        JLabel companyLabel = new JLabel("Company/Organization: ");
+        JLabel jobDurationLabel = new JLabel("Approx Job Duration (in minutes): ");
+        JLabel deadlineLabel = new JLabel("Job Deadline (MM-DD-YYYY): ");
+
+        // Add input fields with formatting
+        addFieldToPanel(user2Panel, clientIDLabel, clientIDText, format);
+        addFieldToPanel(user2Panel, nameLabel, nameText, format);
+        addFieldToPanel(user2Panel, passwordLabel, passwordText, format);
+        addFieldToPanel(user2Panel, emailLabel, emailText, format);
+        addFieldToPanel(user2Panel, companyLabel, companyText, format);
+        addFieldToPanel(user2Panel, jobDurationLabel, jobDurationText, format);
+        addFieldToPanel(user2Panel, deadlineLabel, deadlineText, format);
+
+        // File reading operations
+    	//PrintStream output = new PrintStream(new File("User2Out.txt"));
+       
+        user2Panel.setLayout(new BoxLayout(user2Panel, BoxLayout.Y_AXIS)); 
+
+        //Buttons
+        
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        buttonPanel.setBackground(specificColor); // Set background for the panel
+        
+    	JButton submitButton = new JButton("Submit");
+    	submitButton.setPreferredSize(new Dimension(100, 35));
+    	submitButton.addActionListener(this);
+    	buttonPanel.add(submitButton);
+    	
+    	//Back Button
+        JButton backButton = new JButton("Back");
+        backButton.setPreferredSize(new Dimension(100, 35)); // Set preferred size if needed
+        backButton.addActionListener(e -> cardLayout.show(mainPanel, "CreateAccount"));
+        buttonPanel.add(backButton); // Add to combined button panel
+
+        user2Panel.add(Box.createVerticalStrut(20)); 
+	    user2Panel.add(buttonPanel);
+        
+      //Establishing Background Colors
+        clientIDLabel.setBackground(specificColor);
+        nameLabel.setBackground(specificColor);
+        passwordLabel.setBackground(specificColor);
+        emailLabel.setBackground(specificColor);
+        companyLabel.setBackground(specificColor);
+        jobDurationLabel.setBackground(specificColor);
+        deadlineLabel.setBackground(specificColor);
+
+        
+     // Single back button action listener
+        
+        
+      //line break to make more neat
+       user2Panel.setLayout(new BoxLayout(user2Panel, BoxLayout.Y_AXIS)); 
+        
+    // Update the user2() method's submit button action listener:
+    // Single back button action listener
+       backButton.addActionListener(e -> {
+    	// Clear fields before going back
+    	   clientIDText.setText("");
+           nameText.setText("");
+           passwordText.setText("");
+           emailText.setText("");
+           companyText.setText("");
+           jobDurationText.setText("");
+           deadlineText.setText("");
+             
+           cardLayout.show(mainPanel, "CreateAccount");
        });
+       
+        
+        //submit button action
+        submitButton.addActionListener(e ->{
+        	String clientID = clientIDText.getText();
+        	String name = nameText.getText();
+        	String password = new String (passwordText.getPassword());
+        	String email = emailText.getText();
+        	String company = companyText.getText();
+        	String jobDuration = jobDurationText.getText();
+        	String deadline = deadlineText.getText();
+        	String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            
+        	
+        	if (clientID.isEmpty() || name.isEmpty() || password.isEmpty() || email.isEmpty()|| 
+        			company.isEmpty() || jobDuration.isEmpty() || deadline.isEmpty()) {
+        		JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Information");
+        		return;
+        	}
+        	
+       
+        // Save to User2.txt first
+        try (PrintWriter writer = new PrintWriter(new FileWriter("User2.txt", true))) {
+            writer.println("New Client Account:");
+            writer.println("Timestamp: " + timestamp);
+            writer.println("Client ID: " + clientID);
+            writer.println("Name: " + name);
+            writer.println("Email: " + email);
+            writer.println("Company: " + company);
+            writer.println("Job Duration: " + jobDuration);
+            writer.println("Deadline: " + deadline);
+            writer.println("------------------------");
+            writer.flush();
+            System.out.println("[CLIENT] Account information saved to User2.txt");
+        } catch (IOException ex) {
+            System.err.println("[CLIENT] Error saving to User2.txt: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+
+        // Create Client object and proceed with server communication
+        try {
+            Client client = new Client(clientID, name, password, email, company, jobDuration, deadline, timestamp, false);
+            clientInfo.add(client); // Add to list before server communication
+            
+            if (VC_Controller.getInstance() == null) {
+                JOptionPane.showMessageDialog(null,
+                    "No active VC Controller found. Please create a controller account first.",
+                    "Server Error",
+                    JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Clear fields after successful save
+            clientIDText.setText("");
+            nameText.setText("");
+            passwordText.setText("");
+            emailText.setText("");
+            companyText.setText("");
+            jobDurationText.setText("");
+            deadlineText.setText("");
+            
+            // Communicate with server
+            client.talkToServer(client.toString());
+            
+        } catch (Exception ex) {
+            System.err.println("[CLIENT] Error creating client: " + ex.getMessage());
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                "Error creating client: " + ex.getMessage(),
+                "Creation Error",
+                JOptionPane.ERROR_MESSAGE);
+        }
+    });
+
 
        return user2Panel;
    }
@@ -687,7 +872,7 @@ public class ClickListener implements ActionListener {
         }
     }
     public JPanel cloudController() throws FileNotFoundException {
-        JPanel cloudControllerPanel = new JPanel();
+       /* JPanel cloudControllerPanel = new JPanel();
         cloudControllerPanel.setLayout(new BoxLayout(cloudControllerPanel, BoxLayout.Y_AXIS));
         
         //Establish background color
@@ -807,6 +992,193 @@ public class ClickListener implements ActionListener {
         buttonPanel.add(Box.createHorizontalGlue());
 
         // Add button panel to main panel
+        cloudControllerPanel.add(buttonPanel);
+
+        // Event listener on submit button 
+        submitButton.addActionListener(e -> {
+            // Retrieves the info from the input fields 
+            String adminCode = t1.getText();
+            String fname = t2.getText();
+            String lname = t3.getText();
+            String email = t4.getText();
+            String password = t5.getText();
+            String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+
+            // Check if fields are empty
+            if (adminCode.isEmpty() || password.isEmpty() || email.isEmpty() || 
+                fname.isEmpty() || lname.isEmpty()) {
+                JOptionPane.showMessageDialog(new JFrame("Error"), "Missing Information");
+            } 
+            else {
+                // Save it into the array list
+                cloudControllerInfo.add(adminCode);
+                cloudControllerInfo.add(fname);
+                cloudControllerInfo.add(lname);
+                cloudControllerInfo.add(email);
+                cloudControllerInfo.add(password);
+
+                // Create the VC_Controller instance with all necessary references
+                VC_Controller vc = new VC_Controller(
+                    adminCode, 
+                    fname, 
+                    password,
+                    clientInfo,
+                    jobDurations,
+                    mainPanel,
+                    cardLayout
+                );
+
+                // Save account info to file using the fileOutput reference
+                fileOutput.println("Admin Code: " + adminCode + ", ");
+                fileOutput.println("First Name: " + fname + ", ");
+                fileOutput.println("Last Name: " + lname + ", ");
+                fileOutput.println("Email: " + email + ", ");
+                fileOutput.println("Password: " + password + ", ");
+                fileOutput.println("timestamp: " + timestamp + ", ");
+                fileOutput.println("");
+                
+                // Clear text fields
+                t1.setText("");
+                t2.setText("");
+                t3.setText("");
+                t4.setText("");
+                t5.setText("");
+                
+                cardLayout.show(mainPanel, "CreateAccount");
+                
+                JOptionPane.showMessageDialog(null, 
+                        "Cloud Controller account created successfully!", 
+                        "Account Created", 
+                        JOptionPane.INFORMATION_MESSAGE);
+
+            }
+        });*/
+    	
+    	JPanel cloudControllerPanel = new JPanel();
+        cloudControllerPanel.setLayout(new BoxLayout(cloudControllerPanel, BoxLayout.Y_AXIS));
+        
+        //Establish background color
+        Color specificColor = new Color(199, 230, 246);
+        cloudControllerPanel.setBackground(specificColor);
+        
+        // Centered Title
+        JLabel label = new JLabel("Create Cloud Controller Account");
+        label.setFont(new Font("Serif", Font.BOLD, 20));
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cloudControllerPanel.add(Box.createVerticalStrut(20));
+        cloudControllerPanel.add(label);
+
+        // Centered Sub-Title
+        JLabel AuthorizedText = new JLabel("Authorized Users Only");
+        AuthorizedText.setAlignmentX(Component.CENTER_ALIGNMENT);
+        AuthorizedText.setFont(new Font("Serif", Font.PLAIN, 15));
+        cloudControllerPanel.add(AuthorizedText);
+        cloudControllerPanel.add(Box.createVerticalStrut(20));
+
+        // Centered Instructions
+        JLabel infoText = new JLabel("Enter the following information below");
+        infoText.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cloudControllerPanel.add(infoText);
+       
+        cloudControllerPanel.add(Box.createVerticalStrut(10));
+        
+        // Text fields
+        JTextField t1 = new JTextField(20);
+        JTextField t2 = new JTextField(20);
+        JTextField t3 = new JTextField(20);
+        JTextField t4 = new JTextField(20);
+        JPasswordField t5 = new JPasswordField(20);
+        
+        t1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        t2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        t3.setAlignmentX(Component.CENTER_ALIGNMENT);
+        t4.setAlignmentX(Component.CENTER_ALIGNMENT);
+        t5.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        //Dimension textFieldSize = new Dimension(300, 30);
+        Dimension format = new Dimension(400,27);
+        t1.setPreferredSize(format);
+        t2.setPreferredSize(format);
+        t3.setPreferredSize(format);
+        t4.setPreferredSize(format);
+        t5.setPreferredSize(format);
+
+        t1.setMaximumSize(format);
+        t2.setMaximumSize(format);
+        t3.setMaximumSize(format);
+        t4.setMaximumSize(format);
+        t5.setMaximumSize(format);
+        
+        t1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        t2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        t3.setAlignmentX(Component.CENTER_ALIGNMENT);
+        t4.setAlignmentX(Component.CENTER_ALIGNMENT);
+        t5.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        // File reading operations
+        PrintStream fileOutput = new PrintStream(new File("CloudOut.txt"));
+        
+        // Adding labels and text fields
+       
+        
+        JLabel adminCenter = new JLabel("Admin ID:");
+        adminCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cloudControllerPanel.add(adminCenter);
+        cloudControllerPanel.add(t1);
+        cloudControllerPanel.add(Box.createVerticalStrut(3)); // Small spacing
+
+        JLabel fnameCenter = new JLabel("First Name: ");
+        fnameCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cloudControllerPanel.add(fnameCenter);
+        cloudControllerPanel.add(t2);
+        cloudControllerPanel.add(Box.createVerticalStrut(3));
+
+        JLabel lnameCenter = new JLabel("Last Name: ");
+        lnameCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cloudControllerPanel.add(lnameCenter);
+        cloudControllerPanel.add(t3);
+        cloudControllerPanel.add(Box.createVerticalStrut(3));
+
+        JLabel emailCenter = new JLabel("Email: ");
+        emailCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cloudControllerPanel.add(emailCenter);
+        cloudControllerPanel.add(t4);
+        cloudControllerPanel.add(Box.createVerticalStrut(3));
+
+        JLabel passwordCenter = new JLabel("Password: ");
+        passwordCenter.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cloudControllerPanel.add(passwordCenter);
+        cloudControllerPanel.add(t5);
+        cloudControllerPanel.add(Box.createVerticalStrut(10));
+
+        // Button panel for centering
+        
+        /*
+
+    	
+    	//Back Button
+        JButton backButton = new JButton("Back");
+        backButton.setPreferredSize(new Dimension(100, 35)); // Set preferred size if needed
+        backButton.addActionListener(e -> cardLayout.show(mainPanel, "CreateAccount"));
+        buttonPanel.add(backButton); // Add to combined button panel
+
+        user2Panel.add(Box.createVerticalStrut(20)); 
+	    user2Panel.add(buttonPanel);
+         */
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        buttonPanel.setBackground(specificColor);
+
+    	JButton submitButton = new JButton("Submit");
+    	submitButton.setPreferredSize(new Dimension(100, 35));
+    	submitButton.addActionListener(this);
+    	buttonPanel.add(submitButton);
+        
+        JButton backButton = new JButton("Back");
+        backButton.setPreferredSize(new Dimension(100, 35)); // Set preferred size if needed
+        backButton.addActionListener(e -> cardLayout.show(mainPanel, "CreateAccount"));
+        buttonPanel.add(backButton); // Add to combined button panel
+
+        cloudControllerPanel.add(Box.createVerticalStrut(20)); 
         cloudControllerPanel.add(buttonPanel);
 
         // Event listener on submit button 

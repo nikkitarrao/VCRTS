@@ -906,13 +906,13 @@ public class VC_Controller extends User {
      // Database credentials
         String url = "jdbc:mysql://127.0.0.1:3306/vcrts"; 
         String user = "root"; 
-        String password = "Soumyaa1!"; 
+        String password = "2daughters"; 
         
         //adding the job data to SQL database
         try {
         	Connection connection =  DriverManager.getConnection(url, user, password);
         	System.out.println("Database Connection Successful");
-        	String sql = "INSERT INTO job_details (clientID, duration, deadline, timeStamp) VALUES (?, ?, ?, ?)";
+        	String sql = "INSERT INTO job_owners (clientID, duration, deadline, timeStamp) VALUES (?, ?, ?, ?)";
         	try(PreparedStatement stmt = connection.prepareStatement(sql)){
         		stmt.setString(1, clientId);
         		stmt.setString(2, duration);
@@ -1009,13 +1009,13 @@ public class VC_Controller extends User {
         // Database credentials
         String url = "jdbc:mysql://127.0.0.1:3306/vcrts"; 
         String user = "root"; 
-        String password = "Soumyaa1!"; 
+        String password = "2daughters"; 
         
         //adding the job data to SQL database
         try {
         	Connection connection =  DriverManager.getConnection(url, user, password);
         	System.out.println("Database Connection Successful");
-        	String sql = "INSERT INTO car_details (ownerId, make, model, year, vin, timestamp) VALUES (?, ?, ?, ?, ?, ?)";
+        	String sql = "INSERT INTO car_owners (ownerId, make, model, year, vin, timestamp) VALUES (?, ?, ?, ?, ?, ?)";
         	
         	try(PreparedStatement stmt = connection.prepareStatement(sql)){
         		stmt.setString(1, ownerId);

@@ -1736,3 +1736,138 @@ Company: 6
 Job Duration: 8
 Deadline: 7
 ------------------------
+New Client Account:
+Timestamp: 2024-12-07 21:11:04
+Client ID: x
+Name: x
+Email: x
+Company: x
+Job Duration: 2
+Deadline: x
+------------------------
+New Client Account:
+Timestamp: 2024-12-07 21:11:17
+Client ID: x
+Name: x
+Email: x
+Company: x
+Job Duration: 1
+Deadline: x
+------------------------
+New Client Account:
+Timestamp: 2024-12-07 21:11:27
+Client ID: v
+Name: v
+Email: v
+Company: v
+Job Duration: 5
+Deadline: v
+------------------------
+New Client Account:
+Timestamp: 2024-12-08 11:27:31
+Client ID: 111
+Name: 1
+Email: 1
+Company: 1
+Job Duration: 1
+Deadline: 1
+------------------------
+New Client Account:
+Timestamp: 2024-12-08 11:32:00
+Client ID: 88888
+Name: Shivanni Rambaran
+Email: sr@gmail.com
+Company: n/a
+Job Duration: 5
+Deadline: 12/18/2024
+------------------------
+New Client Account:
+Timestamp: 2024-12-08 11:32:24
+Client ID: 333
+Name: f
+Email: f
+Company: f
+Job Duration: 3
+Deadline: f
+------------------------
+New Client Account:
+Timestamp: 2024-12-08 11:32:57
+Client ID: 00000
+Name: Sitara Rambaran
+Email: srr@gmail.com
+Company: n/a
+Job Duration: 2
+Deadline: 12-24-2024
+------------------------
+New Client Account:
+Timestamp: 2024-12-08 11:34:46
+Client ID: ff
+Name: f
+Email: f
+Company: f
+Job Duration: 1
+Deadline: f
+------------------------
+New Client Account:
+Timestamp: 2024-12-10 20:31:40
+Client ID: 0000
+Name: Shivanni Rambaran
+Email: scr@yahoo.com
+Company: n/a
+Job Duration: 5
+Deadline: 12-25-2024
+------------------------
+New Client Account:
+Timestamp: 2024-12-10 20:32:23
+Client ID: 0909
+Name: Sitvge
+Email: re
+Company: rer
+Job Duration: 3
+Deadline: ve
+------------------------
+New Client Account:
+Timestamp: 2024-12-10 20:33:07
+Client ID: 82828
+Name: Marja Ganesh
+Email: mfg@aol.com
+Company: FO
+Job Duration: 9
+Deadline: 01-05-2025
+------------------------
+New Client Account:
+Timestamp: 2024-12-11 11:28:08
+Client ID: 111
+Name: d
+Email: d
+Company: d
+Job Duration: d
+Deadline: d
+------------------------
+New Client Account:
+Timestamp: 2024-12-11 11:28:24
+Client ID: 2222
+Name: f
+Email: f
+Company: f
+Job Duration: 4
+Deadline: f
+------------------------
+New Client Account:
+Timestamp: 2024-12-11 11:28:54
+Client ID: 999
+Name: c
+Email: c
+Company: c
+Job Duration: 3
+Deadline: c
+------------------------
+New Client Account:
+Timestamp: 2024-12-11 11:29:08
+Client ID: 555
+Name: g
+Email: g
+Company: g
+Job Duration: 6
+Deadline: g
+------------------------

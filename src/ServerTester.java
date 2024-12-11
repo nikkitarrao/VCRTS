@@ -68,15 +68,15 @@ public class ServerTester {
         createAccountButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         createAccountButton.addActionListener(listener);
         
-        JButton signInButton = new JButton("Sign In");
-        signInButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        signInButton.addActionListener(listener);
+        //JButton signInButton = new JButton("Sign In");
+       // signInButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+       // signInButton.addActionListener(listener);
         
         welcomePanel.add(Box.createVerticalGlue());
         welcomePanel.add(Box.createVerticalStrut(50));
         welcomePanel.add(createAccountButton);
         welcomePanel.add(Box.createVerticalStrut(20));
-        welcomePanel.add(signInButton);
+       // welcomePanel.add(signInButton);
         welcomePanel.add(Box.createVerticalGlue());
         
         return welcomePanel;

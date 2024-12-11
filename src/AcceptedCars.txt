@@ -95,3 +95,27 @@ Car Details: Owner [Name=wer, ID=werwer, Phone=ewr, timestamp=2024-12-07 20:53:2
 Accepted Car - 2024-12-07 20:54:31
 Car Details: Owner [Name=fsdf, ID=sdf, Phone=df, timestamp=2024-12-07 20:54:12, Make=dsf, Model=dfs, Year=sdf, VIN=sfd
 =================================
+=================================
+Accepted Car - 2024-12-07 21:18:03
+Car Details: Owner [Name=cc, ID=cc, Phone=c, timestamp=2024-12-07 21:17:55, Make=c, Model=c, Year=c, VIN=c
+=================================
+=================================
+Accepted Car - 2024-12-08 11:25:12
+Car Details: Owner [Name=Marja Ganesh, ID=34789, Phone=7778889999, timestamp=2024-12-08 11:25:02, Make=nissan, Model=pathfinder, Year=2016, VIN=7840284682
+=================================
+=================================
+Accepted Car - 2024-12-08 11:30:39
+Car Details: Owner [Name=Marja Ganesh, ID=8264902, Phone=7778889999, timestamp=2024-12-08 11:30:33, Make=nissan, Model=pathfinder, Year=2016, VIN=2427403255
+=================================
+=================================
+Accepted Car - 2024-12-10 20:28:28
+Car Details: Owner [Name=Shivanni Rambaran, ID=08312003, Phone=6667778888, timestamp=2024-12-10 20:28:17, Make=nissan, Model=altima, Year=2016, VIN=164729374929
+=================================
+=================================
+Accepted Car - 2024-12-10 20:30:59
+Car Details: Owner [Name=Marja Ganesh, ID=0210455, Phone=2830193838, timestamp=2024-12-10 20:30:53, Make=toyota, Model=corolla, Year=2014, VIN=134592486482
+=================================
+=================================
+Accepted Car - 2024-12-11 11:27:26
+Car Details: Owner [Name=a, ID=3333, Phone=a, timestamp=2024-12-11 11:27:19, Make=a, Model=a, Year=aa, VIN=a
+=================================

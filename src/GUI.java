@@ -54,8 +54,8 @@ public class GUI {
             JButton createAccountButton = new JButton("Create an Account");
             createAccountButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-            JButton signInButton = new JButton("Sign In");
-            signInButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+            //JButton signInButton = new JButton("Sign In");
+            //signInButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
        
         welcomePanel.add(titleLabel);
@@ -64,7 +64,7 @@ public class GUI {
         welcomePanel.add(Box.createRigidArea(new Dimension(0, 30)));  // Spacing
         welcomePanel.add(createAccountButton);
         welcomePanel.add(Box.createRigidArea(new Dimension(0, 10)));  // Spacing
-        welcomePanel.add(signInButton);
+       // welcomePanel.add(signInButton);
 
         // Add welcome panel to main panel
         mainPanel.add(welcomePanel, "Welcome");
@@ -87,7 +87,7 @@ public class GUI {
 
         // Add action listeners
         createAccountButton.addActionListener(listener);
-        signInButton.addActionListener(listener);
+        //signInButton.addActionListener(listener);
         
         // Database credentials
        /* String url = "jdbc:mysql://127.0.0.1:3306/vcrts"; 
